@@ -1,17 +1,51 @@
 import { Geist, Geist_Mono, Noto_Sans, Oxanium } from "next/font/google"
+import type { Metadata } from "next"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 
-const oxaniumHeading = Oxanium({subsets:['latin'],variable:'--font-heading'});
-
-const notoSans = Noto_Sans({subsets:['latin'],variable:'--font-sans'})
-
+const oxaniumHeading = Oxanium({ subsets: ['latin'], variable: '--font-heading' });
+const notoSans = Noto_Sans({ subsets: ['latin'], variable: '--font-sans' })
 const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
 })
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://your-domain.com"),
+  title: {
+    default: "Imran Hossain | Full Stack Developer",
+    template: "%s | Imran Hossain",
+  },
+  description:
+    "Imran Hossain is a Full Stack Developer specializing in React, Next.js, Node.js, Express, PostgreSQL, and Prisma. Explore my projects, skills, and experience.",
+  keywords: [
+    "Imran Hossain",
+    "Full Stack Developer",
+    "React Developer",
+    "Next.js Developer",
+    "MERN Stack Developer Bangladesh",
+  ],
+  authors: [{ name: "Imran Hossain" }],
+  creator: "Imran Hossain",
+  openGraph: {
+    type: "website",
+    url: "https://your-domain.com",
+    title: "Imran Hossain | Full Stack Developer",
+    description:
+      "Full Stack Developer building modern, scalable web apps with React, Next.js, Node.js & PostgreSQL.",
+    siteName: "Imran Hossain Portfolio",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Imran Hossain | Full Stack Developer",
+    description: "Full Stack Developer building modern web experiences.",
+    images: ["/og-image.jpg"],
+  },
+  robots: { index: true, follow: true },
+}
 
 export default function RootLayout({
   children,
