@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
+import PersonSchema from "./person-schema";
 
 const oxaniumHeading = Oxanium({ subsets: ['latin'], variable: '--font-heading' });
 const notoSans = Noto_Sans({ subsets: ['latin'], variable: '--font-sans' })
@@ -13,7 +14,7 @@ const fontMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-domain.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com"),
   title: {
     default: "Imran Hossain | Full Stack Developer",
     template: "%s | Imran Hossain",
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
   creator: "Imran Hossain",
   openGraph: {
     type: "website",
-    url: "https://your-domain.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     title: "Imran Hossain | Full Stack Developer",
     description:
       "Full Stack Developer building modern, scalable web apps with React, Next.js, Node.js & PostgreSQL.",
@@ -59,6 +60,7 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", notoSans.variable, oxaniumHeading.variable)}
     >
       <body>
+        <PersonSchema />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
