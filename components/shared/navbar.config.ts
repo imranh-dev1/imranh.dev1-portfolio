@@ -1,10 +1,10 @@
 import {
-    Home,
-    User,
-    Code2,
     BriefcaseBusiness,
+    Code2,
     FolderKanban,
+    Home,
     Mail,
+    User,
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";

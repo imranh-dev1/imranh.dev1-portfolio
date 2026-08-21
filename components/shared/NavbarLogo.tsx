@@ -11,7 +11,7 @@ const NavbarLogo = ({ onClick }: NavbarLogoProps) => {
             onClick={onClick}
             className="text-2xl font-bold transition-colors duration-300 hover:text-primary-color md:text-3xl"
         >
-            Developer <span className="text-primary-color">I.</span>
+            Developer <span className="text-primary">I.</span>
         </Link>
     );
 };
