@@ -3,7 +3,7 @@ import ParticlesBg from "./ParticlesBg";
 
 const HeroSection = () => {
     return (
-        <section
+        <section id="home"
             className="
         relative
         bg-minBg

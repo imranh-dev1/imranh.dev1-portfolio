@@ -215,7 +215,6 @@ const Banner = () => {
 
     return (
         <section
-            id="home"
             className="
         container
         mx-auto
