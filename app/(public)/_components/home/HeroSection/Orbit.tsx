@@ -50,44 +50,35 @@ const Orbit = ({
                     width: `min(${radius * 2}px, 92%)`,
                     height: `min(${radius * 2}px, 92%)`,
                     border: `1.5px solid ${ringColor}`,
-                    boxShadow:
-                        "0 0 20px rgba(19,187,255,.25)",
+                    boxShadow: "0 0 20px rgba(19,187,255,.25)",
                 }}
             />
 
             {/* Orbit Icons */}
             {icons.map((icon, index) => {
-                const angle =
-                    (Math.PI * 2 * index) /
-                    icons.length;
+                const angle = (Math.PI * 2 * index) / icons.length;
 
+                // Round values to avoid SSR hydration mismatch
                 const x =
-                    Math.cos(angle) * radius;
+                    Math.round(Math.cos(angle) * radius * 1000) / 1000;
 
                 const y =
-                    Math.sin(angle) * radius;
+                    Math.round(Math.sin(angle) * radius * 1000) / 1000;
 
                 return (
-                    <motion.div
-                        key={icon.name}
-                        className="
-              absolute
-              left-1/2
-              top-1/2
-            "
+                    <div
+                        key={`${icon.name}-${index}`}
+                        className="absolute left-1/2 top-1/2"
                         style={{
-                            x,
-                            y,
-                            translateX: "-50%",
-                            translateY: "-50%",
+                            marginLeft: `${x}px`,
+                            marginTop: `${y}px`,
+                            transform: "translate(-50%, -50%)",
                         }}
                     >
                         {/* Keep Icon Upright */}
                         <motion.div
                             animate={{
-                                rotate: reverse
-                                    ? 360
-                                    : -360,
+                                rotate: reverse ? 360 : -360,
                             }}
                             transition={{
                                 duration,
@@ -109,14 +100,6 @@ const Orbit = ({
                             <div
                                 className="
                   flex
-                  h-10
-                  w-10
-                  sm:h-11
-                  sm:w-11
-                  md:h-12
-                  md:w-12
-                  lg:h-14
-                  lg:w-14
                   items-center
                   justify-center
                   rounded-full
@@ -129,18 +112,12 @@ const Orbit = ({
                   backdrop-blur-md
                   transition-all
                   duration-300
-                  group-hover:border-cyan-400
-                  group-hover:shadow-[0_0_25px_#13bbff]
+                  group-hover:border-primary
+                  group-hover:shadow-[0_0_12px_#13bbff66]
                 "
                                 style={{
-                                    width:
-                                        iconSize <= 40
-                                            ? undefined
-                                            : undefined,
-                                    height:
-                                        iconSize <= 40
-                                            ? undefined
-                                            : undefined,
+                                    width: `${iconSize}px`,
+                                    height: `${iconSize}px`,
                                 }}
                             >
                                 <img
@@ -180,7 +157,7 @@ const Orbit = ({
                                 {icon.label}
                             </span>
                         </motion.div>
-                    </motion.div>
+                    </div>
                 );
             })}
         </motion.div>

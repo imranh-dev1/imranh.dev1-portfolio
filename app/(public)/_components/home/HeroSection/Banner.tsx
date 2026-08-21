@@ -1,29 +1,34 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-
 import SplitText from "./SplitText/SplitText";
 import TypewriterEffect from "./TypewriterEffect/TypewriterEffect";
 import BlurText from "./BlurText";
 import Orbit from "./Orbit";
 
-import {
-    Download,
-    DownloadIcon,
-    Mail,
-} from "lucide-react";
-
+import { DownloadIcon, Mail } from "lucide-react";
 import { BsTwitter } from "react-icons/bs";
 import { FaFacebook, FaGithub } from "react-icons/fa";
 import { LiaLinkedin } from "react-icons/lia";
-import { GiThunderBlade } from "react-icons/gi";
-import { DiGithub } from "react-icons/di";
 
 interface TechIcon {
     name: string;
     label: string;
+}
+
+interface Particle {
+    size: number;
+    top: number;
+    left: number;
+    opacity: number;
+    duration: number;
+    delay: number;
+}
+
+interface ConnectionLine {
+    duration: number;
+    delay: number;
 }
 
 const SOCIAL_ICON_CLASS =
@@ -38,31 +43,50 @@ const SOCIAL_ICON_CLASS =
     "hover:shadow-[0_0_20px_#13bbff]";
 
 const Banner = () => {
-    const [screenWidth, setScreenWidth] =
-        useState<number>(0);
+    const [screenWidth, setScreenWidth] = useState(0);
 
     useEffect(() => {
         const updateScreenWidth = () => {
-            setScreenWidth(
-                window.innerWidth,
-            );
+            setScreenWidth(window.innerWidth);
         };
 
         updateScreenWidth();
 
-        window.addEventListener(
-            "resize",
-            updateScreenWidth,
-        );
+        window.addEventListener("resize", updateScreenWidth);
 
         return () => {
-            window.removeEventListener(
-                "resize",
-                updateScreenWidth,
-            );
+            window.removeEventListener("resize", updateScreenWidth);
         };
     }, []);
 
+    /*
+     * IMPORTANT:
+     * Do NOT use Math.random() directly inside JSX.
+     *
+     * These values are deterministic, so the server and client
+     * generate the same initial HTML.
+     */
+    const particleData = useMemo<Particle[]>(
+        () =>
+            Array.from({ length: 24 }, (_, index) => ({
+                size: 4 + ((index * 7) % 8),
+                top: (index * 37) % 100,
+                left: (index * 61) % 100,
+                opacity: 0.2 + ((index * 13) % 60) / 100,
+                duration: 5 + ((index * 17) % 10),
+                delay: ((index * 11) % 5),
+            })),
+        [],
+    );
+
+    const connectionLines = useMemo<ConnectionLine[]>(
+        () =>
+            Array.from({ length: 12 }, (_, index) => ({
+                duration: 2 + ((index * 7) % 3),
+                delay: ((index * 5) % 2),
+            })),
+        [],
+    );
 
     const getOrbitRadius = (
         desktop: number,
@@ -84,26 +108,9 @@ const Banner = () => {
         return desktop;
     };
 
-    const innerRadius =
-        getOrbitRadius(
-            130,
-            90,
-            65,
-        );
-
-    const middleRadius =
-        getOrbitRadius(
-            200,
-            140,
-            100,
-        );
-
-    const outerRadius =
-        getOrbitRadius(
-            270,
-            190,
-            140,
-        );
+    const innerRadius = getOrbitRadius(130, 90, 65);
+    const middleRadius = getOrbitRadius(200, 140, 100);
+    const outerRadius = getOrbitRadius(270, 190, 140);
 
     const innerRing: TechIcon[] = [
         {
@@ -239,28 +246,28 @@ const Banner = () => {
                 data-aos="zoom-in"
                 data-aos-duration="1500"
                 className="
-    flex
-    w-full
-    min-w-0
-    max-w-full
-    flex-1
-    flex-col
-    items-start
-    text-left
-    px-4
-  "
+          flex
+          w-full
+          min-w-0
+          max-w-full
+          flex-1
+          flex-col
+          items-start
+          text-left
+          px-4
+        "
             >
                 {/* Greeting */}
                 <SplitText
                     text="Hi, There!"
                     textAlign="left"
                     className="
-      w-full
-      text-left
-      text-xl
-      font-semibold
-      sm:text-2xl
-    "
+            w-full
+            text-left
+            text-xl
+            font-semibold
+            sm:text-2xl
+          "
                     delay={150}
                     animationFrom={{
                         opacity: 0,
@@ -278,11 +285,11 @@ const Banner = () => {
                 {/* Typewriter */}
                 <div
                     className="
-      mt-2
-      w-full
-      min-w-0
-      text-left
-    "
+            mt-2
+            w-full
+            min-w-0
+            text-left
+          "
                 >
                     <TypewriterEffect />
                 </div>
@@ -293,17 +300,17 @@ const Banner = () => {
                     delay={30}
                     animateBy="words"
                     className="
-      mt-4
-      w-full
-      text-left
-      text-sm
-      leading-7
-      sm:text-base
-      sm:leading-7
-      lg:text-lg
-      lg:leading-8
-      font-thin
-    "
+            mt-4
+            w-full
+            text-left
+            text-sm
+            leading-7
+            sm:text-base
+            sm:leading-7
+            lg:text-lg
+            lg:leading-8
+            font-thin
+          "
                 />
 
                 {/* Social Media */}
@@ -350,35 +357,35 @@ const Banner = () => {
                 {/* Action Buttons */}
                 <div
                     className="
-      mt-6
-      flex
-      w-full
-      flex-col
-      items-start
-      justify-start
-      gap-3
-      sm:w-auto
-      sm:flex-row
-      sm:items-center
-      sm:gap-4
-    "
+            mt-6
+            flex
+            w-full
+            flex-col
+            items-start
+            justify-start
+            gap-3
+            sm:w-auto
+            sm:flex-row
+            sm:items-center
+            sm:gap-4
+          "
                 >
                     <Button
                         asChild
                         variant="primary"
                         size="default"
-                        className="w-full sm:w-auto uppercase tracking-wide"
+                        className="w-full uppercase tracking-wide sm:w-auto"
                     >
                         <a
                             href="https://github.com/imranh-dev1"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="
-          flex
-          items-center
-          justify-start
-          gap-2
-        "
+                flex
+                items-center
+                justify-start
+                gap-2
+              "
                         >
                             <FaGithub />
                             GitHub
@@ -389,18 +396,18 @@ const Banner = () => {
                         asChild
                         variant="secondary"
                         size="default"
-                        className="w-full sm:w-auto uppercase tracking-wide"
+                        className="w-full uppercase tracking-wide sm:w-auto"
                     >
                         <a
                             href="https://drive.google.com/file/d/1O1cSs8I55MVPzjJ1Jqxh_5_wRLEn0XPW/view?usp=sharing"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="
-          flex
-          items-center
-          justify-start
-          gap-2
-        "
+                flex
+                items-center
+                justify-start
+                gap-2
+              "
                         >
                             <DownloadIcon />
                             Download Resume
@@ -465,45 +472,25 @@ const Banner = () => {
               rounded-full
             "
                     >
-                        {[...Array(24)].map(
-                            (_, index) => (
-                                <div
-                                    key={index}
-                                    className="
-                    absolute
-                    rounded-full
-                    bg-[#13bbff]
-                  "
-                                    style={{
-                                        width: `${Math.random() *
-                                            8 +
-                                            4
-                                            }px`,
-                                        height: `${Math.random() *
-                                            8 +
-                                            4
-                                            }px`,
-                                        top: `${Math.random() *
-                                            100
-                                            }%`,
-                                        left: `${Math.random() *
-                                            100
-                                            }%`,
-                                        opacity:
-                                            Math.random() *
-                                            0.6 +
-                                            0.2,
-                                        animation: `float ${Math.random() *
-                                            10 +
-                                            5
-                                            }s infinite ease-in-out`,
-                                        animationDelay: `${Math.random() *
-                                            5
-                                            }s`,
-                                    }}
-                                />
-                            ),
-                        )}
+                        {particleData.map((particle, index) => (
+                            <div
+                                key={index}
+                                className="
+                  absolute
+                  rounded-full
+                  bg-[#13bbff]
+                "
+                                style={{
+                                    width: `${particle.size}px`,
+                                    height: `${particle.size}px`,
+                                    top: `${particle.top}%`,
+                                    left: `${particle.left}%`,
+                                    opacity: particle.opacity,
+                                    animation: `float ${particle.duration}s infinite ease-in-out`,
+                                    animationDelay: `${particle.delay}s`,
+                                }}
+                            />
+                        ))}
                     </div>
 
                     {/* Outer Ring */}
@@ -583,53 +570,38 @@ const Banner = () => {
               inset-0
             "
                     >
-                        {[...Array(12)].map(
-                            (_, index) => (
-                                <div
-                                    key={index}
-                                    className="
-                    absolute
-                    left-1/2
-                    top-1/2
-                    h-20
-                    w-0.5
-                    origin-top
-                    bg-gradient-to-b
-                    from-[#13bbff]
-                    to-transparent
-                    transition-all
-                    duration-500
-                    sm:h-24
-                    md:h-28
-                    lg:h-32
-                    group-hover:h-40
-                    group-hover:opacity-60
-                  "
-                                    style={{
-                                        transform: `
-                      translate(
-                        -50%,
-                        -50%
-                      )
-                      rotate(
-                        ${index * 30}deg
-                      )
-                    `,
-                                        opacity: 0.4,
-                                        animation: `
-                      pulse ${Math.random() *
-                                            3 +
-                                            2
-                                            }s
-                      infinite
-                      ease-in-out
-                    `,
-                                        animationDelay: `${Math.random() * 2
-                                            }s`,
-                                    }}
-                                />
-                            ),
-                        )}
+                        {connectionLines.map((line, index) => (
+                            <div
+                                key={index}
+                                className="
+                  absolute
+                  left-1/2
+                  top-1/2
+                  h-20
+                  w-0.5
+                  origin-top
+                  bg-gradient-to-b
+                  from-[#13bbff]
+                  to-transparent
+                  transition-all
+                  duration-500
+                  sm:h-24
+                  md:h-28
+                  lg:h-32
+                  group-hover:h-40
+                  group-hover:opacity-60
+                "
+                                style={{
+                                    transform: `
+                    translate(-50%, -50%)
+                    rotate(${index * 30}deg)
+                  `,
+                                    opacity: 0.4,
+                                    animation: `pulse ${line.duration}s infinite ease-in-out`,
+                                    animationDelay: `${line.delay}s`,
+                                }}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
