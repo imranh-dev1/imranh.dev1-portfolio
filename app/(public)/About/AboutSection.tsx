@@ -170,9 +170,9 @@ const AboutSection = () => {
                                 <Card
                                     key={item.label}
                                     className="
-                                         cursor-pointer
-                                            rounded-3xl
+                                            cursor-pointer
                                             bg-background
+                                            rounded-3xl
                                             border-[0.3px]
                                             border-primary/50
                                             transition-all
@@ -207,8 +207,8 @@ const AboutSection = () => {
                                 key={item.title}
                                 className="
                                             h-full
-                                            rounded-3xl
                                             bg-background
+                                            rounded-3xl
                                             border-[0.3px]
                                             border-primary/50
                                             transition-all
