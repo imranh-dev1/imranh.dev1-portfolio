@@ -4,7 +4,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { cn } from "@/lib/utils";
 import PersonSchema from "./person-schema";
-import Navbar from "@/components/shared/Navbar";
+import Navbar from "@/components/shared/Navbar/Navbar";
 
 const oxaniumHeading = Oxanium({ subsets: ['latin'], variable: '--font-heading' });
 const notoSans = Noto_Sans({ subsets: ['latin'], variable: '--font-sans' })

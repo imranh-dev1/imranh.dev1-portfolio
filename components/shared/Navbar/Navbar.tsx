@@ -4,11 +4,9 @@ import { useEffect, useState } from "react";
 import { DownloadIcon, Menu } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-
 import NavbarLogo from "./NavbarLogo";
 import NavbarDesktop from "./NavbarDesktop";
 import NavbarMobile from "./NavbarMobile";
-
 const Navbar = () => {
     const [activeSection, setActiveSection] = useState("home");
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

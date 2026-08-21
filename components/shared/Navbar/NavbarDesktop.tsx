@@ -8,7 +8,6 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-
 import { NAV_ITEMS } from "./navbar.config";
 
 interface NavbarDesktopProps {
@@ -35,9 +34,9 @@ const NavbarDesktop = ({
                                 <Link
                                     href={item.href}
                                     onClick={() => onNavigate(section)}
-                                    className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-bold transition-colors duration-300 ${isActive
-                                        ? "text-primary-color"
-                                        : "text-white hover:text-primary-color"
+                                    className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-bold transition duration-300 ${isActive
+                                        ? "text-primary"
+                                        : "text-white hover:text-primary"
                                         }`}
                                 >
                                     <Icon size={17} />

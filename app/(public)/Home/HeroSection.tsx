@@ -5,8 +5,7 @@ const HeroSection = () => {
     return (
         <section id="home"
             className="
-        relative
-        bg-minBg
+        relative 
         pt-20
         text-white
         lg:pt-0

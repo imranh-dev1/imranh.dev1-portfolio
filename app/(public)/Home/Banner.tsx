@@ -33,7 +33,7 @@ interface ConnectionLine {
 
 const SOCIAL_ICON_CLASS =
     "inline-flex h-10 w-10 items-center justify-center rounded-full " +
-    "bg-minBg text-[#13bbff] " +
+    "text-[#13bbff] " +
     "mr-[17px] " +
     "cursor-pointer " +
     "backdrop-brightness-[88%] " +
@@ -308,7 +308,7 @@ const Banner = () => {
             sm:leading-7
             lg:text-lg
             lg:leading-8
-            font-thin
+            text-muted-foreground
           "
                 />
 

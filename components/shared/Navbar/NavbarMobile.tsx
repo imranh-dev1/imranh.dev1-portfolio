@@ -29,7 +29,7 @@ const NavbarMobile = ({
         <Sheet open={open} onOpenChange={(value) => !value && onClose()}>
             <SheetContent
                 side="right"
-                className="w-[280px] border-primary-color/20 bg-minBg text-white sm:w-[340px]"
+                className="w-70 border-primary/20 bg-minBg text-white sm:w-85"
             >
                 <SheetHeader>
                     <SheetTitle className="text-left text-white">
@@ -52,9 +52,9 @@ const NavbarMobile = ({
                                     onNavigate(section);
                                     onClose();
                                 }}
-                                className={`flex items-center gap-3 rounded-xl px-4 py-3 font-semibold transition-colors duration-300 ${isActive
-                                    ? "bg-primary-color/10 text-primary-color"
-                                    : "text-white hover:bg-primary-color/5 hover:text-primary-color"
+                                className={`flex items-center gap-3 rounded-xl px-4 py-3 font-semibold transition duration-300 ${isActive
+                                    ? "bg-primary/10 text-primary"
+                                    : "text-white hover:bg-primary/5 hover:text-primary"
                                     }`}
                             >
                                 <Icon size={19} />
