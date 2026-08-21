@@ -20,7 +20,7 @@ const SkillsSection = () => {
     return (
         <section
             id="skills"
-            className="container mx-auto px-6 py-24 lg:px-0"
+            className="container mx-auto px-6 pt-24 lg:px-0"
         >
             {/* Heading */}
             <div className="text-center">
@@ -79,7 +79,7 @@ const SkillsSection = () => {
             </div>
 
             {/* Slider */}
-            <div className="pt-10">
+            <div className="pt-6">
                 <MarqueeSlider />
             </div>
         </section>
