@@ -1,8 +1,7 @@
-import { Geist, Geist_Mono, Noto_Sans, Oxanium } from "next/font/google"
+import { Geist_Mono, Noto_Sans, Oxanium } from "next/font/google"
 import type { Metadata } from "next"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 import PersonSchema from "./person-schema";
 
@@ -61,7 +60,7 @@ export default function RootLayout({
     >
       <body>
         <PersonSchema />
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   )
