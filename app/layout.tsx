@@ -5,6 +5,8 @@ import "./globals.css"
 import { cn } from "@/lib/utils";
 import PersonSchema from "./person-schema";
 import Navbar from "@/components/shared/Navbar/Navbar";
+import { Providers } from "@/components/Providers";
+
 
 const oxaniumHeading = Oxanium({ subsets: ['latin'], variable: '--font-heading' });
 const notoSans = Noto_Sans({ subsets: ['latin'], variable: '--font-sans' })
@@ -60,9 +62,12 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", notoSans.variable, oxaniumHeading.variable)}
     >
       <body>
-        <PersonSchema />
-        <Navbar />
-        {children}
+        <Providers>
+          <PersonSchema />
+          <Navbar />
+          {children}
+        </Providers>
+
       </body>
     </html>
   )
