@@ -7,8 +7,6 @@ import { Cover } from "@/components/book/faces/Cover";
 import { ExperienceCard } from "@/components/book/faces/ExperienceCard";
 import { Awards } from "@/components/book/faces/Awards";
 import { useBookFlip } from "@/hooks/useBookFlip";
-import { Minus } from "lucide-react";
-import SectionHeader from "../shared/SectionHeader/SectionHeader";
 
 export function Book() {
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -19,9 +17,6 @@ export function Book() {
 
   useBookFlip({ sceneRef, bookRef, hintRef });
 
-  // Two experience items per leaf (front + back), like a real book page.
-  // If there's an odd one out at the end, its back face falls back to
-  // the Awards/stats page instead of being left blank.
   const leaves: { front: React.ReactNode; back: React.ReactNode }[] = [];
   for (let i = 0; i < experiences.length; i += 2) {
     const front = (
@@ -41,15 +36,23 @@ export function Book() {
   }
 
   return (
-    <div className="scene" id="scene" ref={sceneRef}>
-      <div className="book bg-green" id="book" ref={bookRef}>
+    <div
+      className="scene relative grid h-screen place-items-center overflow-hidden rounded-[20px] [background-image:var(--scene-bg)] [perspective:2200px] [perspective-origin:50%_45%]"
+      id="scene"
+      ref={sceneRef}
+    >
+      <div
+        className="book bg-green relative h-(--ph) w-[calc(var(--pw)*2)] transform-3d [filter:drop-shadow(var(--book-shadow))] [transform:scale(var(--book-scale))_rotateX(4deg)]"
+        id="book"
+        ref={bookRef}
+      >
         {/* Static left page: Cover. Never flips — stays open on desktop. */}
-        <div className="page page--left-base">
+        <div className="page page--left-base absolute top-0 left-0 h-full w-(--pw)">
           <Cover />
         </div>
 
         {/* Static right base page: revealed once every leaf has flipped */}
-        <div className="page page--right-base">
+        <div className="page page--right-base absolute top-0 left-(--pw) z-0 h-full w-(--pw)">
 
         </div>
 
@@ -58,7 +61,11 @@ export function Book() {
         ))}
       </div>
 
-      <p className="scene__hint" id="sceneHint" ref={hintRef}>
+      <p
+        className="scene__hint absolute bottom-[22px] left-1/2 -translate-x-1/2 text-[.7rem] uppercase tracking-[.25em] text-(--muted) [transition:opacity_.4s]"
+        id="sceneHint"
+        ref={hintRef}
+      >
         scroll ↓
       </p>
     </div>

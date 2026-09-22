@@ -45,23 +45,14 @@ export function useBookFlip({ sceneRef, bookRef, hintRef }: UseBookFlipRefs) {
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    // ---------- Top progress bar ----------
-    const bar = document.querySelector<HTMLElement>(".progress__bar");
-    const setBar = (p: number) => {
-      if (bar) bar.style.width = (p * 100).toFixed(2) + "%";
-    };
-    const onLenisScroll = (e: { scroll: number }) => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      setBar(max > 0 ? e.scroll / max : 0);
-    };
-    lenis.on("scroll", onLenisScroll);
-
     // ---------- Inject lighting overlays into each leaf ----------
     const leaves = Array.from(book.querySelectorAll<HTMLElement>(".leaf"));
     const shades: HTMLDivElement[] = [];
     leaves.forEach((leaf) => {
       const shade = document.createElement("div");
       shade.className = "leaf__shade";
+      shade.style.cssText =
+        "position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:5;";
       leaf.appendChild(shade);
       shades.push(shade);
     });
@@ -188,7 +179,6 @@ export function useBookFlip({ sceneRef, bookRef, hintRef }: UseBookFlipRefs) {
       window.removeEventListener("load", onLoad);
       mm.revert();
       gsap.ticker.remove(raf);
-      lenis.off("scroll", onLenisScroll);
       lenis.destroy();
       shades.forEach((shade) => shade.remove());
     };
