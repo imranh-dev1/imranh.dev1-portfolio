@@ -5,34 +5,32 @@ import { useAppSelector } from "@/lib/hooks";
 export function Experience() {
   const experiences = useAppSelector((state) => state.experience.items);
 
-  console.log(experiences)
-
   return (
     <section className="face face--experience flex h-full w-full flex-col overflow-y-auto bg-(--face-experience) p-[clamp(28px,4vw,52px)]" id="experience">
-      <p className="kicker mb-auto text-[.8rem] uppercase tracking-[.22em] text-(--accent-2)">04 — Journey</p>
-      <h2 className="face__title my-[.25em] text-[clamp(1rem,4.4vw,2rem)] font-bold leading-[.95] tracking-[-.02em] text-(--ink)">Experience</h2>
+      <p className="kicker mb-auto text-[.8rem] uppercase tracking-[.22em] text-primary">04 — Journey</p>
+      <h2 className="face__title my-[.25em] text-[clamp(1rem,4.4vw,2rem)] font-bold leading-[.95] tracking-[-.02em] text-foreground">Experience</h2>
       <ol className="timeline mt-[5px] grid flex-1 list-none">
         {experiences.map((exp) => (
-          <li key={exp.id} className="relative border-l-2 border-(--line) pl-[26px] before:absolute before:top-5 before:left-[-7px] before:h-3 before:w-3 before:rounded-full before:bg-(--accent) before:content-[''] before:[box-shadow:0_0_0_4px_rgba(19,187,255,0.18)]">
-            <span className="timeline__year mb-[2px] flex items-center gap-2 text-[.8rem] tracking-[.08em] text-(--accent-2)">
+          <li key={exp.id} className="relative border-l-2 border-border pl-[26px] before:absolute before:top-5 before:left-[-7px] before:h-3 before:w-3 before:rounded-full before:bg-primary before:content-[''] before:[box-shadow:0_0_0_4px_rgba(19,187,255,0.18)]">
+            <span className="timeline__year mb-[2px] flex items-center gap-2 text-[.8rem] tracking-[.08em] text-primary">
               {exp.period}
               {exp.current && (
-                <span className="current-badge rounded-full border border-[#13bbff59] bg-[#13bbff24] px-[9px] py-[2px] text-[.65rem] uppercase tracking-[.08em] text-(--accent-2)">
+                <span className="current-badge rounded-full border border-border bg-primary/15 px-[9px] py-[2px] text-[.65rem] uppercase tracking-[.08em] text-primary">
                   Current
                 </span>
               )}
             </span>
-            <strong className="block text-[1.15rem] text-(--ink)">{exp.title}</strong>
-            <em className="block text-[.9rem] text-(--muted) not-italic">{exp.company}</em>
-            <p className="timeline__desc mt-2 max-w-[46ch] text-[.92rem] leading-[1.55] text-(--muted)">
+            <strong className="block text-[1.15rem] text-foreground">{exp.title}</strong>
+            <em className="block text-[.9rem] text-muted-foreground not-italic">{exp.company}</em>
+            <p className="mt-2 text-[12px] leading-[1.55] text-muted-foreground">
               {exp.description}
             </p>
 
             {exp.achievements.length > 0 && (
-              <ul className="timeline__achievements mt-[10px] grid list-none gap-[6px]">
+              <ul className="mt-[10px] grid list-none gap-[6px]">
                 {exp.achievements.map((achievement) => (
                   <li
-                    className="relative pl-4 text-[.88rem] leading-[1.5] text-(--ink) before:absolute before:top-0 before:left-0 before:content-['•'] before:text-(--accent-2)"
+                    className="relative pl-4 text-[10px] leading-[1.5] text-foreground before:absolute before:top-0 before:left-0 before:content-['•'] before:text-primary"
                     key={achievement}
                   >
                     {achievement}
@@ -44,7 +42,7 @@ export function Experience() {
             {exp.technologies.length > 0 && (
               <div className="tech-tags mt-3 flex flex-wrap gap-[6px]">
                 {exp.technologies.map((tech) => (
-                  <span className="tech-tag rounded-full border border-(--line) bg-(--panel-2) px-[10px] py-1 text-[.72rem] tracking-[.02em] text-(--muted)" key={tech}>
+                  <span className="tech-tag rounded-full border border-border bg-(--panel-2) px-[10px] py-.5 text-[.72rem] tracking-[.02em] text-muted-foreground" key={tech}>
                     {tech}
                   </span>
                 ))}

@@ -160,10 +160,12 @@
   --ink: #ffffff;
   --muted: #b0bec5;
   --line: #13bbff33;
-  --accent: #13bbff;
+--accent: #13bbff;
   --accent-2: #5fd4ff;
+  --accent-soft: rgba(19, 187, 255, 0.14);
+  --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
 
-  --pw: 440px;
+  --pw: 520px;
   --ph: 660px;
   --book-scale: 1;
 
@@ -189,8 +191,10 @@
   --ink: #101418;
   --muted: #52626b;
   --line: #13bbff40;
-  --accent: #0891c2;
+--accent: #0891c2;
   --accent-2: #13bbff;
+  --accent-soft: rgba(8, 145, 194, 0.14);
+  --card-shadow: 0 10px 26px rgba(20, 30, 50, 0.08);
 
   --scene-bg: radial-gradient(120% 80% at 50% 30%, #ffffff 0%, var(--bg) 70%);
   --book-shadow: 0 30px 50px rgba(25, 20, 55, .18);
@@ -219,4 +223,20 @@ a {
   50% {
     transform: translateY(5px);
   }
+}
+
+/* ---------- Book face scrollbars ---------- */
+.face {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+.face::-webkit-scrollbar {
+  width: 6px;
+}
+.face::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--accent);
+}
+.face::-webkit-scrollbar-track {
+  background: transparent;
 }

@@ -8,52 +8,62 @@ interface ExperienceCardProps {
 
 export function ExperienceCard({ exp, order, total }: ExperienceCardProps) {
     return (
-        <section className="face face--experience flex h-full w-full flex-col overflow-y-auto bg-(--face-experience) p-[clamp(28px,4vw,52px)]" id={`experience-${exp.id}`}>
-            <p className="kicker mb-auto text-[.8rem] uppercase tracking-[.22em] text-(--accent-2)">
-                {String(order).padStart(2, "0")} / {String(total).padStart(2, "0")} — Journey
-            </p>
-            <h2 className="face__title my-[.25em] text-[clamp(1rem,4.4vw,2rem)] font-bold leading-[.95] tracking-[-.02em] text-(--ink)">
-                {exp.title}
-            </h2>
-            <ol className="timeline mt-[5px] grid flex-1 list-none">
-                <li className="relative border-l-2 border-(--line) pl-[26px] before:absolute before:top-5 before:left-[-7px] before:h-3 before:w-3 before:rounded-full before:bg-(--accent) before:content-[''] before:[box-shadow:0_0_0_4px_rgba(19,187,255,0.18)]">
-                    <span className="timeline__year mb-[2px] flex items-center gap-2 text-[.8rem] tracking-[.08em] text-(--accent-2)">
-                        {exp.period}
-                        {exp.current && (
-                            <span className="current-badge rounded-full border border-[#13bbff59] bg-[#13bbff24] px-[9px] py-[2px] text-[.65rem] uppercase tracking-[.08em] text-(--accent-2)">
-                                Current
-                            </span>
-                        )}
-                    </span>
-                    <em className="block text-[.9rem] text-(--muted) not-italic">{exp.company}</em>
-                    <p className="timeline__desc mt-2 max-w-[46ch] text-[.92rem] leading-[1.55] text-(--muted)">
-                        {exp.description}
-                    </p>
+        <section className="face face--experience flex h-full w-full flex-col overflow-hidden bg-(--face-experience) p-[clamp(24px,3.6vw,44px)]" id={`experience-${exp.id}`}>
+            <header className="shrink-0">
+                <p className="kicker text-[.75rem] uppercase tracking-[.24em] text-primary">
+                    {String(order).padStart(2, "0")} / {String(total).padStart(2, "0")} — Journey
+                </p>
+                <h2 className="face__title mt-3 text-[clamp(1rem,2.4vw,1.4rem)] font-bold leading-[1.05] tracking-[-.02em] text-foreground">
+                    {exp.title}
+                </h2>
+                <span className="mt-5 block h-px w-14 bg-primary" />
+            </header>
 
-                    {exp.achievements.length > 0 && (
-                        <ul className="timeline__achievements mt-[10px] grid list-none gap-[6px]">
-                            {exp.achievements.map((achievement) => (
-                                <li
-                                    className="relative pl-4 text-[.88rem] leading-[1.5] text-(--ink) before:absolute before:top-0 before:left-0 before:content-['•'] before:text-(--accent-2)"
-                                    key={achievement}
-                                >
-                                    {achievement}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-
-                    {exp.technologies.length > 0 && (
-                        <div className="tech-tags mt-3 flex flex-wrap gap-[6px]">
-                            {exp.technologies.map((tech) => (
-                                <span className="tech-tag rounded-full border border-(--line) bg-(--panel-2) px-[10px] py-1 text-[.72rem] tracking-[.02em] text-(--muted)" key={tech}>
-                                    {tech}
+            <div className="mt-6 flex-1 overflow-y-auto pr-1">
+                <ol className="timeline list-none border-l-2 border-border pl-[26px]">
+                    <li className="relative">
+                        <span className="absolute top-[7px] -left-[31px] h-3 w-3 rounded-full bg-primary ring-4 ring-primary/20" />
+                        <span className="timeline__year flex items-center gap-2 text-[.8rem] tracking-[.08em] text-primary">
+                            {exp.period}
+                            {exp.current && (
+                                <span className="current-badge rounded-full border border-border bg-primary/15 px-[9px] py-[2px] text-[.65rem] uppercase tracking-[.08em] text-primary">
+                                    Current
                                 </span>
-                            ))}
-                        </div>
-                    )}
-                </li>
-            </ol>
+                            )}
+                        </span>
+                        <em className="mt-1 block text-[.95rem] text-muted-foreground not-italic">{exp.company}</em>
+                        <p className="timeline__desc mt-2.5 text-justify text-[.92rem] leading-[1.6] text-muted-foreground">
+                            {exp.description}
+                        </p>
+
+                        {exp.achievements.length > 0 && (
+                            <ul className="timeline__achievements mt-4 grid list-none gap-[8px]">
+                                {exp.achievements.map((achievement) => (
+                                    <li
+                                        className="relative flex gap-2.5 text-[.88rem] leading-[1.55] text-foreground"
+                                        key={achievement}
+                                    >
+                                        <span className="mt-[3px] flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-[4px] bg-primary/15 text-[9px] font-bold text-primary">
+                                            ✓
+                                        </span>
+                                        {achievement}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+
+                        {exp.technologies.length > 0 && (
+                            <div className="tech-tags mt-4 flex flex-wrap gap-[6px]">
+                                {exp.technologies.map((tech) => (
+                                    <span className="tech-tag rounded-full border border-border bg-(--panel-2) px-[10px] py-1 text-[.72rem] tracking-[.02em] text-muted-foreground" key={tech}>
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
+                    </li>
+                </ol>
+            </div>
         </section>
     );
 }
