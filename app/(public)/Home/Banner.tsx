@@ -253,7 +253,6 @@ const Banner = () => {
           flex-col
           items-start
           text-left
-          px-4
         "
             >
                 {/* Greeting */}

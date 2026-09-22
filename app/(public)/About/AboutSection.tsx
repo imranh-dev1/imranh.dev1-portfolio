@@ -55,9 +55,9 @@ const AboutSection = () => {
     return (
         <section id="about" className="bg-secondary">
             <div className="container mx-auto px-6 py-24 lg:px-0">
-                <div className="w-full lg:w-1/2">
+                <div className="w-full">
                     {/* Who I Am */}
-                    <div className="mb-2 flex items-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase">
+                    <div className="mb-2 flex items-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase ">
                         <Minus
                             size={20}
                             strokeWidth={3}
@@ -92,8 +92,8 @@ const AboutSection = () => {
                                 className="
                 w-10/12
                 rounded-4xl
-                border
-                border-primary/30
+                border-[0.3px]
+                border-primary/50
                 shadow-[0_0_40px_rgba(19,187,255,.25)]
                 transition-all
                 duration-500
@@ -123,7 +123,7 @@ const AboutSection = () => {
                                 sm:leading-7
                                 lg:text-lg
                                 lg:leading-8
-                                text-muted-foreground">
+                                text-muted-foreground text-justify">
                             I&apos;m{" "}
                             <strong className="font-bold text-white">
                                 Imran Hossain
@@ -141,7 +141,7 @@ const AboutSection = () => {
                             sm:leading-7
                             lg:text-lg
                             lg:leading-8
-                            text-muted-foreground">
+                            text-muted-foreground text-justify">
                             My journey started with curiosity about how websites
                             work, and over time it grew into a passion for creating
                             modern web applications. I work with React, Next.js,
@@ -156,7 +156,7 @@ const AboutSection = () => {
                             sm:leading-7
                             lg:text-lg
                             lg:leading-8
-                            text-muted-foreground">
+                            text-muted-foreground text-justify">
                             Whether it&apos;s a portfolio website, dashboard,
                             e-commerce platform, or SaaS application, I focus on
                             performance, accessibility, SEO, and great user
