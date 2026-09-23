@@ -11,6 +11,7 @@ import { DownloadIcon, Mail } from "lucide-react";
 import { BsTwitter } from "react-icons/bs";
 import { FaFacebook, FaGithub } from "react-icons/fa";
 import { LiaLinkedin } from "react-icons/lia";
+import Link from "next/link";
 
 interface TechIcon {
     name: string;
@@ -343,13 +344,13 @@ const Banner = () => {
                         <FaFacebook className="h-5 w-5" />
                     </a>
 
-                    <a
+                    <Link
                         href="mailto:imranh.dev1@gmail.com"
                         aria-label="Email"
                         className={SOCIAL_ICON_CLASS}
                     >
                         <Mail className="h-5 w-5" />
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Action Buttons */}

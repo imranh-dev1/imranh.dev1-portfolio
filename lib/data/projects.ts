@@ -1,54 +1,63 @@
 import rentNestImg from "@/asstes/savi_creative_studios_squarespace_website_desings.png";
 import rentNestHomeImg from "@/asstes/rent-nest-liart-vercel-app.png";
 import hostelHubImg from "@/asstes/hostel-management-system.png";
+import medicalCampImg from "@/asstes/medical-camp-management.png";
+import nextGenerationImg from "@/asstes/next-gen.png";
+import carDoctorImg from "@/asstes/car-doctor-next-js.png";
+import chillGamerImg from "@/asstes/chill-gamer.png";
 
 export const projects = [
     {
         id: 1,
         title: "Rent Nest",
-        category: "Full Stack Property Rental Platform",
+        category: "Full Stack Rental Property Management Platform",
         image: rentNestHomeImg,
 
         overview:
-            "Rent Nest is a modern property rental platform that connects landlords and tenants through a seamless and secure experience. It provides role-based dashboards, property management, rental requests, online payments, and optimized performance using modern web technologies.",
+            "RentNest is a modern rental property marketplace built with Next.js and Node.js that connects tenants, landlords, and administrators in one platform. It provides property discovery, rental requests, role-based dashboards, secure payments, property management, and administrative controls through a responsive and user-friendly interface.",
 
         features: [
-            "Role-Based Dashboard (Admin, Landlord & Tenant)",
-            "JWT Authentication & Protected Routes",
-            "Stripe Payment Gateway Integration",
-            "Property Listing & Management System",
-            "Advanced Search, Filter & Sorting",
-            "Cloudinary Image Upload & Optimization",
+            "Role-Based Dashboards for Admin, Landlord & Tenant",
+            "JWT Authentication with Protected Routes",
+            "Property Listing, Management & Moderation",
+            "Advanced Property Search & Filtering",
             "Rental Request & Approval Workflow",
-            "Responsive Mobile-First Design",
+            "Stripe Checkout Payment Integration",
+            "Cloudinary Image Upload & Optimization",
+            "Dashboard Analytics & Earnings Overview",
+            "Property Review System",
+            "Responsive Mobile-First Interface",
         ],
 
         technologies: [
+            "Next.js 16",
+            "TypeScript",
             "React",
-            "Next.js",
             "Node.js",
             "Express.js",
-            "MongoDB",
             "PostgreSQL",
             "Prisma",
             "JWT",
             "Stripe",
             "Cloudinary",
             "Tailwind CSS",
-            "Material UI",
+            "shadcn/ui",
+            "TanStack Query",
+            "React Hook Form",
+            "Zod",
         ],
 
         challenges:
-            "Implementing secure authentication, handling multiple user roles, integrating online payments, and maintaining a scalable backend architecture.",
+            "Designing a secure multi-role rental platform required handling different permissions for tenants, landlords, and administrators, while also managing rental workflows, protected routes, image uploads, form validation, and secure online payments.",
 
         solution:
-            "Built a modular REST API with Express and Prisma, implemented JWT-based authentication, integrated Stripe for secure payments, optimized database queries, and used Cloudinary for efficient image management.",
+            "Built a modular full-stack architecture using Next.js, Express.js, Prisma, and PostgreSQL. Implemented JWT-based authentication with HTTP-only cookies, role-based route protection, React Hook Form with Zod validation, TanStack Query for server-state management, Cloudinary for image handling, and Stripe Checkout for secure payments.",
 
         stats: [
-            { label: "User Roles", value: "3+" },
-            { label: "REST APIs", value: "15+" },
+            { label: "User Roles", value: "3" },
+            { label: "Payment", value: "Stripe" },
+            { label: "Database", value: "PostgreSQL" },
             { label: "Responsive", value: "100%" },
-            { label: "Performance", value: "90+" },
         ],
 
         live: "https://rent-nest-liart.vercel.app",
@@ -106,206 +115,216 @@ export const projects = [
     },
     {
         id: 3,
-        title: "Rent Nest",
-        category: "Full Stack Property Rental Platform",
-        image: rentNestImg,
+        title: "Medical Camp Management System",
+        category: "Mern Stack Medical Camp Management Platform",
+        image: medicalCampImg,
 
         overview:
-            "Rent Nest is a modern property rental platform that connects landlords and tenants through a seamless and secure experience. It provides role-based dashboards, property management, rental requests, online payments, and optimized performance using modern web technologies.",
+            "Medical Camp Management System (MCMS) is a MERN stack-based platform designed to simplify the organization and participation of medical camps. It provides organizers with tools to manage camps, registrations, participants, payments, and volunteers while giving participants a seamless experience for discovering and joining medical camps.",
 
         features: [
-            "Role-Based Dashboard (Admin, Landlord & Tenant)",
-            "JWT Authentication & Protected Routes",
-            "Stripe Payment Gateway Integration",
-            "Property Listing & Management System",
-            "Advanced Search, Filter & Sorting",
-            "Cloudinary Image Upload & Optimization",
-            "Rental Request & Approval Workflow",
-            "Responsive Mobile-First Design",
+            "Role-Based Dashboard for Organizers & Participants",
+            "Firebase Authentication & JWT Authorization",
+            "Medical Camp Creation & Management",
+            "Camp Registration & Participant Management",
+            "Stripe Payment Integration",
+            "Participant Feedback & Rating System",
+            "Advanced Search, Sorting & Pagination",
+            "Participant Analytics with Recharts",
+            "Health Records Management",
+            "Volunteer Management System",
+            "Responsive Mobile, Tablet & Desktop Design",
+            "Axios Interceptors for Secure API Requests",
         ],
 
         technologies: [
             "React",
-            "Next.js",
+            "React Router",
             "Node.js",
             "Express.js",
             "MongoDB",
-            "PostgreSQL",
-            "Prisma",
+            "Mongoose",
+            "Firebase",
             "JWT",
             "Stripe",
-            "Cloudinary",
+            "TanStack Query",
             "Tailwind CSS",
-            "Material UI",
+            "Recharts",
+            "AOS",
+            "Material Tailwind",
         ],
 
         challenges:
-            "Implementing secure authentication, handling multiple user roles, integrating online payments, and maintaining a scalable backend architecture.",
+            "Implementing secure authentication and role-based access control, managing camp registrations and payments, and building efficient dashboards with searchable and paginated tables while maintaining a responsive user experience.",
 
         solution:
-            "Built a modular REST API with Express and Prisma, implemented JWT-based authentication, integrated Stripe for secure payments, optimized database queries, and used Cloudinary for efficient image management.",
+            "Implemented Firebase authentication with JWT-secured API endpoints, separate organizer and participant dashboards, Stripe payment integration, reusable table components with search and pagination, Recharts for analytics, and responsive interfaces with smooth AOS animations.",
 
         stats: [
-            { label: "User Roles", value: "3+" },
-            { label: "REST APIs", value: "15+" },
+            { label: "User Roles", value: "2+" },
+            { label: "Payment", value: "Stripe" },
             { label: "Responsive", value: "100%" },
-            { label: "Performance", value: "90+" },
+            { label: "Authentication", value: "JWT" },
         ],
 
-        live: "https://rentnest.vercel.app",
-        github: "https://github.com/imranh-dev1/Rent_Nest_Backend",
+        live: "https://medical-camp-management-1b67d.web.app/",
+        github:
+            "https://github.com/imranh-dev1/Medical-Camp-Management-System-client",
     },
     {
         id: 4,
-        title: "Rent Nest",
-        category: "Full Stack Property Rental Platform",
-        image: rentNestImg,
+        title: "Next Generation",
+        category: "Mern Stack Blogging Platform",
+        image: nextGenerationImg,
 
         overview:
-            "Rent Nest is a modern property rental platform that connects landlords and tenants through a seamless and secure experience. It provides role-based dashboards, property management, rental requests, online payments, and optimized performance using modern web technologies.",
+            "Next Generation is a modern blogging platform where users can discover, write, manage, and interact with blog content. The platform includes secure authentication, blog management, wishlists, comments, search and filtering, featured blogs, and personalized user experiences.",
 
         features: [
-            "Role-Based Dashboard (Admin, Landlord & Tenant)",
+            "Email/Password & Google Authentication",
             "JWT Authentication & Protected Routes",
-            "Stripe Payment Gateway Integration",
-            "Property Listing & Management System",
-            "Advanced Search, Filter & Sorting",
-            "Cloudinary Image Upload & Optimization",
-            "Rental Request & Approval Workflow",
+            "Blog Creation, Update & Management",
+            "Blog Search & Category Filtering",
+            "Personalized Blog Wishlist",
+            "Interactive Comments on Blog Details",
+            "Featured Blogs Based on Word Count",
+            "Dynamic Authentication-Based Navbar",
+            "Sortable Featured Blogs Table",
             "Responsive Mobile-First Design",
+            "Loading Skeletons for Better UX",
+            "Full-Screen Blog Image Preview",
         ],
 
         technologies: [
             "React",
-            "Next.js",
+            "React Router",
             "Node.js",
             "Express.js",
             "MongoDB",
-            "PostgreSQL",
-            "Prisma",
+            "Firebase",
             "JWT",
-            "Stripe",
-            "Cloudinary",
-            "Tailwind CSS",
-            "Material UI",
+            "TanStack Query",
+            "Redux",
+            "Framer Motion",
+            "DaisyUI",
+            "TanStack Table",
+            "React Hot Toast",
         ],
 
         challenges:
-            "Implementing secure authentication, handling multiple user roles, integrating online payments, and maintaining a scalable backend architecture.",
+            "Implementing secure authentication and protected routes while managing blog ownership, wishlists, comments, dynamic filtering, and searchable content across different user interactions.",
 
         solution:
-            "Built a modular REST API with Express and Prisma, implemented JWT-based authentication, integrated Stripe for secure payments, optimized database queries, and used Cloudinary for efficient image management.",
+            "Implemented Firebase authentication with JWT-secured API routes, MongoDB-based blog and user management, protected blog operations, dynamic search and category filtering, personalized wishlists, interactive comments, and reusable UI components with TanStack Query and Redux.",
 
         stats: [
-            { label: "User Roles", value: "3+" },
-            { label: "REST APIs", value: "15+" },
+            { label: "Authentication", value: "JWT" },
+            { label: "Database", value: "MongoDB" },
+            { label: "Social Login", value: "Google" },
             { label: "Responsive", value: "100%" },
-            { label: "Performance", value: "90+" },
         ],
 
-        live: "https://rentnest.vercel.app",
-        github: "https://github.com/imranh-dev1/Rent_Nest_Backend",
+        live: "https://next-gen-230be.web.app/",
+        github:
+            "https://github.com/imranh-dev1/next-generation-client",
     },
     {
         id: 5,
-        title: "Rent Nest",
-        category: "Full Stack Property Rental Platform",
-        image: rentNestImg,
+        title: "Car Doctor",
+        category: "Next.js Car Repair Service Platform",
+        image: carDoctorImg,
 
         overview:
-            "Rent Nest is a modern property rental platform that connects landlords and tenants through a seamless and secure experience. It provides role-based dashboards, property management, rental requests, online payments, and optimized performance using modern web technologies.",
+            "Car Doctor is a modern car repair service platform built with Next.js that allows users to explore available automotive services, view service details, book appointments, and manage their bookings through a responsive and user-friendly interface.",
 
         features: [
-            "Role-Based Dashboard (Admin, Landlord & Tenant)",
-            "JWT Authentication & Protected Routes",
-            "Stripe Payment Gateway Integration",
-            "Property Listing & Management System",
-            "Advanced Search, Filter & Sorting",
-            "Cloudinary Image Upload & Optimization",
-            "Rental Request & Approval Workflow",
-            "Responsive Mobile-First Design",
+            "Car Repair Service Listing",
+            "Service Details Page",
+            "Online Appointment Booking",
+            "Booking Management System",
+            "Update & Delete Bookings",
+            "User Authentication & Authorization",
+            "Protected Booking Management",
+            "Responsive Mobile & Desktop Design",
+            "MongoDB Database Integration",
+            "Secure Environment Variable Configuration",
         ],
 
         technologies: [
-            "React",
             "Next.js",
-            "Node.js",
-            "Express.js",
+            "React",
             "MongoDB",
-            "PostgreSQL",
-            "Prisma",
-            "JWT",
-            "Stripe",
-            "Cloudinary",
+            "NextAuth.js",
+            "JavaScript",
             "Tailwind CSS",
-            "Material UI",
+            "REST API",
         ],
 
         challenges:
-            "Implementing secure authentication, handling multiple user roles, integrating online payments, and maintaining a scalable backend architecture.",
+            "Building a smooth appointment booking workflow while implementing authentication, protected booking management, and reliable database operations for creating, updating, and deleting appointments.",
 
         solution:
-            "Built a modular REST API with Express and Prisma, implemented JWT-based authentication, integrated Stripe for secure payments, optimized database queries, and used Cloudinary for efficient image management.",
+            "Built the application with Next.js and MongoDB, implemented authentication and authorization with NextAuth.js, created service and booking workflows, and designed responsive interfaces for managing automotive services and appointments.",
 
         stats: [
-            { label: "User Roles", value: "3+" },
-            { label: "REST APIs", value: "15+" },
+            { label: "Framework", value: "Next.js" },
+            { label: "Database", value: "MongoDB" },
+            { label: "Authentication", value: "NextAuth" },
             { label: "Responsive", value: "100%" },
-            { label: "Performance", value: "90+" },
         ],
 
-        live: "https://rentnest.vercel.app",
-        github: "https://github.com/imranh-dev1/Rent_Nest_Backend",
+        live: "https://car-doctor-next-js.vercel.app/",
+        github:
+            "https://github.com/imran-information/car-doctor-next-JS",
     },
     {
         id: 6,
-        title: "Rent Nest",
-        category: "Full Stack Property Rental Platform",
-        image: rentNestImg,
+        title: "Chill Gamer",
+        category: "Mern Stack Game Review Platform",
+        image: chillGamerImg,
 
         overview:
-            "Rent Nest is a modern property rental platform that connects landlords and tenants through a seamless and secure experience. It provides role-based dashboards, property management, rental requests, online payments, and optimized performance using modern web technologies.",
+            "Chill Gamer is a modern game review platform where users can explore, create, manage, and save game reviews. It provides secure authentication, personalized watchlists, rating-based sorting, genre filtering, and a responsive interface for a smooth gaming community experience.",
 
         features: [
-            "Role-Based Dashboard (Admin, Landlord & Tenant)",
-            "JWT Authentication & Protected Routes",
-            "Stripe Payment Gateway Integration",
-            "Property Listing & Management System",
-            "Advanced Search, Filter & Sorting",
-            "Cloudinary Image Upload & Optimization",
-            "Rental Request & Approval Workflow",
+            "User Registration & Authentication",
+            "Game Review Creation & Management",
+            "Update & Delete Own Reviews",
+            "Personalized Game Watchlist",
+            "Highest Rated Games Section",
+            "Rating & Genre Based Filtering",
+            "Review Sorting & Search",
+            "Dark & Light Theme Toggle",
             "Responsive Mobile-First Design",
+            "Custom 404 Error Page",
         ],
 
         technologies: [
             "React",
-            "Next.js",
             "Node.js",
             "Express.js",
             "MongoDB",
-            "PostgreSQL",
-            "Prisma",
-            "JWT",
-            "Stripe",
-            "Cloudinary",
+            "Firebase Authentication",
             "Tailwind CSS",
             "Material UI",
+            "JavaScript",
         ],
 
         challenges:
-            "Implementing secure authentication, handling multiple user roles, integrating online payments, and maintaining a scalable backend architecture.",
+            "Implementing secure user authentication, managing user-generated reviews, building a personalized watchlist, and providing efficient filtering and sorting while maintaining a responsive user experience.",
 
         solution:
-            "Built a modular REST API with Express and Prisma, implemented JWT-based authentication, integrated Stripe for secure payments, optimized database queries, and used Cloudinary for efficient image management.",
+            "Built a REST API with Node.js and Express.js, used MongoDB for review and watchlist management, integrated Firebase Authentication for secure user access, and created responsive interfaces with React, Tailwind CSS, and Material UI.",
 
         stats: [
-            { label: "User Roles", value: "3+" },
-            { label: "REST APIs", value: "15+" },
+            { label: "Authentication", value: "Firebase" },
+            { label: "Database", value: "MongoDB" },
+            { label: "Review System", value: "CRUD" },
             { label: "Responsive", value: "100%" },
-            { label: "Performance", value: "90+" },
         ],
 
-        live: "https://rentnest.vercel.app",
-        github: "https://github.com/imranh-dev1/Rent_Nest_Backend",
+        live: "https://chill-gamer-3528e.web.app/",
+        github:
+            "https://github.com/imranh-dev1/chill-gamer-client",
     },
 ];

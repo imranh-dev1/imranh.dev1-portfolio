@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import PersonSchema from "./person-schema";
 import Navbar from "@/components/shared/Navbar/Navbar";
 import { Providers } from "@/components/Providers";
+import { Toaster } from "sonner";
 
 
 const oxaniumHeading = Oxanium({ subsets: ['latin'], variable: '--font-heading' });
@@ -66,6 +67,7 @@ export default function RootLayout({
           <PersonSchema />
           <Navbar />
           {children}
+          <Toaster />
         </Providers>
 
       </body>

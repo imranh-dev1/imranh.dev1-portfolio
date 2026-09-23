@@ -6,7 +6,7 @@ const ExperienceSection = () => {
     return (
         <section id="experience" className="bg-secondary">
             <div className="container mx-auto px-6 py-24 lg:px-0">
-                <div className="mx-auto mb-12 flex w-full flex-col items-center text-center">
+                <div className="mx-auto mb-8 flex w-full flex-col items-center text-center">
                     <div className="mb-3 flex items-center justify-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase">
                         <Minus size={20} strokeWidth={3} className="text-primary" />
                         <span>Experience</span>

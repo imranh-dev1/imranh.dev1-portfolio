@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
-
+import { ArrowUpRight, Minus } from "lucide-react";
 import { projects } from "@/lib/data/projects";
 import { Button } from "@/components/ui/button";
 import ProjectDetailsDialog from "@/components/projects/project-details-dialog";
+import SectionHeader from "@/components/shared/SectionHeader/SectionHeader";
 
 export default function ProjectsSection() {
     const [selectedProject, setSelectedProject] =
@@ -15,15 +15,22 @@ export default function ProjectsSection() {
     return (
         <section className="container mx-auto py-24">
             {/* Section Title */}
-            <div className="mb-10 text-center">
-                <h2 className="text-3xl font-bold">
-                    Project
-                    <span className="text-primary-color">S</span>
-                </h2>
+            <div className="mx-auto mb-8 flex w-full flex-col items-center text-center">
+                <div className="mb-3 flex items-center justify-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase">
+                    <Minus size={20} strokeWidth={3} className="text-primary" />
+                    <span>Projects</span>
+                </div>
 
-                <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground">
-                    A selection of projects I have built using modern web
-                    technologies and development practices.
+                <div className="flex w-full justify-center">
+                    <SectionHeader>
+                        <span className="text-primary">&lt; My </span>
+                        Work /&gt;
+                    </SectionHeader>
+                </div>
+
+                <p className="mx-auto mt-4 max-w-2xl text-center leading-[1.9] text-muted-foreground">
+                    A selection of projects I have built, showcasing my experience,
+                    technical skills, and approach to solving real-world problems.
                 </p>
             </div>
 
@@ -32,7 +39,7 @@ export default function ProjectsSection() {
                 {projects.map((project) => (
                     <div
                         key={project.id}
-                        className="group rounded-[20px] border border-transparent bg-secondary p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_35px_rgba(19,187,255,.18)]"
+                        className="group rounded-[18px] border border-transparent bg-secondary p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_35px_rgba(19,187,255,.18)]"
                     >
                         {/* Image */}
                         <div className="mb-4 h-48 overflow-hidden rounded-lg shadow-md">

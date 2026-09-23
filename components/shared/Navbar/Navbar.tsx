@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import NavbarLogo from "./NavbarLogo";
 import NavbarDesktop from "./NavbarDesktop";
 import NavbarMobile from "./NavbarMobile";
+import Link from "next/link";
 const Navbar = () => {
     const [activeSection, setActiveSection] = useState("home");
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -82,15 +83,15 @@ const Navbar = () => {
                                 size="default"
                                 className="uppercase tracking-wide"
                             >
-                                <a
-                                    href="https://drive.google.com/file/d/1O1cSs8I55MVPzjJ1qxh_5_wRLEn0XPW/view?usp=sharing"
+                                <Link
+                                    href="https://drive.google.com/file/d/1O1cSs8I55MVPzjJ1Jqxh_5_wRLEn0XPW/view?usp=sharing"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-2"
                                 >
                                     <DownloadIcon size={18} />
                                     Download CV
-                                </a>
+                                </Link>
                             </Button>
                         </div>
 
