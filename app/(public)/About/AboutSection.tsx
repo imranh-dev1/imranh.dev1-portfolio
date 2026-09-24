@@ -82,7 +82,7 @@ const AboutSection = () => {
 
           <div>
             {/* Name */}
-            <h2 className="text-[32px] font-bold text-white">Imran Hossain</h2>
+            <h2 className="text-[32px] font-bold text-white">Imran Hossains</h2>
 
             {/* Role */}
             <p className="mb-6 text-[18px] font-semibold text-primary">
