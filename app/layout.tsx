@@ -7,6 +7,7 @@ import PersonSchema from "./person-schema"
 import Navbar from "@/components/shared/Navbar/Navbar"
 import { Providers } from "@/components/Providers"
 import { Toaster } from "@/components/ui/sonner"
+import PortfolioLoaderWrapper from "@/components/loading/portfolio-loader-wrapper"
 
 const oxaniumHeading = Oxanium({
   subsets: ["latin"],
@@ -66,11 +67,7 @@ export const viewport: Viewport = {
   themeColor: "#1b1f24",
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
@@ -87,6 +84,7 @@ export default function RootLayout({
         <Providers>
           <PersonSchema />
           <Navbar />
+          <PortfolioLoaderWrapper />
           {children}
           <Toaster />
         </Providers>

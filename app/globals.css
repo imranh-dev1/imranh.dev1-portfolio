@@ -176,12 +176,10 @@
   --leaf-shade-front: linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent);
   --leaf-shade-back: linear-gradient(270deg, rgba(0, 0, 0, 0.35), transparent);
 
-  --face-cover: radial-gradient(
-    120% 120% at 100% 0%,
-    #4dd3ff 0%,
-    #0e7ea8 40%,
-    #0b1a22 100%
-  );
+  --face-cover: radial-gradient(120% 120% at 100% 0%,
+      #4dd3ff 0%,
+      #0e7ea8 40%,
+      #0b1a22 100%);
   --face-hero: linear-gradient(180deg, #131317, #0e0e11);
   --face-awards: linear-gradient(180deg, #131019, #0e0e11);
   --face-testimonials: #0f0f13;
@@ -205,16 +203,12 @@
   --scene-bg: radial-gradient(120% 80% at 50% 30%, #ffffff 0%, var(--bg) 70%);
   --book-shadow: 0 30px 50px rgba(25, 20, 55, 0.18);
   --leaf-face-shadow: rgba(0, 0, 0, 0.05);
-  --leaf-shade-front: linear-gradient(
-    90deg,
-    rgba(40, 30, 70, 0.14),
-    transparent
-  );
-  --leaf-shade-back: linear-gradient(
-    270deg,
-    rgba(40, 30, 70, 0.14),
-    transparent
-  );
+  --leaf-shade-front: linear-gradient(90deg,
+      rgba(40, 30, 70, 0.14),
+      transparent);
+  --leaf-shade-back: linear-gradient(270deg,
+      rgba(40, 30, 70, 0.14),
+      transparent);
 
   --face-hero: linear-gradient(180deg, #ffffff, #f4f4f8);
   --face-awards: linear-gradient(180deg, #fbfaff, #f2f1fa);
@@ -229,6 +223,7 @@ a {
 
 /* ---------- Book animations ---------- */
 @keyframes bob {
+
   0%,
   100% {
     transform: translateY(0);
@@ -244,13 +239,16 @@ a {
   scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
 }
+
 .face::-webkit-scrollbar {
   width: 6px;
 }
+
 .face::-webkit-scrollbar-thumb {
   border-radius: 999px;
   background: var(--accent);
 }
+
 .face::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -278,5 +276,38 @@ a {
   .book .page--right-base .face {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+  }
+}
+
+/* Portfolio Loader Animations */
+
+@theme {
+  --animate-loader-wave: loader-wave 1s infinite;
+  --animate-loader-top: loader-top 2.4s 1.2s forwards;
+  --animate-loader-bottom: loader-bottom 2.4s 1.2s forwards;
+
+  @keyframes loader-wave {
+
+    0%,
+    40%,
+    100% {
+      transform: translateY(0);
+    }
+
+    20% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes loader-top {
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes loader-bottom {
+    to {
+      transform: translateY(100%);
+    }
   }
 }
