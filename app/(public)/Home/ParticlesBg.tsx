@@ -1,43 +1,28 @@
-"use client";
+"use client"
 
-import { useEffect, useRef } from "react";
-import {
-    Camera,
-    Geometry,
-    Mesh,
-    Program,
-    Renderer,
-} from "ogl";
+import { useEffect, useRef } from "react"
+import { Camera, Geometry, Mesh, Program, Renderer } from "ogl"
 
-const DEFAULT_COLORS = [
-    "#13bbff",
-    "#13bbff",
-    "#13bbff",
-];
+const DEFAULT_COLORS = ["#13bbff", "#13bbff", "#13bbff"]
 
-const hexToRgb = (
-    hex: string,
-): [number, number, number] => {
-    let normalizedHex = hex.replace(/^#/, "");
+const hexToRgb = (hex: string): [number, number, number] => {
+  let normalizedHex = hex.replace(/^#/, "")
 
-    if (normalizedHex.length === 3) {
-        normalizedHex = normalizedHex
-            .split("")
-            .map((char) => char + char)
-            .join("");
-    }
+  if (normalizedHex.length === 3) {
+    normalizedHex = normalizedHex
+      .split("")
+      .map((char) => char + char)
+      .join("")
+  }
 
-    const int = parseInt(
-        normalizedHex,
-        16,
-    );
+  const int = parseInt(normalizedHex, 16)
 
-    return [
-        ((int >> 16) & 255) / 255,
-        ((int >> 8) & 255) / 255,
-        (int & 255) / 255,
-    ];
-};
+  return [
+    ((int >> 16) & 255) / 255,
+    ((int >> 8) & 255) / 255,
+    (int & 255) / 255,
+  ]
+}
 
 const vertex = /* glsl */ `
   attribute vec3 position;
@@ -121,7 +106,7 @@ const vertex = /* glsl */ `
       projectionMatrix *
       mvPos;
   }
-`;
+`
 
 const fragment = /* glsl */ `
   precision highp float;
@@ -178,421 +163,265 @@ const fragment = /* glsl */ `
         );
     }
   }
-`;
+`
 
 export interface ParticlesBgProps {
-    particleCount?: number;
-    particleSpread?: number;
-    speed?: number;
-    particleColors?: string[];
-    moveParticlesOnHover?: boolean;
-    particleHoverFactor?: number;
-    alphaParticles?: boolean;
-    particleBaseSize?: number;
-    sizeRandomness?: number;
-    cameraDistance?: number;
-    disableRotation?: boolean;
-    className?: string;
+  particleCount?: number
+  particleSpread?: number
+  speed?: number
+  particleColors?: string[]
+  moveParticlesOnHover?: boolean
+  particleHoverFactor?: number
+  alphaParticles?: boolean
+  particleBaseSize?: number
+  sizeRandomness?: number
+  cameraDistance?: number
+  disableRotation?: boolean
+  className?: string
 }
 
 const ParticlesBg = ({
-    particleCount = 200,
-    particleSpread = 10,
-    speed = 0.1,
-    particleColors,
-    moveParticlesOnHover = false,
-    particleHoverFactor = 1,
-    alphaParticles = false,
-    particleBaseSize = 100,
-    sizeRandomness = 1,
-    cameraDistance = 20,
-    disableRotation = false,
-    className = "",
+  particleCount = 200,
+  particleSpread = 10,
+  speed = 0.1,
+  particleColors,
+  moveParticlesOnHover = false,
+  particleHoverFactor = 1,
+  alphaParticles = false,
+  particleBaseSize = 100,
+  sizeRandomness = 1,
+  cameraDistance = 20,
+  disableRotation = false,
+  className = "",
 }: ParticlesBgProps) => {
-    const containerRef =
-        useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
-    const mouseRef = useRef({
-        x: 0,
-        y: 0,
-    });
+  const mouseRef = useRef({
+    x: 0,
+    y: 0,
+  })
 
-    useEffect(() => {
-        const container =
-            containerRef.current;
+  useEffect(() => {
+    const container = containerRef.current
 
-        if (!container) return;
+    if (!container) return
 
-        const renderer = new Renderer({
-            depth: false,
-            alpha: true,
-            dpr: Math.min(
-                window.devicePixelRatio || 1,
-                2,
-            ),
-        });
+    const renderer = new Renderer({
+      depth: false,
+      alpha: true,
+      dpr: Math.min(window.devicePixelRatio || 1, 2),
+    })
 
-        const gl = renderer.gl;
+    const gl = renderer.gl
 
-        container.appendChild(gl.canvas);
+    container.appendChild(gl.canvas)
 
-        gl.clearColor(
-            0,
-            0,
-            0,
-            0,
-        );
+    gl.clearColor(0, 0, 0, 0)
 
-        gl.canvas.style.width = "100%";
-        gl.canvas.style.height = "100%";
-        gl.canvas.style.display = "block";
+    gl.canvas.style.width = "100%"
+    gl.canvas.style.height = "100%"
+    gl.canvas.style.display = "block"
 
-        const camera = new Camera(gl, {
-            fov: 15,
-        });
+    const camera = new Camera(gl, {
+      fov: 15,
+    })
 
-        camera.position.set(
-            0,
-            0,
-            cameraDistance,
-        );
+    camera.position.set(0, 0, cameraDistance)
 
-        const resize = () => {
-            const width =
-                container.clientWidth;
+    const resize = () => {
+      const width = container.clientWidth
 
-            const height =
-                container.clientHeight;
+      const height = container.clientHeight
 
-            if (
-                width === 0 ||
-                height === 0
-            ) {
-                return;
-            }
+      if (width === 0 || height === 0) {
+        return
+      }
 
-            renderer.setSize(
-                width,
-                height,
-            );
+      renderer.setSize(width, height)
 
-            camera.perspective({
-                aspect:
-                    width / height,
-            });
-        };
+      camera.perspective({
+        aspect: width / height,
+      })
+    }
 
-        window.addEventListener(
-            "resize",
-            resize,
-        );
+    window.addEventListener("resize", resize)
 
-        resize();
+    resize()
 
-        const handleMouseMove = (
-            event: MouseEvent,
-        ) => {
-            const rect =
-                container.getBoundingClientRect();
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = container.getBoundingClientRect()
 
-            const x =
-                ((event.clientX -
-                    rect.left) /
-                    rect.width) *
-                2 -
-                1;
+      const x = ((event.clientX - rect.left) / rect.width) * 2 - 1
 
-            const y =
-                -(
-                    ((event.clientY -
-                        rect.top) /
-                        rect.height) *
-                    2 -
-                    1
-                );
+      const y = -(((event.clientY - rect.top) / rect.height) * 2 - 1)
 
-            mouseRef.current = {
-                x,
-                y,
-            };
-        };
+      mouseRef.current = {
+        x,
+        y,
+      }
+    }
 
-        if (moveParticlesOnHover) {
-            container.addEventListener(
-                "mousemove",
-                handleMouseMove,
-            );
-        }
+    if (moveParticlesOnHover) {
+      container.addEventListener("mousemove", handleMouseMove)
+    }
 
-        const positions =
-            new Float32Array(
-                particleCount * 3,
-            );
+    const positions = new Float32Array(particleCount * 3)
 
-        const randoms =
-            new Float32Array(
-                particleCount * 4,
-            );
+    const randoms = new Float32Array(particleCount * 4)
 
-        const colors =
-            new Float32Array(
-                particleCount * 3,
-            );
+    const colors = new Float32Array(particleCount * 3)
 
-        const palette =
-            particleColors?.length
-                ? particleColors
-                : DEFAULT_COLORS;
+    const palette = particleColors?.length ? particleColors : DEFAULT_COLORS
 
-        for (
-            let i = 0;
-            i < particleCount;
-            i++
-        ) {
-            let x = 0;
-            let y = 0;
-            let z = 0;
-            let len = 0;
+    for (let i = 0; i < particleCount; i++) {
+      let x = 0
+      let y = 0
+      let z = 0
+      let len = 0
 
-            do {
-                x =
-                    Math.random() * 2 -
-                    1;
+      do {
+        x = Math.random() * 2 - 1
 
-                y =
-                    Math.random() * 2 -
-                    1;
+        y = Math.random() * 2 - 1
 
-                z =
-                    Math.random() * 2 -
-                    1;
+        z = Math.random() * 2 - 1
 
-                len =
-                    x * x +
-                    y * y +
-                    z * z;
-            } while (
-                len > 1 ||
-                len === 0
-            );
+        len = x * x + y * y + z * z
+      } while (len > 1 || len === 0)
 
-            const radius =
-                Math.cbrt(
-                    Math.random(),
-                );
+      const radius = Math.cbrt(Math.random())
 
-            positions.set(
-                [
-                    x * radius,
-                    y * radius,
-                    z * radius,
-                ],
-                i * 3,
-            );
+      positions.set([x * radius, y * radius, z * radius], i * 3)
 
-            randoms.set(
-                [
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                ],
-                i * 4,
-            );
+      randoms.set(
+        [Math.random(), Math.random(), Math.random(), Math.random()],
+        i * 4
+      )
 
-            const color =
-                palette[
-                Math.floor(
-                    Math.random() *
-                    palette.length,
-                )
-                ];
+      const color = palette[Math.floor(Math.random() * palette.length)]
 
-            colors.set(
-                hexToRgb(color),
-                i * 3,
-            );
-        }
+      colors.set(hexToRgb(color), i * 3)
+    }
 
-        const geometry = new Geometry(
-            gl,
-            {
-                position: {
-                    size: 3,
-                    data: positions,
-                },
-                random: {
-                    size: 4,
-                    data: randoms,
-                },
-                color: {
-                    size: 3,
-                    data: colors,
-                },
-            },
-        );
+    const geometry = new Geometry(gl, {
+      position: {
+        size: 3,
+        data: positions,
+      },
+      random: {
+        size: 4,
+        data: randoms,
+      },
+      color: {
+        size: 3,
+        data: colors,
+      },
+    })
 
-        const program = new Program(
-            gl,
-            {
-                vertex,
-                fragment,
-                uniforms: {
-                    uTime: {
-                        value: 0,
-                    },
-                    uSpread: {
-                        value: particleSpread,
-                    },
-                    uBaseSize: {
-                        value: particleBaseSize,
-                    },
-                    uSizeRandomness: {
-                        value: sizeRandomness,
-                    },
-                    uAlphaParticles: {
-                        value:
-                            alphaParticles
-                                ? 1
-                                : 0,
-                    },
-                },
-                transparent: true,
-                depthTest: false,
-            },
-        );
+    const program = new Program(gl, {
+      vertex,
+      fragment,
+      uniforms: {
+        uTime: {
+          value: 0,
+        },
+        uSpread: {
+          value: particleSpread,
+        },
+        uBaseSize: {
+          value: particleBaseSize,
+        },
+        uSizeRandomness: {
+          value: sizeRandomness,
+        },
+        uAlphaParticles: {
+          value: alphaParticles ? 1 : 0,
+        },
+      },
+      transparent: true,
+      depthTest: false,
+    })
 
-        const particles = new Mesh(
-            gl,
-            {
-                mode: gl.POINTS,
-                geometry,
-                program,
-            },
-        );
+    const particles = new Mesh(gl, {
+      mode: gl.POINTS,
+      geometry,
+      program,
+    })
 
-        let animationFrameId = 0;
-        let lastTime =
-            performance.now();
+    let animationFrameId = 0
+    let lastTime = performance.now()
 
-        let elapsed = 0;
+    let elapsed = 0
 
-        const update = (
-            time: number,
-        ) => {
-            animationFrameId =
-                requestAnimationFrame(
-                    update,
-                );
+    const update = (time: number) => {
+      animationFrameId = requestAnimationFrame(update)
 
-            const delta =
-                time - lastTime;
+      const delta = time - lastTime
 
-            lastTime = time;
+      lastTime = time
 
-            elapsed +=
-                delta * speed;
+      elapsed += delta * speed
 
-            program.uniforms.uTime.value =
-                elapsed * 0.001;
+      program.uniforms.uTime.value = elapsed * 0.001
 
-            if (
-                moveParticlesOnHover
-            ) {
-                particles.position.x =
-                    -mouseRef.current.x *
-                    particleHoverFactor;
+      if (moveParticlesOnHover) {
+        particles.position.x = -mouseRef.current.x * particleHoverFactor
 
-                particles.position.y =
-                    -mouseRef.current.y *
-                    particleHoverFactor;
-            } else {
-                particles.position.x = 0;
-                particles.position.y = 0;
-            }
+        particles.position.y = -mouseRef.current.y * particleHoverFactor
+      } else {
+        particles.position.x = 0
+        particles.position.y = 0
+      }
 
-            if (!disableRotation) {
-                particles.rotation.x =
-                    Math.sin(
-                        elapsed * 0.0002,
-                    ) * 0.1;
+      if (!disableRotation) {
+        particles.rotation.x = Math.sin(elapsed * 0.0002) * 0.1
 
-                particles.rotation.y =
-                    Math.cos(
-                        elapsed * 0.0005,
-                    ) * 0.15;
+        particles.rotation.y = Math.cos(elapsed * 0.0005) * 0.15
 
-                particles.rotation.z +=
-                    0.01 * speed;
-            }
+        particles.rotation.z += 0.01 * speed
+      }
 
-            renderer.render({
-                scene: particles,
-                camera,
-            });
-        };
+      renderer.render({
+        scene: particles,
+        camera,
+      })
+    }
 
-        animationFrameId =
-            requestAnimationFrame(
-                update,
-            );
+    animationFrameId = requestAnimationFrame(update)
 
-        return () => {
-            window.removeEventListener(
-                "resize",
-                resize,
-            );
+    return () => {
+      window.removeEventListener("resize", resize)
 
-            if (
-                moveParticlesOnHover
-            ) {
-                container.removeEventListener(
-                    "mousemove",
-                    handleMouseMove,
-                );
-            }
+      if (moveParticlesOnHover) {
+        container.removeEventListener("mousemove", handleMouseMove)
+      }
 
-            cancelAnimationFrame(
-                animationFrameId,
-            );
+      cancelAnimationFrame(animationFrameId)
 
-            if (
-                container.contains(
-                    gl.canvas,
-                )
-            ) {
-                container.removeChild(
-                    gl.canvas,
-                );
-            }
-        };
-    }, [
-        particleCount,
-        particleSpread,
-        speed,
-        particleColors,
-        moveParticlesOnHover,
-        particleHoverFactor,
-        alphaParticles,
-        particleBaseSize,
-        sizeRandomness,
-        cameraDistance,
-        disableRotation,
-    ]);
+      if (container.contains(gl.canvas)) {
+        container.removeChild(gl.canvas)
+      }
+    }
+  }, [
+    particleCount,
+    particleSpread,
+    speed,
+    particleColors,
+    moveParticlesOnHover,
+    particleHoverFactor,
+    alphaParticles,
+    particleBaseSize,
+    sizeRandomness,
+    cameraDistance,
+    disableRotation,
+  ])
 
-    return (
-        <div
-            ref={containerRef}
-            className={`
-        relative
-        h-full
-        min-h-full
-        w-full
-        overflow-hidden
-        ${className}
-      `}
-        />
-    );
-};
+  return (
+    <div
+      ref={containerRef}
+      className={`relative h-full min-h-full w-full overflow-hidden ${className} `}
+    />
+  )
+}
 
-export default ParticlesBg;
+export default ParticlesBg

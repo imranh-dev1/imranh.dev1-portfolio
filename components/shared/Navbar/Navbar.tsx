@@ -1,125 +1,119 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { DownloadIcon, Menu } from "lucide-react";
+import { useEffect, useState } from "react"
+import { DownloadIcon, Menu } from "lucide-react"
 
-import { Button } from "@/components/ui/button";
-import NavbarLogo from "./NavbarLogo";
-import NavbarDesktop from "./NavbarDesktop";
-import NavbarMobile from "./NavbarMobile";
-import Link from "next/link";
+import { Button } from "@/components/ui/button"
+import NavbarLogo from "./NavbarLogo"
+import NavbarDesktop from "./NavbarDesktop"
+import NavbarMobile from "./NavbarMobile"
+import Link from "next/link"
 const Navbar = () => {
-    const [activeSection, setActiveSection] = useState("home");
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home")
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-    useEffect(() => {
-        const sections =
-            document.querySelectorAll<HTMLElement>("section[id]");
+  useEffect(() => {
+    const sections = document.querySelectorAll<HTMLElement>("section[id]")
 
-        if (!sections.length) {
-            return;
+    if (!sections.length) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+        if (visibleSections.length > 0) {
+          setActiveSection(visibleSections[0].target.id)
         }
+      },
+      {
+        rootMargin: "-100px 0px -55% 0px",
+        threshold: [0.1, 0.25, 0.5],
+      }
+    )
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visibleSections = entries
-                    .filter((entry) => entry.isIntersecting)
-                    .sort(
-                        (a, b) =>
-                            b.intersectionRatio - a.intersectionRatio,
-                    );
+    sections.forEach((section) => {
+      observer.observe(section)
+    })
 
-                if (visibleSections.length > 0) {
-                    setActiveSection(
-                        visibleSections[0].target.id,
-                    );
-                }
-            },
-            {
-                rootMargin: "-100px 0px -55% 0px",
-                threshold: [0.1, 0.25, 0.5],
-            },
-        );
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
 
-        sections.forEach((section) => {
-            observer.observe(section);
-        });
+  const handleNavigate = (section: string) => {
+    setActiveSection(section)
+    setMobileMenuOpen(false)
+  }
 
-        return () => {
-            observer.disconnect();
-        };
-    }, []);
+  const handleLogoClick = () => {
+    setActiveSection("home")
+    setMobileMenuOpen(false)
+  }
 
-    const handleNavigate = (section: string) => {
-        setActiveSection(section);
-        setMobileMenuOpen(false);
-    };
+  return (
+    <header className="fixed top-0 z-50 w-full">
+      <div className="container mx-auto">
+        <nav className="my-4 rounded-full border border-primary bg-background/95 px-4 shadow-lg backdrop-blur-md sm:px-6">
+          <div className="flex h-14 items-center justify-between">
+            {/* Logo */}
+            <NavbarLogo onClick={handleLogoClick} />
 
-    const handleLogoClick = () => {
-        setActiveSection("home");
-        setMobileMenuOpen(false);
-    };
+            {/* Desktop Navigation */}
+            <NavbarDesktop
+              activeSection={activeSection}
+              onNavigate={handleNavigate}
+            />
 
-    return (
-        <header className="fixed top-0 z-50 w-full">
-            <div className="container mx-auto">
-                <nav className="my-4 rounded-full border border-primary bg-background/95 px-4 shadow-lg backdrop-blur-md sm:px-6">
-                    <div className="flex h-14 items-center justify-between">
-                        {/* Logo */}
-                        <NavbarLogo onClick={handleLogoClick} />
-
-                        {/* Desktop Navigation */}
-                        <NavbarDesktop
-                            activeSection={activeSection}
-                            onNavigate={handleNavigate}
-                        />
-
-                        {/* Desktop CV */}
-                        <div className="hidden lg:block">
-                            <Button
-                                asChild
-                                variant="secondary"
-                                size="default"
-                                className="uppercase tracking-wide"
-                            >
-                                <Link
-                                    href="https://drive.google.com/file/d/1O1cSs8I55MVPzjJ1Jqxh_5_wRLEn0XPW/view?usp=sharing"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2"
-                                >
-                                    <DownloadIcon size={18} />
-                                    Download CV
-                                </Link>
-                            </Button>
-                        </div>
-
-                        {/* Mobile Menu */}
-                        <div className="lg:hidden">
-                            <Button
-                                type="button"
-                                variant="ghost"
-                                size="icon"
-                                aria-label="Open navigation"
-                                onClick={() => setMobileMenuOpen(true)}
-                                className="rounded-full text-white hover:bg-primary/10 hover:text-primary"
-                            >
-                                <Menu size={22} />
-                            </Button>
-                        </div>
-                    </div>
-                </nav>
+            {/* Desktop CV */}
+            <div className="hidden lg:block">
+              <Button
+                asChild
+                variant="secondary"
+                size="default"
+                className="tracking-wide uppercase"
+              >
+                <Link
+                  href="https://drive.google.com/file/d/1O1cSs8I55MVPzjJ1Jqxh_5_wRLEn0XPW/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <DownloadIcon size={18} />
+                  Download CV
+                </Link>
+              </Button>
             </div>
 
-            {/* Mobile Navigation */}
-            <NavbarMobile
-                open={mobileMenuOpen}
-                activeSection={activeSection}
-                onNavigate={handleNavigate}
-                onClose={() => setMobileMenuOpen(false)}
-            />
-        </header>
-    );
-};
+            {/* Mobile Menu */}
+            <div className="lg:hidden">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                aria-label="Open navigation"
+                onClick={() => setMobileMenuOpen(true)}
+                className="rounded-full text-white hover:bg-primary/10 hover:text-primary"
+              >
+                <Menu size={22} />
+              </Button>
+            </div>
+          </div>
+        </nav>
+      </div>
 
-export default Navbar;
+      {/* Mobile Navigation */}
+      <NavbarMobile
+        open={mobileMenuOpen}
+        activeSection={activeSection}
+        onNavigate={handleNavigate}
+        onClose={() => setMobileMenuOpen(false)}
+      />
+    </header>
+  )
+}
+
+export default Navbar

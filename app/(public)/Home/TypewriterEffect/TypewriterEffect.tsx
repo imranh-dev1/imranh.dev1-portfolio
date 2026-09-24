@@ -1,53 +1,42 @@
-"use client";
+"use client"
 
-import { useEffect, useRef } from "react";
-import Typed from "typed.js";
-import "./Typewriter.css";
+import { useEffect, useRef } from "react"
+import Typed from "typed.js"
+import "./Typewriter.css"
 
 const TypewriterEffect = () => {
-    const typedElement = useRef<HTMLSpanElement | null>(null);
+  const typedElement = useRef<HTMLSpanElement | null>(null)
 
-    useEffect(() => {
-        const element = typedElement.current;
+  useEffect(() => {
+    const element = typedElement.current
 
-        if (!element) return;
+    if (!element) return
 
-        const typed = new Typed(element, {
-            strings: [
-                `I'm <span style="color:var(--primary);">Imran Hossain.</span>`,
-                `I'm a <span style="color:var(--primary);">Full Stack Developer.</span>`,
-                `I build <span style="color:var(--primary);">scalable web apps.</span>`,
-            ],
-            typeSpeed: 50,
-            backSpeed: 50,
-            loop: true,
-            showCursor: true,
-            cursorChar: "|",
-        });
+    const typed = new Typed(element, {
+      strings: [
+        `I'm <span style="color:var(--primary);">Imran Hossain.</span>`,
+        `I'm a <span style="color:var(--primary);">Full Stack Developer.</span>`,
+        `I build <span style="color:var(--primary);">scalable web apps.</span>`,
+      ],
+      typeSpeed: 50,
+      backSpeed: 50,
+      loop: true,
+      showCursor: true,
+      cursorChar: "|",
+    })
 
-        return () => {
-            typed.destroy();
-        };
-    }, []);
+    return () => {
+      typed.destroy()
+    }
+  }, [])
 
-    return (
-        <div className="mt-2 w-full">
-            <h1
-                className="
-                    text-left
-                    text-3xl
-                    font-bold
-                    leading-tight 
-                    sm:text-4xl
-                    md:text-5xl
-                    lg:text-[38px]
-                    xl:text-[53px]
-                "
-            >
-                <span ref={typedElement} />
-            </h1>
-        </div>
-    );
-};
+  return (
+    <div className="mt-2 w-full">
+      <h1 className="text-left text-3xl leading-tight font-bold sm:text-4xl md:text-5xl lg:text-[38px] xl:text-[53px]">
+        <span ref={typedElement} />
+      </h1>
+    </div>
+  )
+}
 
-export default TypewriterEffect;
+export default TypewriterEffect

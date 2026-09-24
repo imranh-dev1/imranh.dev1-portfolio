@@ -1,24 +1,24 @@
-"use client";
+"use client"
 
-import { useRef } from "react";
-import { useAppSelector } from "@/lib/hooks";
-import { Leaf } from "@/components/book/Leaf";
-import { Cover } from "@/components/book/faces/Cover";
-import { ExperienceCard } from "@/components/book/faces/ExperienceCard";
-import { Awards } from "@/components/book/faces/Awards";
-import { ContactIntro } from "@/components/book/faces/ContactIntro";
-import { useBookFlip } from "@/hooks/useBookFlip";
+import { useRef } from "react"
+import { useAppSelector } from "@/lib/hooks"
+import { Leaf } from "@/components/book/Leaf"
+import { Cover } from "@/components/book/faces/Cover"
+import { ExperienceCard } from "@/components/book/faces/ExperienceCard"
+import { Awards } from "@/components/book/faces/Awards"
+import { ContactIntro } from "@/components/book/faces/ContactIntro"
+import { useBookFlip } from "@/hooks/useBookFlip"
 
 export function Book() {
-  const sceneRef = useRef<HTMLDivElement>(null);
-  const bookRef = useRef<HTMLDivElement>(null);
-  const hintRef = useRef<HTMLParagraphElement>(null);
+  const sceneRef = useRef<HTMLDivElement>(null)
+  const bookRef = useRef<HTMLDivElement>(null)
+  const hintRef = useRef<HTMLParagraphElement>(null)
 
-  const experiences = useAppSelector((state) => state.experience.items);
+  const experiences = useAppSelector((state) => state.experience.items)
 
-  useBookFlip({ sceneRef, bookRef, hintRef });
+  useBookFlip({ sceneRef, bookRef, hintRef })
 
-  const leaves: { front: React.ReactNode; back: React.ReactNode }[] = [];
+  const leaves: { front: React.ReactNode; back: React.ReactNode }[] = []
   for (let i = 0; i < experiences.length; i += 2) {
     const front = (
       <ExperienceCard
@@ -26,24 +26,24 @@ export function Book() {
         order={i + 1}
         total={experiences.length}
       />
-    );
-    const next = experiences[i + 1];
+    )
+    const next = experiences[i + 1]
     const back = next ? (
       <ExperienceCard exp={next} order={i + 2} total={experiences.length} />
     ) : (
       <Awards />
-    );
-    leaves.push({ front, back });
+    )
+    leaves.push({ front, back })
   }
 
   return (
     <div
-      className="scene relative grid h-screen place-items-center overflow-hidden rounded-[20px] p-3 [background-image:var(--scene-bg)] [perspective:2200px] [perspective-origin:50%_45%]"
+      className="scene relative grid h-screen place-items-center overflow-hidden rounded-[20px] [background-image:var(--scene-bg)] p-3 [perspective-origin:50%_45%] [perspective:2200px]"
       id="scene"
       ref={sceneRef}
     >
       <div
-        className="book relative h-(--ph) w-[calc(var(--pw)*2)] transform-3d bg-(--panel) [filter:drop-shadow(var(--book-shadow))] [transform:scale(var(--book-scale))_rotateX(4deg)]"
+        className="book relative h-(--ph) w-[calc(var(--pw)*2)] [transform:scale(var(--book-scale))_rotateX(4deg)] bg-(--panel) [filter:drop-shadow(var(--book-shadow))] transform-3d"
         id="book"
         ref={bookRef}
       >
@@ -63,12 +63,12 @@ export function Book() {
       </div>
 
       <p
-        className="scene__hint absolute bottom-[22px] left-1/2 -translate-x-1/2 text-[.7rem] uppercase tracking-[.25em] text-muted-foreground [transition:opacity_.4s]"
+        className="scene__hint absolute bottom-[22px] left-1/2 -translate-x-1/2 text-[.7rem] tracking-[.25em] text-muted-foreground uppercase [transition:opacity_.4s]"
         id="sceneHint"
         ref={hintRef}
       >
         scroll ↓
       </p>
     </div>
-  );
+  )
 }

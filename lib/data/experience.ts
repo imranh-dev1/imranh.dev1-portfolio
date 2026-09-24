@@ -1,12 +1,12 @@
 export interface Experience {
-  id: number;
-  period: string;
-  current?: boolean;
-  title: string;
-  company: string;
-  description: string;
-  achievements: string[];
-  technologies: string[];
+  id: number
+  period: string
+  current?: boolean
+  title: string
+  company: string
+  description: string
+  achievements: string[]
+  technologies: string[]
 }
 
 export const experienceData: Experience[] = [
@@ -39,7 +39,8 @@ export const experienceData: Experience[] = [
     id: 2,
     period: "Sep 2026 — Present",
     title: "Web Development Intern",
-    company: "Zidio Development-Internship • Remote • Bengaluru, Karnataka, India",
+    company:
+      "Zidio Development-Internship • Remote • Bengaluru, Karnataka, India",
     description:
       "Working as a Web Development Intern at Zidio Development, contributing to web application development and collaborating with the technical team on assigned projects.",
 
@@ -64,4 +65,4 @@ export const experienceData: Experience[] = [
       "REST API",
     ],
   },
-];
+]

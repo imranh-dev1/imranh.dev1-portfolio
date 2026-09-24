@@ -2,22 +2,26 @@ import { Geist_Mono, Noto_Sans, Oxanium } from "next/font/google"
 import type { Metadata, Viewport } from "next"
 
 import "./globals.css"
-import { cn } from "@/lib/utils";
-import PersonSchema from "./person-schema";
-import Navbar from "@/components/shared/Navbar/Navbar";
-import { Providers } from "@/components/Providers";
-import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils"
+import PersonSchema from "./person-schema"
+import Navbar from "@/components/shared/Navbar/Navbar"
+import { Providers } from "@/components/Providers"
+import { Toaster } from "@/components/ui/sonner"
 
-
-const oxaniumHeading = Oxanium({ subsets: ['latin'], variable: '--font-heading' });
-const notoSans = Noto_Sans({ subsets: ['latin'], variable: '--font-sans' })
+const oxaniumHeading = Oxanium({
+  subsets: ["latin"],
+  variable: "--font-heading",
+})
+const notoSans = Noto_Sans({ subsets: ["latin"], variable: "--font-sans" })
 const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com"
+  ),
   title: {
     default: "Imran Hossain | Full Stack Developer",
     template: "%s | Imran Hossain",
@@ -40,7 +44,14 @@ export const metadata: Metadata = {
     description:
       "Full Stack Developer building modern, scalable web apps with React, Next.js, Node.js & PostgreSQL.",
     siteName: "Imran Hossain Portfolio",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Imran Hossain — Full Stack Developer" }],
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Imran Hossain — Full Stack Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -64,7 +75,13 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", notoSans.variable, oxaniumHeading.variable)}
+      className={cn(
+        "antialiased",
+        fontMono.variable,
+        "font-sans",
+        notoSans.variable,
+        oxaniumHeading.variable
+      )}
     >
       <body>
         <Providers>
@@ -73,7 +90,6 @@ export default function RootLayout({
           {children}
           <Toaster />
         </Providers>
-
       </body>
     </html>
   )

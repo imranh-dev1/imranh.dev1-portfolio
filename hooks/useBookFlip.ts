@@ -1,19 +1,19 @@
-"use client";
+"use client"
 
-import { useEffect, type RefObject } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
+import { useEffect, type RefObject } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Lenis from "lenis"
 
-let pluginRegistered = false;
+let pluginRegistered = false
 
 interface UseBookFlipRefs {
-  sceneRef: RefObject<HTMLDivElement | null>;
-  bookRef: RefObject<HTMLDivElement | null>;
-  hintRef: RefObject<HTMLParagraphElement | null>;
+  sceneRef: RefObject<HTMLDivElement | null>
+  bookRef: RefObject<HTMLDivElement | null>
+  hintRef: RefObject<HTMLParagraphElement | null>
 }
 
-const clamp = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
+const clamp = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v)
 
 /**
  * Direct port of the original script.js: Lenis smooth scroll + GSAP
@@ -24,74 +24,75 @@ const clamp = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
 export function useBookFlip({ sceneRef, bookRef, hintRef }: UseBookFlipRefs) {
   useEffect(() => {
     if (!pluginRegistered) {
-      gsap.registerPlugin(ScrollTrigger);
-      pluginRegistered = true;
+      gsap.registerPlugin(ScrollTrigger)
+      pluginRegistered = true
     }
 
-    const scene = sceneRef.current;
-    const book = bookRef.current;
-    const hint = hintRef.current;
-    if (!scene || !book) return;
+    const scene = sceneRef.current
+    const book = bookRef.current
+    const hint = hintRef.current
+    if (!scene || !book) return
 
-    const root = document.documentElement;
+    const root = document.documentElement
 
     // ---------- Smooth scrolling via Lenis ----------
-    const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-    lenis.on("scroll", ScrollTrigger.update);
+    const lenis = new Lenis({ duration: 1.1, smoothWheel: true })
+    lenis.on("scroll", ScrollTrigger.update)
 
     const raf = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
+      lenis.raf(time * 1000)
+    }
+    gsap.ticker.add(raf)
+    gsap.ticker.lagSmoothing(0)
 
     // ---------- Inject lighting overlays into each leaf ----------
-    const leaves = Array.from(book.querySelectorAll<HTMLElement>(".leaf"));
-    const shades: HTMLDivElement[] = [];
+    const leaves = Array.from(book.querySelectorAll<HTMLElement>(".leaf"))
+    const shades: HTMLDivElement[] = []
     leaves.forEach((leaf) => {
-      const shade = document.createElement("div");
-      shade.className = "leaf__shade";
+      const shade = document.createElement("div")
+      shade.className = "leaf__shade"
       shade.style.cssText =
-        "position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:5;";
-      leaf.appendChild(shade);
-      shades.push(shade);
-    });
+        "position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:5;"
+      leaf.appendChild(shade)
+      shades.push(shade)
+    })
 
-    const N = leaves.length;
+    const N = leaves.length
 
     function applyFlip(progress: number) {
       for (let i = 0; i < N; i++) {
-        const leaf = leaves[i];
-        const local = clamp(progress * N - i);
-        leaf.style.transform = `rotateY(${-180 * local}deg)`;
+        const leaf = leaves[i]
+        const local = clamp(progress * N - i)
+        leaf.style.transform = `rotateY(${-180 * local}deg)`
 
-        let z: number;
-        if (local <= 0) z = N - i;
-        else if (local >= 1) z = N + i;
-        else z = 2 * N + 5;
-        leaf.style.zIndex = String(z);
+        let z: number
+        if (local <= 0) z = N - i
+        else if (local >= 1) z = N + i
+        else z = 2 * N + 5
+        leaf.style.zIndex = String(z)
 
-        const shade = shades[i];
-        if (shade) shade.style.opacity = (Math.sin(local * Math.PI) * 0.45).toFixed(3);
+        const shade = shades[i]
+        if (shade)
+          shade.style.opacity = (Math.sin(local * Math.PI) * 0.45).toFixed(3)
       }
     }
 
     function fitBook() {
-      const bw = book!.offsetWidth || 880;
-      const bh = book!.offsetHeight || 660;
+      const bw = book!.offsetWidth || 880
+      const bh = book!.offsetHeight || 660
       const s = Math.min(
         (window.innerWidth * 0.92) / bw,
         (window.innerHeight * 0.9) / bh
-      );
-      root.style.setProperty("--book-scale", Math.min(s, 1.2).toFixed(4));
+      )
+      root.style.setProperty("--book-scale", Math.min(s, 1.2).toFixed(4))
     }
 
-    const mm = gsap.matchMedia();
+    const mm = gsap.matchMedia()
 
     mm.add("(min-width: 769px)", () => {
-      fitBook();
-      applyFlip(0);
-      window.addEventListener("resize", fitBook);
+      fitBook()
+      applyFlip(0)
+      window.addEventListener("resize", fitBook)
 
       const st = ScrollTrigger.create({
         trigger: scene,
@@ -100,54 +101,60 @@ export function useBookFlip({ sceneRef, bookRef, hintRef }: UseBookFlipRefs) {
         pin: true,
         scrub: 0.6,
         onUpdate: (self) => {
-          applyFlip(self.progress);
-          if (hint) hint.style.opacity = self.progress > 0.02 ? "0" : "1";
+          applyFlip(self.progress)
+          if (hint) hint.style.opacity = self.progress > 0.02 ? "0" : "1"
         },
-      });
+      })
 
       return () => {
-        st.kill();
-        window.removeEventListener("resize", fitBook);
-        root.style.setProperty("--book-scale", "1");
+        st.kill()
+        window.removeEventListener("resize", fitBook)
+        root.style.setProperty("--book-scale", "1")
         leaves.forEach((leaf, i) => {
-          leaf.style.transform = "";
-          leaf.style.zIndex = "";
-          const shade = shades[i];
-          if (shade) shade.style.opacity = "";
-        });
-      };
-    });
+          leaf.style.transform = ""
+          leaf.style.zIndex = ""
+          const shade = shades[i]
+          if (shade) shade.style.opacity = ""
+        })
+      }
+    })
 
     mm.add("(max-width: 768px)", () => {
       // Cover (page--left-base) becomes page 0 on mobile too, then flips
       // away like any other page since there's no side-by-side spread.
-      const leftBase = book!.querySelector<HTMLElement>(".page--left-base .face");
-      const pages = Array.from(book!.querySelectorAll<HTMLElement>(".leaf__face"));
-      if (leftBase) pages.unshift(leftBase);
-      const rightBase = document.querySelector<HTMLElement>(".page--right-base .face");
-      if (rightBase) pages.push(rightBase);
-      const M = pages.length;
-      const F = M - 1;
+      const leftBase = book!.querySelector<HTMLElement>(
+        ".page--left-base .face"
+      )
+      const pages = Array.from(
+        book!.querySelectorAll<HTMLElement>(".leaf__face")
+      )
+      if (leftBase) pages.unshift(leftBase)
+      const rightBase = document.querySelector<HTMLElement>(
+        ".page--right-base .face"
+      )
+      if (rightBase) pages.push(rightBase)
+      const M = pages.length
+      const F = M - 1
 
       pages.forEach((p, i) => {
-        p.style.zIndex = String(M - i);
-        p.style.transform = "rotateY(0deg)";
-      });
+        p.style.zIndex = String(M - i)
+        p.style.transform = "rotateY(0deg)"
+      })
 
       function applyFlipMobile(progress: number) {
         for (let i = 0; i < M; i++) {
           if (i >= F) {
-            pages[i].style.transform = "rotateY(0deg)";
-            continue;
+            pages[i].style.transform = "rotateY(0deg)"
+            continue
           }
-          const local = clamp(progress * F - i);
-          pages[i].style.transform = `rotateY(${-180 * local}deg)`;
+          const local = clamp(progress * F - i)
+          pages[i].style.transform = `rotateY(${-180 * local}deg)`
         }
       }
 
-      fitBook();
-      applyFlipMobile(0);
-      window.addEventListener("resize", fitBook);
+      fitBook()
+      applyFlipMobile(0)
+      window.addEventListener("resize", fitBook)
 
       const stM = ScrollTrigger.create({
         trigger: scene,
@@ -156,32 +163,32 @@ export function useBookFlip({ sceneRef, bookRef, hintRef }: UseBookFlipRefs) {
         pin: true,
         scrub: 0.6,
         onUpdate: (self) => {
-          applyFlipMobile(self.progress);
-          if (hint) hint.style.opacity = self.progress > 0.02 ? "0" : "1";
+          applyFlipMobile(self.progress)
+          if (hint) hint.style.opacity = self.progress > 0.02 ? "0" : "1"
         },
-      });
+      })
 
       return () => {
-        stM.kill();
-        window.removeEventListener("resize", fitBook);
-        root.style.setProperty("--book-scale", "1");
+        stM.kill()
+        window.removeEventListener("resize", fitBook)
+        root.style.setProperty("--book-scale", "1")
         pages.forEach((p) => {
-          p.style.transform = "";
-          p.style.zIndex = "";
-        });
-      };
-    });
+          p.style.transform = ""
+          p.style.zIndex = ""
+        })
+      }
+    })
 
-    const onLoad = () => ScrollTrigger.refresh();
-    window.addEventListener("load", onLoad);
+    const onLoad = () => ScrollTrigger.refresh()
+    window.addEventListener("load", onLoad)
 
     return () => {
-      window.removeEventListener("load", onLoad);
-      mm.revert();
-      gsap.ticker.remove(raf);
-      lenis.destroy();
-      shades.forEach((shade) => shade.remove());
-    };
+      window.removeEventListener("load", onLoad)
+      mm.revert()
+      gsap.ticker.remove(raf)
+      lenis.destroy()
+      shades.forEach((shade) => shade.remove())
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 }
