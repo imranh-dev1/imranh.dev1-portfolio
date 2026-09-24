@@ -12,7 +12,7 @@ const SkillsSection = () => {
   return (
     <section
       id="skills"
-      className="container mx-auto scroll-mt-24 px-6 pt-24 lg:px-10 2xl:px-0"
+      className="container mx-auto scroll-mt-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-0 pt-24"
     >
       {/* Heading */}
       <div className="text-center">
