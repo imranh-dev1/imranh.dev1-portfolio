@@ -69,7 +69,7 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="mt-7 grid grid-cols-2 items-stretch gap-10 text-white">
+        <div className="mt-7 grid grid-cols-2 items-stretch gap-10 2xl:gap-0 text-white">
           <div className="flex justify-center">
             <div className="relative h-full w-full flex-1">
               <Image
