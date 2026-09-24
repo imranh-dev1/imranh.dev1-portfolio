@@ -47,7 +47,7 @@ const stats = [
 const AboutSection = () => {
   return (
     <section id="about" className="scroll-mt-24 bg-secondary">
-      <div className="container mx-auto px-6 py-24 lg:px-0">
+      <div className="container mx-auto px-8 py-24 ">
         <div className="w-full">
           {/* Who I Am */}
           <div className="mb-2 flex items-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase">
@@ -69,7 +69,7 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="mt-6 grid items-center gap-6 text-white lg:grid-cols-2">
+        <div className="mt-7 grid items-center gap-6 text-white lg:grid-cols-2">
           <div className="flex justify-center">
             <div className="relative w-full">
               <Image
@@ -85,12 +85,12 @@ const AboutSection = () => {
             <h2 className="text-[32px] font-bold text-white">Imran Hossain</h2>
 
             {/* Role */}
-            <p className="mb-6 text-[18px] font-semibold text-primary">
+            <p className="mb-5 text-[18px] font-semibold text-primary">
               Full Stack Developer
             </p>
 
             {/* Paragraph 1 */}
-            <p className="mb-5 text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
+            <p className="mb-4 text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-7">
               I&apos;m{" "}
               <strong className="font-bold text-white">Imran Hossain</strong>, a
               full stack developer focused on building fast, responsive, and
@@ -100,7 +100,7 @@ const AboutSection = () => {
             </p>
 
             {/* Paragraph 2 */}
-            <p className="mb-5 text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
+            <p className="mb-4 text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-7">
               My journey started with curiosity about how websites work, and
               over time it grew into a passion for creating modern web
               applications. I work with React, Next.js, TypeScript, Node.js,
@@ -109,7 +109,7 @@ const AboutSection = () => {
             </p>
 
             {/* Paragraph 3 */}
-            <p className="text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
+            <p className="text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-7">
               Whether it&apos;s a portfolio website, dashboard, e-commerce
               platform, or SaaS application, I focus on performance,
               accessibility, SEO, and great user experience. My goal is to write
