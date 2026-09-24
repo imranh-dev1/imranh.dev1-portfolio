@@ -77,7 +77,7 @@ const Navbar = () => {
                 className="tracking-wide uppercase"
               >
                 <Link
-                  href="https://drive.google.com/file/d/1O1cSs8I55MVPzjJ1Jqxh_5_wRLEn0XPW/view?usp=sharing"
+                  href="https://drive.google.com/file/d/13GHWjvyMLDpHR1dQj-YDDPkhhujJM1LL/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"

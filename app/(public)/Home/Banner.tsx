@@ -190,7 +190,7 @@ const Banner = () => {
             className="w-full tracking-wide uppercase sm:w-auto"
           >
             <Link
-              href="https://drive.google.com/file/d/1O1cSs8I55MVPzjJ1Jqxh_5_wRLEn0XPW/view?usp=sharing"
+              href="https://drive.google.com/file/d/1sYY-XsSrK9CSYYnbnblDT3H4-RFaaoEy/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-start gap-2"
