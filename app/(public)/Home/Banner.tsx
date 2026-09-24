@@ -198,7 +198,7 @@ const Banner = () => {
   ]
 
   return (
-    <section className="container mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-10 overflow-hidden px-4 py-20 sm:gap-12 sm:px-6 sm:py-24 md:gap-16 lg:flex-row lg:gap-8 lg:px-8 lg:py-0 xl:gap-16 2xl:px-0">
+    <section className="container mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-10 overflow-hidden px-8 py-20 sm:gap-12 sm:py-24 md:gap-16 lg:flex-row lg:gap-8 lg:py-0 xl:gap-16">
       {/* Developer Information */}
       <div
         data-aos="zoom-in"
