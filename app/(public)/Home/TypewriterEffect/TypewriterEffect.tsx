@@ -32,7 +32,7 @@ const TypewriterEffect = () => {
 
   return (
     <div className="mt-2 w-full">
-      <h1 className="text-left text-3xl leading-tight font-bold sm:text-4xl md:text-5xl lg:text-[38px] xl:text-[53px]">
+      <h1 className="text-left text-3xl leading-tight font-bold sm:text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-[53px]">
         <span ref={typedElement} />
       </h1>
     </div>
