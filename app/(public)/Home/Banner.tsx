@@ -48,6 +48,13 @@ const Banner = () => {
     }
   }, [])
 
+  /*
+   * IMPORTANT:
+   * Do NOT use Math.random() directly inside JSX.
+   *
+   * These values are deterministic, so the server and client
+   * generate the same initial HTML.
+   */
   const particleData = useMemo<Particle[]>(
     () =>
       Array.from({ length: 24 }, (_, index) => ({
@@ -71,64 +78,123 @@ const Banner = () => {
   )
 
   /*
-   * XL / 2XL remain exactly the original size.
-   * Only SM / MD / LG are reduced.
+   * Responsive Orbit Radius
+   *
+   * Mobile -> small
+   * SM     -> small
+   * MD     -> smaller
+   * LG     -> smaller
+   * XL     -> slightly smaller
+   * 2XL    -> ORIGINAL
    */
   const getOrbitRadius = (
     desktop: number,
-    large: number,
-    tablet: number,
+    xl: number,
+    lg: number,
+    md: number,
     mobile: number
   ) => {
     if (screenWidth === 0) {
       return mobile
     }
 
-    // Mobile
     if (screenWidth < 640) {
       return mobile
     }
 
-    // SM
     if (screenWidth < 768) {
-      return tablet
+      return md
     }
 
-    // MD
     if (screenWidth < 1024) {
-      return large
+      return lg
     }
 
-    // LG
     if (screenWidth < 1280) {
-      return large
+      return lg
     }
 
-    // XL / 2XL - ORIGINAL
+    if (screenWidth < 1536) {
+      return xl
+    }
+
+    // 2XL - original
     return desktop
   }
 
-  // Orbit radius
+  /*
+   * Orbit Radius
+   *
+   * 2XL = original
+   * XL  = slightly smaller
+   * LG  = smaller
+   * MD  = smaller
+   * SM/mobile = smaller
+   */
   const innerRadius = getOrbitRadius(
-    130, // 2XL
-    115, // XL
-    78,  // MD
-    60   // SM / Mobile
+    130,
+    115,
+    90,
+    78,
+    60
   )
 
   const middleRadius = getOrbitRadius(
-    200, // 2XL
-    180, // XL
-    120, // MD
-    88   // SM / Mobile
+    200,
+    180,
+    145,
+    120,
+    88
   )
 
   const outerRadius = getOrbitRadius(
-    270, // 2XL
-    245, // XL
-    160, // MD
-    115  // SM / Mobile
+    270,
+    245,
+    190,
+    160,
+    115
   )
+
+  /*
+   * Responsive Icon Size
+   *
+   * 2XL = original 56px
+   * XL  = 48px
+   * LG  = 44px
+   * MD  = 40px
+   * SM  = 36px
+   * Mobile = 32px
+   */
+  const getIconSize = () => {
+    if (screenWidth === 0) {
+      return 32
+    }
+
+    if (screenWidth < 640) {
+      return 32
+    }
+
+    if (screenWidth < 768) {
+      return 36
+    }
+
+    if (screenWidth < 1024) {
+      return 40
+    }
+
+    if (screenWidth < 1280) {
+      return 44
+    }
+
+    if (screenWidth < 1536) {
+      return 48
+    }
+
+    // 2XL - original
+    return 56
+  }
+
+  const iconSize = getIconSize()
 
   const innerRing: TechIcon[] = [
     {
@@ -320,11 +386,7 @@ const Banner = () => {
         data-aos-duration="1500"
         className="flex w-full flex-1 items-center justify-center py-10 sm:py-14 md:pt-12 lg:py-0 lg:pt-12"
       >
-        {/* 
-          IMPORTANT:
-          XL / 2XL = ORIGINAL
-          LG / MD / SM = SMALLER
-        */}
+        {/* Responsive Orb Container */}
         <div className="group relative aspect-square w-60 max-w-full cursor-pointer sm:w-68 md:w-80 lg:w-96 xl:w-125 2xl:w-140">
           {/* Glowing Base */}
           <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#13bbff10] to-[#13bbff03] shadow-[0_0_40px_#13bbff30] backdrop-blur-sm transition-all duration-500 group-hover:shadow-[0_0_60px_#13bbff50]" />
@@ -354,6 +416,7 @@ const Banner = () => {
             radius={outerRadius}
             duration={30}
             reverse
+            iconSize={iconSize}
           />
 
           {/* Middle Ring */}
@@ -361,6 +424,7 @@ const Banner = () => {
             icons={middleRing}
             radius={middleRadius}
             duration={20}
+            iconSize={iconSize}
           />
 
           {/* Inner Ring */}
@@ -369,6 +433,7 @@ const Banner = () => {
             radius={innerRadius}
             duration={12}
             reverse
+            iconSize={iconSize}
           />
 
           {/* Center */}

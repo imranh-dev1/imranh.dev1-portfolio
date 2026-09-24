@@ -54,7 +54,6 @@ const Orbit = ({
 
         // Round values to avoid SSR hydration mismatch
         const x = Math.round(Math.cos(angle) * radius * 1000) / 1000
-
         const y = Math.round(Math.sin(angle) * radius * 1000) / 1000
 
         return (
@@ -84,7 +83,7 @@ const Orbit = ({
             >
               {/* Icon */}
               <div
-                className="flex items-center justify-center rounded-full border border-primary/40 bg-black/20 p-2 backdrop-blur-md transition-all duration-300 group-hover:border-primary group-hover:shadow-[0_0_12px_color-mix(in_srgb,var(--primary)_40%,transparent)] sm:p-2.5 md:p-3"
+                className="flex items-center justify-center rounded-full border border-primary/40 bg-black/20 p-1.5 backdrop-blur-md transition-all duration-300 group-hover:border-primary group-hover:shadow-[0_0_12px_color-mix(in_srgb,var(--primary)_40%,transparent)] sm:p-2 md:p-2.5 lg:p-2.5 xl:p-2.5 2xl:p-2.5"
                 style={{
                   width: `${iconSize}px`,
                   height: `${iconSize}px`,
@@ -96,12 +95,12 @@ const Orbit = ({
                   width={32}
                   height={32}
                   loading="lazy"
-                  className="h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"
+                  className="h-4 w-4 object-contain sm:h-4.5 sm:w-4.5 md:h-5 md:w-5 lg:h-5.5 lg:w-5.5 xl:h-6 xl:w-6 2xl:h-7 2xl:w-7"
                 />
               </div>
 
               {/* Label */}
-              <span className="mt-1 text-[9px] whitespace-nowrap text-primary opacity-0 transition-all duration-300 group-hover:opacity-100 sm:mt-2 sm:text-[10px] md:text-[11px]">
+              <span className="mt-0.5 whitespace-nowrap text-[8px] text-primary opacity-0 transition-all duration-300 group-hover:opacity-100 sm:mt-1 sm:text-[9px] md:text-[10px] lg:text-[10px] xl:text-[10px] 2xl:text-[11px]">
                 {icon.label}
               </span>
             </motion.div>
