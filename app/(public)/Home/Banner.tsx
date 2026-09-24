@@ -238,7 +238,7 @@ const Banner = () => {
         />
 
         {/* Social Media */}
-        <div className="mt-[15px]">
+        <div className="mt-3.75">
           <SocialLinks />
         </div>
 
