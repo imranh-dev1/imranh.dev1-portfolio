@@ -8,7 +8,7 @@ import SkillsSection from "./(public)/Skills/SkillsSection"
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="px-0 md:px-6 lg:px-0">
       <HeroSection />
       <AboutSection />
       <SkillsSection />
