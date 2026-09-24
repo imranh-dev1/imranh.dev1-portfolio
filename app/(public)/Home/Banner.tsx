@@ -77,7 +77,21 @@ const Banner = () => {
     []
   )
 
-  const getOrbitRadius = (desktop: number, tablet: number, mobile: number) => {
+  /*
+   * Responsive Orbit Radius
+   *
+   * XL / 2XL -> keep the large desktop size
+   * LG       -> smaller
+   * MD       -> smaller
+   * SM       -> smaller
+   * Mobile   -> smallest
+   */
+  const getOrbitRadius = (
+    desktop: number,
+    large: number,
+    tablet: number,
+    mobile: number
+  ) => {
     if (screenWidth === 0) {
       return mobile
     }
@@ -86,16 +100,29 @@ const Banner = () => {
       return mobile
     }
 
-    if (screenWidth < 1024) {
+    if (screenWidth < 768) {
       return tablet
+    }
+
+    if (screenWidth < 1280) {
+      return large
     }
 
     return desktop
   }
 
-  const innerRadius = getOrbitRadius(130, 90, 65)
-  const middleRadius = getOrbitRadius(200, 140, 100)
-  const outerRadius = getOrbitRadius(270, 190, 140)
+  /*
+   * Tech Orb Sizes
+   *
+   * Mobile:  w-64
+   * SM:      w-80
+   * MD:      w-90
+   * LG:      w-105
+   * XL/2XL: w-140
+   */
+  const innerRadius = getOrbitRadius(130, 105, 85, 60)
+  const middleRadius = getOrbitRadius(200, 155, 125, 90)
+  const outerRadius = getOrbitRadius(270, 205, 170, 120)
 
   const innerRing: TechIcon[] = [
     {
@@ -199,7 +226,7 @@ const Banner = () => {
   ]
 
   return (
-    <section className="container mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-6 overflow-hidden px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-0 py-20 sm:gap-6 sm:py-24 md:gap-6 lg:flex-row lg:gap-6 lg:py-0 xl:gap-6">
+    <section className="container mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-6 overflow-hidden px-4 py-20 sm:gap-6 sm:px-6 sm:py-24 md:gap-6 md:px-8 lg:flex-row lg:gap-6 lg:px-10 lg:py-0 xl:gap-6 xl:px-12 2xl:px-0">
       {/* Developer Information */}
       <div
         data-aos="zoom-in"
@@ -285,10 +312,10 @@ const Banner = () => {
       <div
         data-aos="zoom-in"
         data-aos-duration="1500"
-        className="flex w-full flex-1 items-center justify-center py-10 md:pt-12 lg:pt-12 sm:py-14 lg:py-0"
+        className="flex w-full flex-1 items-center justify-center py-10 sm:py-14 md:pt-12 lg:py-0 lg:pt-12"
       >
         {/* Responsive Orb Container */}
-        <div className="group relative aspect-square w-70 max-w-full cursor-pointer sm:w-80 md:w-90 lg:w-90 xl:w-140">
+        <div className="group relative aspect-square w-64 max-w-full cursor-pointer sm:w-80 md:w-90 lg:w-105 xl:w-140">
           {/* Glowing Base */}
           <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#13bbff10] to-[#13bbff03] shadow-[0_0_40px_#13bbff30] backdrop-blur-sm transition-all duration-500 group-hover:shadow-[0_0_60px_#13bbff50]" />
 
@@ -312,13 +339,27 @@ const Banner = () => {
           </div>
 
           {/* Outer Ring */}
-          <Orbit icons={outerRing} radius={outerRadius} duration={30} reverse />
+          <Orbit
+            icons={outerRing}
+            radius={outerRadius}
+            duration={30}
+            reverse
+          />
 
           {/* Middle Ring */}
-          <Orbit icons={middleRing} radius={middleRadius} duration={20} />
+          <Orbit
+            icons={middleRing}
+            radius={middleRadius}
+            duration={20}
+          />
 
           {/* Inner Ring */}
-          <Orbit icons={innerRing} radius={innerRadius} duration={12} reverse />
+          <Orbit
+            icons={innerRing}
+            radius={innerRadius}
+            duration={12}
+            reverse
+          />
 
           {/* Center */}
           <div className="absolute inset-0 flex items-center justify-center">
