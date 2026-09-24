@@ -288,7 +288,7 @@ const Banner = () => {
         className="flex w-full flex-1 items-center justify-center py-10 md:pt-12 lg:pt-12 sm:py-14 lg:py-0"
       >
         {/* Responsive Orb Container */}
-        <div className="group relative aspect-square w-70 max-w-full cursor-pointer sm:w-90 md:w-100 lg:w-112.5 xl:w-140">
+        <div className="group relative aspect-square w-70 max-w-full cursor-pointer sm:w-80 md:w-90 lg:w-105 xl:w-140">
           {/* Glowing Base */}
           <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#13bbff10] to-[#13bbff03] shadow-[0_0_40px_#13bbff30] backdrop-blur-sm transition-all duration-500 group-hover:shadow-[0_0_60px_#13bbff50]" />
 
