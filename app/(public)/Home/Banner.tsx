@@ -198,7 +198,7 @@ const Banner = () => {
   ]
 
   return (
-    <section className="container mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-10 overflow-hidden px-8 py-20 sm:gap-12 sm:py-24 md:gap-16 lg:flex-row lg:gap-8 lg:py-0 xl:gap-16">
+    <section className="container mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-8 overflow-hidden px-8 py-20 sm:gap-8 sm:py-24 md:gap-10 lg:flex-row lg:gap-6 lg:py-0 xl:gap-8">
       {/* Developer Information */}
       <div
         data-aos="zoom-in"
@@ -284,7 +284,7 @@ const Banner = () => {
       <div
         data-aos="zoom-in"
         data-aos-duration="1500"
-        className="flex w-full flex-1 items-center justify-center py-10 sm:py-14 lg:py-0"
+        className="flex w-full flex-1 items-center justify-center py-10 md:pt-10 lg:pt-10 sm:py-14 lg:py-0"
       >
         {/* Responsive Orb Container */}
         <div className="group relative aspect-square w-[280px] max-w-full cursor-pointer sm:w-[360px] md:w-[430px] lg:w-[480px] xl:w-[560px]">
