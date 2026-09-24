@@ -208,7 +208,7 @@ const Banner = () => {
         data-aos-duration="1500"
         className="flex w-full flex-1 items-center justify-center py-8 sm:py-10 md:pt-10 lg:py-0"
       >
-        <div className="group relative aspect-square w-52 max-w-full cursor-pointer sm:w-60 md:w-68 lg:w-72 xl:w-112.5 2xl:w-140">
+        <div className="group relative aspect-square w-52 max-w-full cursor-pointer sm:w-60 md:w-68 lg:w-60 xl:w-112.5 2xl:w-140">
           <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#13bbff10] to-[#13bbff03] shadow-[0_0_40px_#13bbff30] backdrop-blur-sm transition-all duration-500 group-hover:shadow-[0_0_60px_#13bbff50]" />
 
           <div className="absolute inset-0 overflow-hidden rounded-full">
