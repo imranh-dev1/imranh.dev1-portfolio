@@ -48,13 +48,6 @@ const Banner = () => {
     }
   }, [])
 
-  /*
-   * IMPORTANT:
-   * Do NOT use Math.random() directly inside JSX.
-   *
-   * These values are deterministic, so the server and client
-   * generate the same initial HTML.
-   */
   const particleData = useMemo<Particle[]>(
     () =>
       Array.from({ length: 24 }, (_, index) => ({
@@ -78,13 +71,8 @@ const Banner = () => {
   )
 
   /*
-   * Responsive Orbit Radius
-   *
-   * XL / 2XL -> keep the large desktop size
-   * LG       -> smaller
-   * MD       -> smaller
-   * SM       -> smaller
-   * Mobile   -> smallest
+   * XL / 2XL remain exactly the original size.
+   * Only SM / MD / LG are reduced.
    */
   const getOrbitRadius = (
     desktop: number,
@@ -96,33 +84,54 @@ const Banner = () => {
       return mobile
     }
 
+    // Mobile
     if (screenWidth < 640) {
       return mobile
     }
 
+    // SM
     if (screenWidth < 768) {
       return tablet
     }
 
+    // MD
+    if (screenWidth < 1024) {
+      return large
+    }
+
+    // LG
     if (screenWidth < 1280) {
       return large
     }
 
+    // XL / 2XL - ORIGINAL
     return desktop
   }
 
   /*
-   * Tech Orb Sizes
-   *
-   * Mobile:  w-64
-   * SM:      w-80
-   * MD:      w-90
-   * LG:      w-105
-   * XL/2XL: w-140
+   * SM / MD / LG = smaller
+   * XL / 2XL = original
    */
-  const innerRadius = getOrbitRadius(130, 105, 85, 60)
-  const middleRadius = getOrbitRadius(200, 155, 125, 90)
-  const outerRadius = getOrbitRadius(270, 205, 170, 120)
+  const innerRadius = getOrbitRadius(
+    130, // XL / 2XL
+    90,  // LG
+    78,  // MD
+    60   // SM / Mobile
+  )
+
+  const middleRadius = getOrbitRadius(
+    200, // XL / 2XL
+    145, // LG
+    120, // MD
+    88   // SM / Mobile
+  )
+
+  const outerRadius = getOrbitRadius(
+    270, // XL / 2XL
+    190, // LG
+    160, // MD
+    115  // SM / Mobile
+  )
 
   const innerRing: TechIcon[] = [
     {
@@ -314,8 +323,12 @@ const Banner = () => {
         data-aos-duration="1500"
         className="flex w-full flex-1 items-center justify-center py-10 sm:py-14 md:pt-12 lg:py-0 lg:pt-12"
       >
-        {/* Responsive Orb Container */}
-        <div className="group relative aspect-square w-64 max-w-full cursor-pointer sm:w-80 md:w-90 lg:w-105 xl:w-140">
+        {/* 
+          IMPORTANT:
+          XL / 2XL = ORIGINAL
+          LG / MD / SM = SMALLER
+        */}
+        <div className="group relative aspect-square w-60 max-w-full cursor-pointer sm:w-68 md:w-80 lg:w-96 xl:w-140 2xl:w-140">
           {/* Glowing Base */}
           <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#13bbff10] to-[#13bbff03] shadow-[0_0_40px_#13bbff30] backdrop-blur-sm transition-all duration-500 group-hover:shadow-[0_0_60px_#13bbff50]" />
 
@@ -363,12 +376,12 @@ const Banner = () => {
 
           {/* Center */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative z-10 px-4 text-center">
-              <div className="mb-1 text-2xl font-bold text-primary sm:text-3xl md:text-4xl lg:text-4xl">
+            <div className="relative z-10 px-2 text-center sm:px-3 md:px-3 lg:px-3 xl:px-4 2xl:px-4">
+              <div className="mb-1 text-xl font-bold text-primary sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl">
                 IMRAN
               </div>
 
-              <div className="text-[9px] tracking-[0.15em] text-white/80 sm:text-[10px] md:text-xs">
+              <div className="text-[8px] tracking-[0.12em] text-white/80 sm:text-[9px] md:text-[10px] lg:text-[10px] xl:text-xs 2xl:text-xs">
                 FULL STACK DEVELOPER
               </div>
             </div>
@@ -379,7 +392,7 @@ const Banner = () => {
             {connectionLines.map((line, index) => (
               <div
                 key={index}
-                className="absolute top-1/2 left-1/2 h-20 w-0.5 origin-top bg-linear-to-b from-primary to-transparent transition-all duration-500 group-hover:h-40 group-hover:opacity-60 sm:h-24 md:h-28 lg:h-32"
+                className="absolute top-1/2 left-1/2 h-14 w-0.5 origin-top bg-linear-to-b from-primary to-transparent transition-all duration-500 group-hover:h-28 group-hover:opacity-60 sm:h-16 md:h-20 lg:h-24 xl:h-32 2xl:h-32"
                 style={{
                   transform: `
                     translate(-50%, -50%)
