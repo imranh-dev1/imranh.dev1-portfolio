@@ -75,7 +75,7 @@ const AboutSection = () => {
               <Image
                 src={imranHossain}
                 alt="Imran Hossain, Full Stack Developer"
-                className="h-full w-full xl:w-10/12 rounded-4xl border-[0.3px] border-primary/50 object-cover object-top shadow-[0_0_40px_color-mix(in_srgb,var(--primary)_25%,transparent)] transition-all duration-500 hover:-translate-y-2 hover:border-primary hover:shadow-[0_0_60px_color-mix(in_srgb,var(--primary)_45%,transparent)]"
+                className="h-full w-full 2xl:w-10/12 rounded-4xl border-[0.3px] border-primary/50 object-cover object-top shadow-[0_0_40px_color-mix(in_srgb,var(--primary)_25%,transparent)] transition-all duration-500 hover:-translate-y-2 hover:border-primary hover:shadow-[0_0_60px_color-mix(in_srgb,var(--primary)_45%,transparent)]"
               />
             </div>
           </div>
