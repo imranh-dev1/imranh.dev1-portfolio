@@ -8,11 +8,13 @@ import {
     Phone,
     Send,
     ArrowUpRight,
+    DownloadIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/shared/SectionHeader/SectionHeader";
+
 
 interface ContactFormData {
     name: string;
@@ -295,12 +297,12 @@ export default function ContactSection() {
                                 <p className="text-xs text-muted-foreground">
                                     I usually respond within 24 hours.
                                 </p>
-
                                 <Button
                                     type="submit"
+                                    variant="secondary"
+                                    size="default"
                                     disabled={isSubmitting}
-                                    size="lg"
-                                    className="gap-2 sm:min-w-40"
+                                    className="w-full uppercase tracking-wide sm:w-auto"
                                 >
                                     {isSubmitting ? (
                                         <>
@@ -314,6 +316,8 @@ export default function ContactSection() {
                                         </>
                                     )}
                                 </Button>
+
+
                             </div>
                         </form>
                     </div>

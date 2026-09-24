@@ -314,7 +314,7 @@ const Banner = () => {
 
                 {/* Social Media */}
                 <div className="mt-[15px] flex items-center">
-                    <a
+                    <Link
                         href="https://www.linkedin.com/in/imranh-dev1"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -322,9 +322,9 @@ const Banner = () => {
                         className={SOCIAL_ICON_CLASS}
                     >
                         <LiaLinkedin className="h-7 w-7" />
-                    </a>
+                    </Link>
 
-                    <a
+                    <Link
                         href="https://x.com/imranh_dev1"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -332,9 +332,9 @@ const Banner = () => {
                         className={SOCIAL_ICON_CLASS}
                     >
                         <BsTwitter className="h-5 w-5" />
-                    </a>
+                    </Link>
 
-                    <a
+                    <Link
                         href="https://www.facebook.com/imranh.dev1"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -342,7 +342,7 @@ const Banner = () => {
                         className={SOCIAL_ICON_CLASS}
                     >
                         <FaFacebook className="h-5 w-5" />
-                    </a>
+                    </Link>
 
                     <Link
                         href="mailto:imranh.dev1@gmail.com"
