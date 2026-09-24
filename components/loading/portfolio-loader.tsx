@@ -83,7 +83,7 @@ export default function PortfolioLoader({
     if (ready) {
         return (
             <div
-                className="fixed inset-0 z-[9999] h-screen w-full overflow-hidden bg-[#0a0a0a]"
+                className="fixed inset-0 z-[9999] h-screen w-full overflow-hidden bg-background"
                 style={
                     {
                         "--loading-text-size": "12vw",
@@ -99,7 +99,7 @@ export default function PortfolioLoader({
             h-1/2
             w-full
             overflow-hidden
-            bg-[#0a0a0a]
+            bg-background
             animate-loader-top
           "
                 >
@@ -128,7 +128,7 @@ export default function PortfolioLoader({
             "
                         style={{
                             backgroundImage:
-                                "url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1600&q=80')",
+                                "url('https://images.unsplash.com/photo-1775994121052-7e653711f72c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
                         }}
                     >
                         {readyText}
@@ -144,7 +144,7 @@ export default function PortfolioLoader({
             h-1/2
             w-full
             overflow-hidden
-            bg-[#0a0a0a]
+            bg-background
             animate-loader-bottom
           "
                 >
@@ -174,7 +174,7 @@ export default function PortfolioLoader({
             "
                         style={{
                             backgroundImage:
-                                "url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1600&q=80')",
+                                "url('https://images.unsplash.com/photo-1619252584172-a83a949b6efd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
                             marginTop: "calc(-1 * var(--loading-text-size) / 1.6)",
                         }}
                     >
@@ -209,7 +209,7 @@ export default function PortfolioLoader({
                 font-bold
                 uppercase
                 leading-none
-                text-white
+                text-primary
                 animate-loader-wave
                 max-[996px]:text-[14vw]
                 max-[750px]:text-[16vw]
