@@ -47,7 +47,7 @@ const stats = [
 const AboutSection = () => {
   return (
     <section id="about" className="scroll-mt-24 bg-secondary">
-      <div className="container mx-auto px-6 lg:px-8 2xl:px-0 py-24 ">
+      <div className="container mx-auto px-6 lg:px-10 2xl:px-0 py-24 ">
         <div className="w-full">
           {/* Who I Am */}
           <div className="mb-2 flex items-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase">
