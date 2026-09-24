@@ -156,7 +156,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="scroll-mt-24 bg-secondary">
-      <div className="container mx-auto px-6 py-24 lg:px-0">
+      <div className="container mx-auto py-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-0">
         {/* Section Header */}
         <div className="mx-auto mb-8 flex max-w-3xl flex-col items-center text-center">
           <div className="mb-3 flex items-center gap-2 text-sm font-semibold tracking-[0.15em] text-primary uppercase">
