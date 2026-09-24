@@ -35,8 +35,8 @@ const NavbarDesktop = ({
                                     href={item.href}
                                     onClick={() => onNavigate(section)}
                                     className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-bold transition duration-300 ${isActive
-                                        ? "text-primary"
-                                        : "text-white hover:text-primary"
+                                        ? "text-primary !bg-background !hover:bg-secondary"
+                                        : "text-white hover:text-primary !hover:bg-secondary"
                                         }`}
                                 >
                                     <Icon size={17} />

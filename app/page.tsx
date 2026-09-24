@@ -1,4 +1,4 @@
-import AboutSection from "./(public)/About/AboutSection"; 
+import AboutSection from "./(public)/About/AboutSection";
 import ContactSection from "./(public)/Contact/ContactSection";
 import ExperienceSection from "./(public)/Experience/ExperienceSection";
 import Footer from "./(public)/Footer/Footer";
@@ -16,7 +16,7 @@ export default function HomePage() {
       <ExperienceSection />
       <ProjectsSection />
       <ContactSection />
-      <Footer/>
+      <Footer />
     </main>
   )
 }

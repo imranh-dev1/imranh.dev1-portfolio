@@ -117,7 +117,7 @@ export default function ContactSection() {
     };
 
     return (
-        <section className="bg-secondary">
+        <section id="contact" className="bg-secondary">
             <div className="container mx-auto px-6 py-24 lg:px-0">
                 {/* Section Header */}
                 <div className="mx-auto mb-8 flex max-w-3xl flex-col items-center text-center">

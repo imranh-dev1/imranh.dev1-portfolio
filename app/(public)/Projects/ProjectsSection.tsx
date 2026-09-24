@@ -13,7 +13,7 @@ export default function ProjectsSection() {
         useState<(typeof projects)[number] | null>(null);
 
     return (
-        <section className="container mx-auto py-24">
+        <section id="project" className="container mx-auto py-24">
             {/* Section Title */}
             <div className="mx-auto mb-8 flex w-full flex-col items-center text-center">
                 <div className="mb-3 flex items-center justify-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase">
