@@ -158,7 +158,7 @@ const Banner = () => {
           text="I'm Imran Hossain, a proactive Full Stack Developer passionate about creating modern and engaging web experiences. From frontend interfaces to backend architecture, I enjoy solving complex problems with clean, efficient, and maintainable code. My expertise includes React, Next.js, Node.js, Express, PostgreSQL, and Prisma, and I'm always excited to explore new technologies and improve my skills."
           delay={30}
           animateBy="words"
-          className="mt-4 w-full text-left text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-8"
+          className="mt-4 w-full text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-8"
         />
 
         <div className="mt-3.75">

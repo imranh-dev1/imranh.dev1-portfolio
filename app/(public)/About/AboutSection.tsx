@@ -47,7 +47,7 @@ const stats = [
 const AboutSection = () => {
   return (
     <section id="about" className="scroll-mt-24 bg-secondary">
-      <div className="container mx-auto px-6 lg:px-10 2xl:px-0 py-24 ">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-0 py-24 ">
         <div className="w-full">
           {/* Who I Am */}
           <div className="mb-2 flex items-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase">
@@ -90,7 +90,7 @@ const AboutSection = () => {
             </p>
 
             {/* Paragraph 1 */}
-            <p className="mb-4 text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-7">
+            <p className="mb-4 text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
               I&apos;m{" "}
               <strong className="font-bold text-white">Imran Hossain</strong>, a
               full stack developer focused on building fast, responsive, and
@@ -100,7 +100,7 @@ const AboutSection = () => {
             </p>
 
             {/* Paragraph 2 */}
-            <p className="mb-4 text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-7">
+            <p className="mb-4 text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
               My journey started with curiosity about how websites work, and
               over time it grew into a passion for creating modern web
               applications. I work with React, Next.js, TypeScript, Node.js,
@@ -109,7 +109,7 @@ const AboutSection = () => {
             </p>
 
             {/* Paragraph 3 */}
-            <p className="text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-7">
+            <p className="text-justify text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
               Whether it&apos;s a portfolio website, dashboard, e-commerce
               platform, or SaaS application, I focus on performance,
               accessibility, SEO, and great user experience. My goal is to write
