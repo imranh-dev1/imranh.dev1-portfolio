@@ -75,7 +75,7 @@ const AboutSection = () => {
               <Image
                 src={imranHossain}
                 alt="Imran Hossain, Full Stack Developer"
-                className="h-full w-10/12 rounded-4xl border-[0.3px] border-primary/50 object-cover object-top shadow-[0_0_40px_color-mix(in_srgb,var(--primary)_25%,transparent)] transition-all duration-500 hover:-translate-y-2 hover:border-primary hover:shadow-[0_0_60px_color-mix(in_srgb,var(--primary)_45%,transparent)]"
+                className="h-full w-full xl:w-10/12 rounded-4xl border-[0.3px] border-primary/50 object-cover object-top shadow-[0_0_40px_color-mix(in_srgb,var(--primary)_25%,transparent)] transition-all duration-500 hover:-translate-y-2 hover:border-primary hover:shadow-[0_0_60px_color-mix(in_srgb,var(--primary)_45%,transparent)]"
               />
             </div>
           </div>
@@ -117,19 +117,19 @@ const AboutSection = () => {
               production-ready.
             </p>
 
-            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
               {stats.map((item) => (
                 <Card
                   key={item.label}
                   className="cursor-pointer rounded-3xl border-[0.3px] border-primary/50 bg-background transition-all duration-400 hover:-translate-y-3 hover:border-primary hover:shadow-[0_0_30px_color-mix(in_srgb,var(--primary)_25%,transparent)]"
                 >
-                  <CardContent className="py-0 text-center">
+                  <CardContent className="py-0 px-0 text-center">
                     {/* Value */}
                     <div className="text-[42px] leading-none font-bold text-primary">
                       {item.value}
                     </div>
                     {/* Label */}
-                    <div className="mt-1 text-[15px] font-medium text-muted-foreground">
+                    <div className="text-[15px] font-medium text-muted-foreground">
                       {item.label}
                     </div>
                   </CardContent>
