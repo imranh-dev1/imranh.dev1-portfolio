@@ -10,6 +10,7 @@ import Orbit from "./Orbit"
 import { DownloadIcon } from "lucide-react"
 import { FaGithub } from "react-icons/fa"
 import SocialLinks from "@/components/shared/SocialLinks/SocialLinks"
+import Link from "next/link"
 
 interface TechIcon {
   name: string
@@ -250,7 +251,7 @@ const Banner = () => {
             size="default"
             className="w-full tracking-wide uppercase sm:w-auto"
           >
-            <a
+            <Link
               href="https://github.com/imranh-dev1"
               target="_blank"
               rel="noopener noreferrer"
@@ -258,7 +259,7 @@ const Banner = () => {
             >
               <FaGithub />
               GitHub
-            </a>
+            </Link>
           </Button>
 
           <Button
@@ -267,7 +268,7 @@ const Banner = () => {
             size="default"
             className="w-full tracking-wide uppercase sm:w-auto"
           >
-            <a
+            <Link
               href="https://drive.google.com/file/d/1O1cSs8I55MVPzjJ1Jqxh_5_wRLEn0XPW/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
@@ -275,7 +276,7 @@ const Banner = () => {
             >
               <DownloadIcon />
               Download Resume
-            </a>
+            </Link>
           </Button>
         </div>
       </div>
