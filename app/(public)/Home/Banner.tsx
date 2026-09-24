@@ -48,13 +48,6 @@ const Banner = () => {
     }
   }, [])
 
-  /*
-   * IMPORTANT:
-   * Do NOT use Math.random() directly inside JSX.
-   *
-   * These values are deterministic, so the server and client
-   * generate the same initial HTML.
-   */
   const particleData = useMemo<Particle[]>(
     () =>
       Array.from({ length: 24 }, (_, index) => ({
@@ -77,16 +70,6 @@ const Banner = () => {
     []
   )
 
-  /*
-   * Responsive Orbit Radius
-   *
-   * Mobile -> small
-   * SM     -> small
-   * MD     -> smaller
-   * LG     -> smaller
-   * XL     -> slightly smaller
-   * 2XL    -> ORIGINAL
-   */
   const getOrbitRadius = (
     desktop: number,
     xl: number,
@@ -94,218 +77,61 @@ const Banner = () => {
     md: number,
     mobile: number
   ) => {
-    if (screenWidth === 0) {
-      return mobile
-    }
+    if (screenWidth === 0) return mobile
+    if (screenWidth < 640) return mobile
+    if (screenWidth < 1024) return md
+    if (screenWidth < 1280) return lg
+    if (screenWidth < 1536) return xl
 
-    if (screenWidth < 640) {
-      return mobile
-    }
-
-    if (screenWidth < 768) {
-      return md
-    }
-
-    if (screenWidth < 1024) {
-      return lg
-    }
-
-    if (screenWidth < 1280) {
-      return lg
-    }
-
-    if (screenWidth < 1536) {
-      return xl
-    }
-
-    // 2XL - original
+    // 2XL = original size
     return desktop
   }
 
-  /*
-   * Orbit Radius
-   *
-   * 2XL = original
-   * XL  = slightly smaller
-   * LG  = smaller
-   * MD  = smaller
-   * SM/mobile = smaller
-   */
-  const innerRadius = getOrbitRadius(
-    130,
-    115,
-    90,
-    78,
-    60
-  )
+  const innerRadius = getOrbitRadius(130, 105, 82, 68, 52)
+  const middleRadius = getOrbitRadius(200, 165, 125, 105, 78)
+  const outerRadius = getOrbitRadius(270, 225, 170, 140, 105)
 
-  const middleRadius = getOrbitRadius(
-    200,
-    180,
-    145,
-    120,
-    88
-  )
-
-  const outerRadius = getOrbitRadius(
-    270,
-    245,
-    190,
-    160,
-    115
-  )
-
-  /*
-   * Responsive Icon Size
-   *
-   * 2XL = original 56px
-   * XL  = 48px
-   * LG  = 44px
-   * MD  = 40px
-   * SM  = 36px
-   * Mobile = 32px
-   */
-  const getIconSize = () => {
-    if (screenWidth === 0) {
-      return 32
-    }
-
-    if (screenWidth < 640) {
-      return 32
-    }
-
-    if (screenWidth < 768) {
-      return 36
-    }
-
-    if (screenWidth < 1024) {
-      return 40
-    }
-
-    if (screenWidth < 1280) {
-      return 44
-    }
-
-    if (screenWidth < 1536) {
-      return 48
-    }
-
-    // 2XL - original
-    return 56
-  }
-
-  const iconSize = getIconSize()
+  const iconSize = getOrbitRadius(56, 44, 38, 34, 28)
 
   const innerRing: TechIcon[] = [
-    {
-      name: "react",
-      label: "React",
-    },
-    {
-      name: "nextjs",
-      label: "Next.js",
-    },
-    {
-      name: "nodejs",
-      label: "Node.js",
-    },
-    {
-      name: "typescript",
-      label: "TypeScript",
-    },
-    {
-      name: "javascript",
-      label: "JavaScript",
-    },
-    {
-      name: "redux",
-      label: "Redux",
-    },
+    { name: "react", label: "React" },
+    { name: "nextjs", label: "Next.js" },
+    { name: "nodejs", label: "Node.js" },
+    { name: "typescript", label: "TypeScript" },
+    { name: "javascript", label: "JavaScript" },
+    { name: "redux", label: "Redux" },
   ]
 
   const middleRing: TechIcon[] = [
-    {
-      name: "html5",
-      label: "HTML5",
-    },
-    {
-      name: "css3",
-      label: "CSS3",
-    },
-    {
-      name: "tailwindcss",
-      label: "Tailwind",
-    },
-    {
-      name: "bootstrap",
-      label: "Bootstrap",
-    },
-    {
-      name: "materialui",
-      label: "MUI",
-    },
-    {
-      name: "mongodb",
-      label: "MongoDB",
-    },
-    {
-      name: "express",
-      label: "Express",
-    },
-    {
-      name: "firebase",
-      label: "Firebase",
-    },
+    { name: "html5", label: "HTML5" },
+    { name: "css3", label: "CSS3" },
+    { name: "tailwindcss", label: "Tailwind" },
+    { name: "bootstrap", label: "Bootstrap" },
+    { name: "materialui", label: "MUI" },
+    { name: "mongodb", label: "MongoDB" },
+    { name: "express", label: "Express" },
+    { name: "firebase", label: "Firebase" },
   ]
 
   const outerRing: TechIcon[] = [
-    {
-      name: "postgresql",
-      label: "PostgreSQL",
-    },
-    {
-      name: "prisma",
-      label: "Prisma",
-    },
-    {
-      name: "git",
-      label: "Git",
-    },
-    {
-      name: "github",
-      label: "GitHub",
-    },
-    {
-      name: "docker",
-      label: "Docker",
-    },
-    {
-      name: "figma",
-      label: "Figma",
-    },
-    {
-      name: "vscode",
-      label: "VS Code",
-    },
-    {
-      name: "vite",
-      label: "Vite",
-    },
-    {
-      name: "npm",
-      label: "NPM",
-    },
+    { name: "postgresql", label: "PostgreSQL" },
+    { name: "prisma", label: "Prisma" },
+    { name: "git", label: "Git" },
+    { name: "github", label: "GitHub" },
+    { name: "docker", label: "Docker" },
+    { name: "figma", label: "Figma" },
+    { name: "vscode", label: "VS Code" },
+    { name: "vite", label: "Vite" },
+    { name: "npm", label: "NPM" },
   ]
 
   return (
     <section className="container mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-6 overflow-hidden px-4 py-20 sm:gap-6 sm:px-6 sm:py-24 md:gap-6 md:px-8 lg:flex-row lg:gap-6 lg:px-10 lg:py-0 xl:gap-6 xl:px-12 2xl:px-0">
-      {/* Developer Information */}
       <div
         data-aos="zoom-in"
         data-aos-duration="1500"
         className="flex w-full max-w-full min-w-0 flex-1 flex-col items-start text-left"
       >
-        {/* Greeting */}
         <SplitText
           text="Hi, There!"
           textAlign="left"
@@ -324,12 +150,10 @@ const Banner = () => {
           rootMargin="-50px"
         />
 
-        {/* Typewriter */}
         <div className="mt-2 w-full min-w-0 text-left">
           <TypewriterEffect />
         </div>
 
-        {/* Description */}
         <BlurText
           text="I'm Imran Hossain, a proactive Full Stack Developer passionate about creating modern and engaging web experiences. From frontend interfaces to backend architecture, I enjoy solving complex problems with clean, efficient, and maintainable code. My expertise includes React, Next.js, Node.js, Express, PostgreSQL, and Prisma, and I'm always excited to explore new technologies and improve my skills."
           delay={30}
@@ -337,12 +161,10 @@ const Banner = () => {
           className="mt-4 w-full text-left text-sm leading-7 text-muted-foreground sm:text-base sm:leading-7 lg:text-lg lg:leading-8"
         />
 
-        {/* Social Media */}
         <div className="mt-3.75">
           <SocialLinks />
         </div>
 
-        {/* Action Buttons */}
         <div className="mt-6 flex w-full flex-col items-start justify-start gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
           <Button
             asChild
@@ -384,14 +206,11 @@ const Banner = () => {
       <div
         data-aos="zoom-in"
         data-aos-duration="1500"
-        className="flex w-full flex-1 items-center justify-center py-10 sm:py-14 md:pt-12 lg:py-0 lg:pt-12"
+        className="flex w-full flex-1 items-center justify-center py-8 sm:py-10 md:pt-10 lg:py-0"
       >
-        {/* Responsive Orb Container */}
-        <div className="group relative aspect-square w-60 max-w-full cursor-pointer sm:w-68 md:w-80 lg:w-96 xl:w-125 2xl:w-140">
-          {/* Glowing Base */}
+        <div className="group relative aspect-square w-52 max-w-full cursor-pointer sm:w-60 md:w-68 lg:w-80 xl:w-112.5 2xl:w-140">
           <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#13bbff10] to-[#13bbff03] shadow-[0_0_40px_#13bbff30] backdrop-blur-sm transition-all duration-500 group-hover:shadow-[0_0_60px_#13bbff50]" />
 
-          {/* Animated Particles */}
           <div className="absolute inset-0 overflow-hidden rounded-full">
             {particleData.map((particle, index) => (
               <div
@@ -410,7 +229,6 @@ const Banner = () => {
             ))}
           </div>
 
-          {/* Outer Ring */}
           <Orbit
             icons={outerRing}
             radius={outerRadius}
@@ -419,7 +237,6 @@ const Banner = () => {
             iconSize={iconSize}
           />
 
-          {/* Middle Ring */}
           <Orbit
             icons={middleRing}
             radius={middleRadius}
@@ -427,7 +244,6 @@ const Banner = () => {
             iconSize={iconSize}
           />
 
-          {/* Inner Ring */}
           <Orbit
             icons={innerRing}
             radius={innerRadius}
@@ -436,30 +252,25 @@ const Banner = () => {
             iconSize={iconSize}
           />
 
-          {/* Center */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative z-10 px-2 text-center sm:px-3 md:px-3 lg:px-3 xl:px-4 2xl:px-4">
+            <div className="relative z-10 px-2 text-center">
               <div className="mb-1 text-xl font-bold text-primary sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl">
                 IMRAN
               </div>
 
-              <div className="text-[8px] tracking-[0.12em] text-white/80 sm:text-[9px] md:text-[10px] lg:text-[10px] xl:text-xs 2xl:text-xs">
+              <div className="text-[7px] tracking-[0.12em] text-white/80 sm:text-[8px] md:text-[9px] lg:text-[10px] 2xl:text-xs">
                 FULL STACK DEVELOPER
               </div>
             </div>
           </div>
 
-          {/* Connection Lines */}
           <div className="pointer-events-none absolute inset-0">
             {connectionLines.map((line, index) => (
               <div
                 key={index}
-                className="absolute top-1/2 left-1/2 h-14 w-0.5 origin-top bg-linear-to-b from-primary to-transparent transition-all duration-500 group-hover:h-28 group-hover:opacity-60 sm:h-16 md:h-20 lg:h-24 xl:h-32 2xl:h-32"
+                className="absolute top-1/2 left-1/2 h-16 w-0.5 origin-top bg-linear-to-b from-primary to-transparent transition-all duration-500 group-hover:h-32 group-hover:opacity-60 sm:h-20 md:h-24 lg:h-28 2xl:h-32"
                 style={{
-                  transform: `
-                    translate(-50%, -50%)
-                    rotate(${index * 30}deg)
-                  `,
+                  transform: `translate(-50%, -50%) rotate(${index * 30}deg)`,
                   opacity: 0.4,
                   animation: `pulse ${line.duration}s infinite ease-in-out`,
                   animationDelay: `${line.delay}s`,
