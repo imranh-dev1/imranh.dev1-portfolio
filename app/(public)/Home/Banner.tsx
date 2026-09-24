@@ -288,9 +288,9 @@ const Banner = () => {
         className="flex w-full flex-1 items-center justify-center py-10 md:pt-12 lg:pt-12 sm:py-14 lg:py-0"
       >
         {/* Responsive Orb Container */}
-        <div className="group relative aspect-square w-[280px] max-w-full cursor-pointer sm:w-[360px] md:w-[430px] lg:w-[480px] xl:w-[560px]">
+        <div className="group relative aspect-square w-70 max-w-full cursor-pointer sm:w-90 md:w-100 lg:w-112.5 xl:w-140">
           {/* Glowing Base */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#13bbff10] to-[#13bbff03] shadow-[0_0_40px_#13bbff30] backdrop-blur-sm transition-all duration-500 group-hover:shadow-[0_0_60px_#13bbff50]" />
+          <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#13bbff10] to-[#13bbff03] shadow-[0_0_40px_#13bbff30] backdrop-blur-sm transition-all duration-500 group-hover:shadow-[0_0_60px_#13bbff50]" />
 
           {/* Animated Particles */}
           <div className="absolute inset-0 overflow-hidden rounded-full">
@@ -338,7 +338,7 @@ const Banner = () => {
             {connectionLines.map((line, index) => (
               <div
                 key={index}
-                className="absolute top-1/2 left-1/2 h-20 w-0.5 origin-top bg-gradient-to-b from-primary to-transparent transition-all duration-500 group-hover:h-40 group-hover:opacity-60 sm:h-24 md:h-28 lg:h-32"
+                className="absolute top-1/2 left-1/2 h-20 w-0.5 origin-top bg-linear-to-b from-primary to-transparent transition-all duration-500 group-hover:h-40 group-hover:opacity-60 sm:h-24 md:h-28 lg:h-32"
                 style={{
                   transform: `
                     translate(-50%, -50%)
