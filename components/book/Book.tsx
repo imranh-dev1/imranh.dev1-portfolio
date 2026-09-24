@@ -62,11 +62,9 @@ export function Book() {
         ))}
       </div>
 
-      <p
-        className="scene__hint absolute bottom-[22px] left-1/2 -translate-x-1/2 text-[.7rem] tracking-[.25em] text-muted-foreground uppercase [transition:opacity_.4s]"
+      <p className="scene__hint absolute bottom-5.5 left-1/2 -translate-x-1/2 text-[.7rem] tracking-[.25em] text-muted-foreground uppercase [transition:opacity_.4s]"
         id="sceneHint"
-        ref={hintRef}
-      >
+        ref={hintRef}>
         scroll ↓
       </p>
     </div>

@@ -14,7 +14,7 @@ export default function ProjectsSection() {
   >(null)
 
   return (
-    <section id="projects" className="container mx-auto scroll-mt-24 py-24">
+    <section id="projects" className="container mx-auto scroll-mt-24 py-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-0">
       {/* Section Title */}
       <div className="mx-auto mb-8 flex w-full flex-col items-center text-center">
         <div className="mb-3 flex items-center justify-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase">
