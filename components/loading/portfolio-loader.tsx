@@ -174,7 +174,7 @@ export default function PortfolioLoader({
             "
                         style={{
                             backgroundImage:
-                                "url('https://images.unsplash.com/photo-1619252584172-a83a949b6efd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+                                "url('https://images.unsplash.com/photo-1687197180710-b2b9484a3c5f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
                             marginTop: "calc(-1 * var(--loading-text-size) / 1.6)",
                         }}
                     >
