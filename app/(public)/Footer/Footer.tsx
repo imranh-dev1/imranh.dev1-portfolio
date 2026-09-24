@@ -3,6 +3,7 @@ import { ArrowUp, Code2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import SocialLinks from "@/components/shared/SocialLinks/SocialLinks"
+import SectionHeader from "@/components/shared/SectionHeader/SectionHeader"
 
 const footerLinks = {
   navigation: [
@@ -25,7 +26,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-background">
-      <div className="container mx-auto py-14">
+      <div className="container mx-auto py-14 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-0">
         {/* Main Footer */}
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
@@ -45,6 +46,8 @@ export default function Footer() {
               user-friendly web applications with clean code and thoughtful
               engineering.
             </p>
+
+            {/* <SectionHeader children="Imran Hossain"/> */}
 
             {/* Socials */}
             <div className="mt-3.75">
