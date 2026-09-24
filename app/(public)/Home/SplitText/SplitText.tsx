@@ -1,12 +1,19 @@
 "use client";
 
-import { animated, useSprings } from "@react-spring/web";
+import { animated, useSprings, easings, type EasingFunction } from "@react-spring/web";
 import {
     CSSProperties,
     useEffect,
     useRef,
     useState,
 } from "react";
+
+const EASING_MAP: Record<string, EasingFunction> = {
+    linear: easings.linear,
+    easeOutCubic: easings.easeOutCubic,
+    easeInOutCubic: easings.easeInOutCubic,
+    easeOutQuad: easings.easeOutQuad,
+};
 
 interface AnimationStyle extends CSSProperties {
     transform?: string;
@@ -103,6 +110,7 @@ const SplitText = ({
             delay: index * delay,
             config: {
                 duration: 500,
+                easing: EASING_MAP[easing] ?? undefined,
             },
         })),
     );

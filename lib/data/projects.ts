@@ -1,10 +1,9 @@
-import rentNestImg from "@/asstes/savi_creative_studios_squarespace_website_desings.png";
-import rentNestHomeImg from "@/asstes/rent-nest-liart-vercel-app.png";
-import hostelHubImg from "@/asstes/hostel-management-system.png";
-import medicalCampImg from "@/asstes/medical-camp-management.png";
-import nextGenerationImg from "@/asstes/next-gen.png";
-import carDoctorImg from "@/asstes/car-doctor-next-js.png";
-import chillGamerImg from "@/asstes/chill-gamer.png";
+import rentNestHomeImg from "@/assets/rent-nest-liart-vercel-app.png";
+import hostelHubImg from "@/assets/hostel-management-system.png";
+import medicalCampImg from "@/assets/medical-camp-management.png";
+import nextGenerationImg from "@/assets/next-gen.png";
+import carDoctorImg from "@/assets/car-doctor-next-js.png";
+import chillGamerImg from "@/assets/chill-gamer.png";
 
 export const projects = [
     {

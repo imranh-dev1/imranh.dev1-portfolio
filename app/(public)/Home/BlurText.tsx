@@ -6,7 +6,6 @@ import {
     useMemo,
     useRef,
     useState,
-    type CSSProperties,
 } from "react";
 
 type AnimateBy = "words" | "letters";
@@ -177,10 +176,6 @@ const BlurText = ({
         <div
             ref={ref}
             className={`w-full ${className}`}
-            style={{
-                textAlign:
-                    "justify" as CSSProperties["textAlign"],
-            }}
         >
             {elements.map((segment, index) => {
                 const isSpace =

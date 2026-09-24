@@ -7,11 +7,9 @@ import TypewriterEffect from "./TypewriterEffect/TypewriterEffect";
 import BlurText from "./BlurText";
 import Orbit from "./Orbit";
 
-import { DownloadIcon, Mail } from "lucide-react";
-import { BsTwitter } from "react-icons/bs";
-import { FaFacebook, FaGithub } from "react-icons/fa";
-import { LiaLinkedin } from "react-icons/lia";
-import Link from "next/link";
+import { DownloadIcon } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
+import SocialLinks from "@/components/shared/SocialLinks/SocialLinks";
 
 interface TechIcon {
     name: string;
@@ -31,17 +29,6 @@ interface ConnectionLine {
     duration: number;
     delay: number;
 }
-
-const SOCIAL_ICON_CLASS =
-    "inline-flex h-10 w-10 items-center justify-center rounded-full " +
-    "text-[#13bbff] " +
-    "mr-[17px] " +
-    "cursor-pointer " +
-    "backdrop-brightness-[88%] " +
-    "shadow-[0_0_20px_transparent] " +
-    "transition-all duration-500 ease-in-out " +
-    "hover:scale-110 " +
-    "hover:shadow-[0_0_20px_#13bbff]";
 
 const Banner = () => {
     const [screenWidth, setScreenWidth] = useState(0);
@@ -313,44 +300,8 @@ const Banner = () => {
                 />
 
                 {/* Social Media */}
-                <div className="mt-[15px] flex items-center">
-                    <Link
-                        href="https://www.linkedin.com/in/imranh-dev1"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="LinkedIn"
-                        className={SOCIAL_ICON_CLASS}
-                    >
-                        <LiaLinkedin className="h-7 w-7" />
-                    </Link>
-
-                    <Link
-                        href="https://x.com/imranh_dev1"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="X"
-                        className={SOCIAL_ICON_CLASS}
-                    >
-                        <BsTwitter className="h-5 w-5" />
-                    </Link>
-
-                    <Link
-                        href="https://www.facebook.com/imranh.dev1"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Facebook"
-                        className={SOCIAL_ICON_CLASS}
-                    >
-                        <FaFacebook className="h-5 w-5" />
-                    </Link>
-
-                    <Link
-                        href="mailto:imranh.dev1@gmail.com"
-                        aria-label="Email"
-                        className={SOCIAL_ICON_CLASS}
-                    >
-                        <Mail className="h-5 w-5" />
-                    </Link>
+                <div className="mt-[15px]">
+                    <SocialLinks />
                 </div>
 
                 {/* Action Buttons */}
@@ -477,7 +428,7 @@ const Banner = () => {
                                 className="
                   absolute
                   rounded-full
-                  bg-[#13bbff]
+                  bg-primary
                 "
                                 style={{
                                     width: `${particle.size}px`,
@@ -538,7 +489,7 @@ const Banner = () => {
                   mb-1
                   text-2xl
                   font-bold
-                  text-[#13bbff]
+                  text-primary
                   sm:text-3xl
                   md:text-4xl
                   lg:text-4xl
@@ -580,7 +531,7 @@ const Banner = () => {
                   w-0.5
                   origin-top
                   bg-gradient-to-b
-                  from-[#13bbff]
+                  from-primary
                   to-transparent
                   transition-all
                   duration-500

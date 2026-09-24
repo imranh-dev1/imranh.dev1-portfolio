@@ -14,9 +14,9 @@ const TypewriterEffect = () => {
 
         const typed = new Typed(element, {
             strings: [
-                `I'm <span style="color:#13bbff;">Imran Hossain.</span>`,
-                `I'm a <span style="color:#13bbff;">Full Stack Developer.</span>`,
-                `I build <span style="color:#13bbff;">scalable web apps.</span>`,
+                `I'm <span style="color:var(--primary);">Imran Hossain.</span>`,
+                `I'm a <span style="color:var(--primary);">Full Stack Developer.</span>`,
+                `I build <span style="color:var(--primary);">scalable web apps.</span>`,
             ],
             typeSpeed: 50,
             backSpeed: 50,

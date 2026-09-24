@@ -19,7 +19,7 @@ const ExperienceSection = () => {
                         </SectionHeader>
                     </div>
 
-                    <p className="mx-auto mt-4 max-w-2xl text-center leading-[1.9] text-[#bdbdbd]">
+                    <p className="mx-auto mt-4 max-w-2xl text-center leading-[1.9] text-muted-foreground">
                         A look through my professional journey, projects,
                         responsibilities and technologies.
                     </p>

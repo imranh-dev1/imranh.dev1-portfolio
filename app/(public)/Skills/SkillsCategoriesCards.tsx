@@ -49,7 +49,7 @@ const SkillsCategoriesCards = () => {
                         </div>
 
                         {/* Description */}
-                        <p className="text-sm leading-[1.8] text-gray-400">
+                        <p className="text-sm leading-[1.8] text-muted-foreground">
                             {category.description}
                         </p>
                     </CardContent>

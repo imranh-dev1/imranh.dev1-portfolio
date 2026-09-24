@@ -1,12 +1,12 @@
 import { Geist_Mono, Noto_Sans, Oxanium } from "next/font/google"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 
 import "./globals.css"
 import { cn } from "@/lib/utils";
 import PersonSchema from "./person-schema";
 import Navbar from "@/components/shared/Navbar/Navbar";
 import { Providers } from "@/components/Providers";
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 
 
 const oxaniumHeading = Oxanium({ subsets: ['latin'], variable: '--font-heading' });
@@ -40,15 +40,19 @@ export const metadata: Metadata = {
     description:
       "Full Stack Developer building modern, scalable web apps with React, Next.js, Node.js & PostgreSQL.",
     siteName: "Imran Hossain Portfolio",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Imran Hossain — Full Stack Developer" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Imran Hossain | Full Stack Developer",
     description: "Full Stack Developer building modern web experiences.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#1b1f24",
 }
 
 export default function RootLayout({

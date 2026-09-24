@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import themeReducer from "@/lib/slices/themeSlice";
 import experienceReducer from "@/lib/slices/experienceSlice";
 
 export const makeStore = () =>
   configureStore({
     reducer: {
-      theme: themeReducer,
       experience: experienceReducer,
     },
   });

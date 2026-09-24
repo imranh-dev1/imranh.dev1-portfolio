@@ -4,7 +4,6 @@ import Image from "next/image";
 import {
     Brush,
     Code2,
-    Database,
     Server,
     Minus,
 } from "lucide-react";
@@ -76,7 +75,7 @@ const AboutSection = () => {
                     </SectionHeader>
 
                     {/* Short Description */}
-                    <p className="mt-3 text-[18px] leading-[1.9] text-[#bdbdbd]">
+                    <p className="mt-3 text-[18px] leading-[1.9] text-muted-foreground">
                         Passionate full-stack developer building modern web
                         experiences with clean code and scalable architecture.
                     </p>
@@ -87,18 +86,18 @@ const AboutSection = () => {
                         <div className="relative w-full">
                             <Image
                                 src={imranHossain}
-                                alt="Imran Hossain"
-                                priority
+                                alt="Imran Hossain, Full Stack Developer"
                                 className="
                 w-10/12
+                h-auto
                 rounded-4xl
                 border-[0.3px]
                 border-primary/50
-                shadow-[0_0_40px_rgba(19,187,255,.25)]
+                shadow-[0_0_40px_color-mix(in_srgb,var(--primary)_25%,transparent)]
                 transition-all
                 duration-500
                 hover:-translate-y-2
-                hover:shadow-[0_0_60px_rgba(19,187,255,.45)]
+                hover:shadow-[0_0_60px_color-mix(in_srgb,var(--primary)_45%,transparent)]
                 hover:border-primary
               "
                             />
@@ -179,7 +178,7 @@ const AboutSection = () => {
                                             duration-400
                                             hover:-translate-y-3
                                             hover:border-primary
-                                            hover:shadow-[0_0_30px_rgba(19,187,255,.25)]
+                                            hover:shadow-[0_0_30px_color-mix(in_srgb,var(--primary)_25%,transparent)]
                                         "
                                 >
                                     <CardContent className="py-0 text-center">
@@ -215,7 +214,7 @@ const AboutSection = () => {
                                             duration-400
                                             hover:-translate-y-3
                                             hover:border-primary
-                                            hover:shadow-[0_0_30px_rgba(19,187,255,.25)]
+                                            hover:shadow-[0_0_30px_color-mix(in_srgb,var(--primary)_25%,transparent)]
                                         "
                             >
                                 <CardContent className="py-3 px-6">
@@ -231,7 +230,7 @@ const AboutSection = () => {
                       items-center
                       justify-center
                       rounded-[10px]
-                      bg-[#13bbff1f]
+                      bg-primary/10
                       
                     "
                                         >

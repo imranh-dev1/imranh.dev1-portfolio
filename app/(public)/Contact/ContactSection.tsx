@@ -8,7 +8,7 @@ import {
     Phone,
     Send,
     ArrowUpRight,
-    DownloadIcon,
+    Loader2,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -22,11 +22,15 @@ interface ContactFormData {
     message: string;
 }
 
+type ContactFormErrors = Partial<Record<keyof ContactFormData, string>>;
+
 const initialFormData: ContactFormData = {
     name: "",
     email: "",
     message: "",
 };
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const contactInfo = [
     {
@@ -52,9 +56,39 @@ const contactInfo = [
     },
 ];
 
+const validate = (formData: ContactFormData): ContactFormErrors => {
+    const errors: ContactFormErrors = {};
+
+    if (formData.name.trim().length < 2) {
+        errors.name = "Please enter your name (at least 2 characters).";
+    }
+
+    if (!formData.email.trim()) {
+        errors.email = "Please enter your email address.";
+    } else if (!EMAIL_REGEX.test(formData.email.trim())) {
+        errors.email = "Please enter a valid email address.";
+    }
+
+    if (formData.message.trim().length < 10) {
+        errors.message = "Please write a message of at least 10 characters.";
+    }
+
+    return errors;
+};
+
+const inputClass = (hasError: boolean) =>
+    [
+        "mt-2 w-full rounded-xl border bg-background px-4 text-sm outline-none transition-all",
+        "placeholder:text-muted-foreground focus:border-primary focus:ring-2",
+        hasError
+            ? "border-destructive/60 focus:border-destructive/60 focus:ring-destructive/15"
+            : "border-primary/50 focus:ring-primary/20",
+        "disabled:cursor-not-allowed disabled:opacity-60",
+    ].join(" ");
+
 export default function ContactSection() {
     const [formData, setFormData] = useState<ContactFormData>(initialFormData);
-
+    const [errors, setErrors] = useState<ContactFormErrors>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (
@@ -66,6 +100,10 @@ export default function ContactSection() {
             ...prev,
             [name]: value,
         }));
+
+        if (errors[name as keyof ContactFormData]) {
+            setErrors((prev) => ({ ...prev, [name]: undefined }));
+        }
     };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -73,47 +111,52 @@ export default function ContactSection() {
 
         if (isSubmitting) return;
 
-        // try {
-        //     setIsSubmitting(true);
+        const validationErrors = validate(formData);
 
-        //     const response = await fetch(
-        //         "https://imran-portfolio-server.vercel.app/contact",
-        //         {
-        //             method: "POST",
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //             },
-        //             body: JSON.stringify(formData),
-        //         },
-        //     );
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            toast.error("Please fix the highlighted fields.");
+            return;
+        }
 
-        //     const data = await response.json();
+        setIsSubmitting(true);
 
-        //     if (!response.ok) {
-        //         throw new Error(
-        //             data?.message || "Failed to send message.",
-        //         );
-        //     }
+        try {
+            const response = await fetch(
+                "https://imran-portfolio-server.vercel.app/contact",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                },
+            );
 
-        //     toast.success(
-        //         data?.message || "Message sent successfully!",
-        //     );
+            const data = await response.json();
 
-        //     setFormData(initialFormData);
-        // } catch (error) {
-        //     console.error("Contact form error:", error);
+            if (!response.ok) {
+                throw new Error(
+                    data?.message || "Failed to send message.",
+                );
+            }
 
-        //     toast.error(
-        //         error instanceof Error
-        //             ? error.message
-        //             : "Something went wrong. Please try again.",
-        //     );
-        // } finally {
-        //     setIsSubmitting(false);
-        // }
+            toast.success(
+                data?.message || "Message sent successfully!",
+            );
 
-        toast.success("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" })
+            setFormData(initialFormData);
+        } catch (error) {
+            console.error("Contact form error:", error);
+
+            toast.error(
+                error instanceof Error
+                    ? error.message
+                    : "Something went wrong. Please try again.",
+            );
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -126,7 +169,7 @@ export default function ContactSection() {
                         <span>Contact</span>
                     </div>
 
-                    <SectionHeader>
+                    <SectionHeader className="text-center md:text-center">
                         <span className="text-primary">&lt; Let&apos;s </span>
                         Connect /&gt;
                     </SectionHeader>
@@ -139,9 +182,9 @@ export default function ContactSection() {
                 </div>
 
                 {/* Contact Content */}
-                <div className="flex gap-6">
+                <div className="flex flex-col gap-6 lg:flex-row">
                     {/* Left - Contact Information */}
-                    <div className="group rounded-3xl border border-primary/50 bg-background p-7 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_35px_rgba(19,187,255,.18)] flex-1">
+                    <div className="group flex-1 rounded-3xl border border-primary/50 bg-background p-7 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_35px_rgba(19,187,255,.18)]">
                         <div className="mb-8">
                             <p className="mb-2 text-sm font-medium text-primary">
                                 GET IN TOUCH
@@ -206,7 +249,7 @@ export default function ContactSection() {
                     </div>
 
                     {/* Right - Contact Form */}
-                    <div className="group rounded-3xl border border-primary/50 bg-background p-7 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_35px_rgba(19,187,255,.18)] flex-1">
+                    <div className="group flex-1 rounded-3xl border border-primary/50 bg-background p-7 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_35px_rgba(19,187,255,.18)]">
                         <div className="mb-7">
                             <div className="mb-2 flex items-center gap-2">
                                 <div className="flex size-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -224,7 +267,11 @@ export default function ContactSection() {
                             </p>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-5">
+                        <form
+                            onSubmit={handleSubmit}
+                            noValidate
+                            className="space-y-5"
+                        >
                             {/* Name & Email */}
                             <div className="grid gap-5 sm:grid-cols-2">
                                 <div className="space-y-2">
@@ -244,8 +291,21 @@ export default function ContactSection() {
                                         placeholder="John Doe"
                                         required
                                         disabled={isSubmitting}
-                                        className="h-11 mt-2 w-full rounded-xl border border-primary/50 bg-background px-4 text-sm outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-60"
+                                        aria-invalid={!!errors.name}
+                                        aria-describedby={
+                                            errors.name ? "name-error" : undefined
+                                        }
+                                        className={`h-11 ${inputClass(!!errors.name)}`}
                                     />
+
+                                    {errors.name && (
+                                        <p
+                                            id="name-error"
+                                            className="text-xs text-destructive"
+                                        >
+                                            {errors.name}
+                                        </p>
+                                    )}
                                 </div>
 
                                 <div className="space-y-2">
@@ -265,8 +325,21 @@ export default function ContactSection() {
                                         placeholder="john@example.com"
                                         required
                                         disabled={isSubmitting}
-                                        className="h-11 mt-2 w-full rounded-xl border border-primary/50 bg-background px-4 text-sm outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-60"
+                                        aria-invalid={!!errors.email}
+                                        aria-describedby={
+                                            errors.email ? "email-error" : undefined
+                                        }
+                                        className={`h-11 ${inputClass(!!errors.email)}`}
                                     />
+
+                                    {errors.email && (
+                                        <p
+                                            id="email-error"
+                                            className="text-xs text-destructive"
+                                        >
+                                            {errors.email}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
 
@@ -288,8 +361,21 @@ export default function ContactSection() {
                                     rows={7}
                                     required
                                     disabled={isSubmitting}
-                                    className="w-full mt-2 resize-none rounded-xl border border-primary/50 bg-background px-4 py-3 text-sm leading-6 outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-60"
+                                    aria-invalid={!!errors.message}
+                                    aria-describedby={
+                                        errors.message ? "message-error" : undefined
+                                    }
+                                    className={`${inputClass(!!errors.message)} resize-none leading-6 py-3`}
                                 />
+
+                                {errors.message && (
+                                    <p
+                                        id="message-error"
+                                        className="text-xs text-destructive"
+                                    >
+                                        {errors.message}
+                                    </p>
+                                )}
                             </div>
 
                             {/* Submit */}
@@ -306,7 +392,7 @@ export default function ContactSection() {
                                 >
                                     {isSubmitting ? (
                                         <>
-                                            <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                                            <Loader2 className="size-4 animate-spin" />
                                             Sending...
                                         </>
                                     ) : (
@@ -316,8 +402,6 @@ export default function ContactSection() {
                                         </>
                                     )}
                                 </Button>
-
-
                             </div>
                         </form>
                     </div>
@@ -325,4 +409,4 @@ export default function ContactSection() {
             </div>
         </section>
     );
-} 
+}

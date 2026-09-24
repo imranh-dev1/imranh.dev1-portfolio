@@ -104,7 +104,7 @@ export const backendSkills: Skill[] = [
     },
     {
         name: "JWT",
-        icon: <ShieldCheck className="size-5 text-[#13bbff]" />,
+        icon: <ShieldCheck className="size-5 text-primary" />,
         percent: 92,
     },
 ];
@@ -177,7 +177,7 @@ export const skillsCategories: SkillCategory[] = [
     },
     {
         name: "API & Authentication",
-        icon: <ShieldCheck className="size-6 text-[#13bbff]" />,
+        icon: <ShieldCheck className="size-6 text-primary" />,
         description:
             "Building secure REST APIs with JWT authentication, role-based authorization, validation, and middleware.",
     },

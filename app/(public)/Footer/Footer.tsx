@@ -1,14 +1,8 @@
 import Link from "next/link";
-import {
-    Mail,
-    ArrowUp,
-    Code2,
-} from "lucide-react";
+import { ArrowUp, Code2 } from "lucide-react";
 
-import { FaFacebook, FaGithub } from "react-icons/fa";
-import { LiaLinkedin } from "react-icons/lia";
-import { BsTwitter } from "react-icons/bs";
 import { Button } from "@/components/ui/button";
+import SocialLinks from "@/components/shared/SocialLinks/SocialLinks";
 
 const footerLinks = {
     navigation: [
@@ -19,41 +13,12 @@ const footerLinks = {
         { label: "Contact", href: "#contact" },
     ],
     services: [
-        { label: "Frontend Development", href: "#services" },
-        { label: "Backend Development", href: "#services" },
-        { label: "Full-Stack Development", href: "#services" },
-        { label: "API Development", href: "#services" },
+        { label: "Frontend Development", href: "#skills" },
+        { label: "Backend Development", href: "#skills" },
+        { label: "Full-Stack Development", href: "#skills" },
+        { label: "API Development", href: "#skills" },
     ],
 };
-
-const socialLinks = [
-    {
-        label: "GitHub",
-        href: "https://github.com/imranh-dev1",
-        icon: FaGithub,
-    },
-    {
-        label: "LinkedIn",
-        href: "https://www.linkedin.com/in/imranh-dev1/",
-        icon: LiaLinkedin,
-    },
-    {
-        label: "Email",
-        href: "mailto:imranme.global@gmail.com",
-        icon: Mail,
-    },
-];
-
-const SOCIAL_ICON_CLASS =
-    "inline-flex h-10 w-10 items-center justify-center rounded-full " +
-    "text-[#13bbff] " +
-    "mr-[17px] " +
-    "cursor-pointer " +
-    "backdrop-brightness-[88%] " +
-    "shadow-[0_0_20px_transparent] " +
-    "transition-all duration-500 ease-in-out " +
-    "hover:scale-110 " +
-    "hover:shadow-[0_0_20px_#13bbff]";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -85,44 +50,8 @@ export default function Footer() {
                         </p>
 
                         {/* Socials */}
-                        <div className="mt-3.75 flex items-center">
-                            <Link
-                                href="https://www.linkedin.com/in/imranh-dev1"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="LinkedIn"
-                                className={SOCIAL_ICON_CLASS}
-                            >
-                                <LiaLinkedin className="h-7 w-7" />
-                            </Link>
-
-                            <Link
-                                href="https://x.com/imranh_dev1"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="X"
-                                className={SOCIAL_ICON_CLASS}
-                            >
-                                <BsTwitter className="h-5 w-5" />
-                            </Link>
-
-                            <Link
-                                href="https://www.facebook.com/imranh.dev1"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Facebook"
-                                className={SOCIAL_ICON_CLASS}
-                            >
-                                <FaFacebook className="h-5 w-5" />
-                            </Link>
-
-                            <Link
-                                href="mailto:imranh.dev1@gmail.com"
-                                aria-label="Email"
-                                className={SOCIAL_ICON_CLASS}
-                            >
-                                <Mail className="h-5 w-5" />
-                            </Link>
+                        <div className="mt-3.75">
+                            <SocialLinks />
                         </div>
                     </div>
 
@@ -168,7 +97,7 @@ export default function Footer() {
                 </div>
 
                 {/* Divider */}
-                <div className="my-5 h-px bg-white/10" />
+                <div className="my-5 h-px bg-foreground/10" />
 
                 {/* Bottom Footer */}
                 <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
@@ -176,7 +105,7 @@ export default function Footer() {
                         © {currentYear} Imran Hossain. All rights reserved.
                     </p>
 
-                    <div className="flex items-center gap-5">
+                    <div className="flex items-center justify-between gap-5 sm:justify-end">
                         <Link
                             href="mailto:imranh.dev1@gmail.com"
                             className="text-sm text-muted-foreground transition-colors hover:text-primary"
@@ -184,7 +113,7 @@ export default function Footer() {
                             imranh.dev1@gmail.com
                         </Link>
 
-                        <Button variant="primary" className="rounded-full">
+                        <Button asChild variant="primary" className="rounded-full">
                             <Link
                                 href="#home"
                                 aria-label="Back to top">

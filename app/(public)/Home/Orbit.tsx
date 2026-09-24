@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export interface OrbitIcon {
@@ -104,8 +105,8 @@ const Orbit = ({
                   justify-center
                   rounded-full
                   border
-                  border-primary-color
-                  bg-[#0102032a]
+                  border-primary/40
+                  bg-black/20
                   p-2
                   sm:p-2.5
                   md:p-3
@@ -113,16 +114,18 @@ const Orbit = ({
                   transition-all
                   duration-300
                   group-hover:border-primary
-                  group-hover:shadow-[0_0_12px_#13bbff66]
+                  group-hover:shadow-[0_0_12px_color-mix(in_srgb,var(--primary)_40%,transparent)]
                 "
                                 style={{
                                     width: `${iconSize}px`,
                                     height: `${iconSize}px`,
                                 }}
                             >
-                                <img
+                                <Image
                                     src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${icon.name}/${icon.name}-original.svg`}
                                     alt={icon.label}
+                                    width={32}
+                                    height={32}
                                     loading="lazy"
                                     className="
                     h-5
@@ -147,7 +150,7 @@ const Orbit = ({
                   text-[9px]
                   sm:text-[10px]
                   md:text-[11px]
-                  text-cyan-400
+                  text-primary
                   opacity-0
                   transition-all
                   duration-300

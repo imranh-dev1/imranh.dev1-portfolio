@@ -46,7 +46,7 @@ const SkillsSection = () => {
                 </div>
 
                 {/* Description */}
-                <p className="mx-auto mt-3 mb-8 max-w-3xl text-center leading-[1.9] text-[#bdbdbd]">
+                <p className="mx-auto mt-3 mb-8 max-w-3xl text-center leading-[1.9] text-muted-foreground">
                     I specialize in building fast, responsive, and scalable web
                     applications using modern frontend and backend technologies,
                     with a strong focus on clean code, performance, and user

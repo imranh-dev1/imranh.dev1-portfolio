@@ -17,7 +17,6 @@ const Navbar = () => {
             document.querySelectorAll<HTMLElement>("section[id]");
 
         if (!sections.length) {
-            setActiveSection("home");
             return;
         }
 
@@ -64,7 +63,7 @@ const Navbar = () => {
     return (
         <header className="fixed top-0 z-50 w-full">
             <div className="container mx-auto">
-                <nav className="my-4 rounded-full border border-primary bg-minBg/95 px-4 shadow-lg backdrop-blur-md sm:px-6">
+                <nav className="my-4 rounded-full border border-primary bg-background/95 px-4 shadow-lg backdrop-blur-md sm:px-6">
                     <div className="flex h-14 items-center justify-between">
                         {/* Logo */}
                         <NavbarLogo onClick={handleLogoClick} />

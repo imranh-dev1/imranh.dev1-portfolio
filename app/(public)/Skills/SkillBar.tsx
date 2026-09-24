@@ -54,9 +54,9 @@ const SkillBar = ({
             </div>
 
             {/* Progress bar */}
-            <div className="relative h-1.5 overflow-hidden rounded-full bg-[#1f2937]">
+            <div className="relative h-1.5 overflow-hidden rounded-full bg-muted">
                 <div
-                    className="h-full rounded-full bg-linear-to-r from-primary to-[#3ecbff] transition-all duration-75"
+                    className="h-full rounded-full bg-linear-to-r from-primary to-accent-2 transition-all duration-75"
                     style={{
                         width: `${progress}%`,
                     }}

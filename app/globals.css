@@ -80,6 +80,7 @@
 
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-2: var(--accent-2);
 
   --color-destructive: var(--destructive);
 
@@ -239,4 +240,30 @@ a {
 }
 .face::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* ---------- Mobile: single-page portrait book ----------
+   Every face is collapsed into a full-width page and flipped
+   one at a time by the useBookFlip mobile mode. */
+@media (max-width: 768px) {
+  .book {
+    --pw: min(calc(100vw - 48px), 26rem);
+    --ph: calc(var(--pw) * 1.3);
+    width: var(--pw);
+    height: var(--ph);
+  }
+
+  .book .page--left-base,
+  .book .page--right-base,
+  .book .leaf {
+    left: 0;
+    width: var(--pw);
+    height: var(--ph);
+  }
+
+  .book .page--left-base .face,
+  .book .page--right-base .face {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
 }

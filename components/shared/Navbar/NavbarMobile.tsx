@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { X } from "lucide-react";
 
 import {
     Sheet,
@@ -29,7 +28,7 @@ const NavbarMobile = ({
         <Sheet open={open} onOpenChange={(value) => !value && onClose()}>
             <SheetContent
                 side="right"
-                className="w-70 border-primary/20 bg-minBg text-white sm:w-85"
+                className="w-70 border-primary/20 bg-background text-white sm:w-85"
             >
                 <SheetHeader>
                     <SheetTitle className="text-left text-white">

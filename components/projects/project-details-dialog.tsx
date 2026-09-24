@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import {
-    ArrowUpRight,
     CheckCircle2,
-    DownloadIcon,
     ExternalLink,
     Layers3,
     Target,
@@ -38,7 +36,7 @@ export default function ProjectDetailsDialog({
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent
-                className="!w-[95vw] !max-w-6xl max-h-[92vh] overflow-y-auto border-border bg-background p-0"
+                className="!w-[95vw] !max-w-6xl max-h-[92vh] max-h-[92dvh] overflow-y-auto border-border bg-background p-0"
             >
                 {/* Hero */}
                 <div className="grid overflow-hidden lg:grid-cols-[1.15fr_0.85fr]">
@@ -80,7 +78,7 @@ export default function ProjectDetailsDialog({
                         </p>
 
                         <DialogHeader className="text-left">
-                            <DialogTitle className="hidden text-3xl font-bold leading-tight lg:block xl:text-4xl">
+                            <DialogTitle className="text-3xl font-bold leading-tight sr-only lg:block xl:text-4xl lg:not-sr-only">
                                 {project.title}
                             </DialogTitle>
 

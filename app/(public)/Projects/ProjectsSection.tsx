@@ -13,7 +13,7 @@ export default function ProjectsSection() {
         useState<(typeof projects)[number] | null>(null);
 
     return (
-        <section id="project" className="container mx-auto py-24">
+        <section id="projects" className="container mx-auto py-24">
             {/* Section Title */}
             <div className="mx-auto mb-8 flex w-full flex-col items-center text-center">
                 <div className="mb-3 flex items-center justify-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase">
@@ -70,35 +70,22 @@ export default function ProjectsSection() {
 
                         {/* Technologies */}
                         <div className="mx-auto flex flex-wrap justify-center gap-3 rounded-2xl p-4">
-
                             {project.technologies
-
                                 .slice(0, 6)
-
                                 .map((technology, index) => (
-
                                     <span
-
                                         key={`${technology}-${index}`}
-
-                                        className="rounded-full border border-primary-color px-3 py-.9 text-sm text-primary transition-all duration-200 hover:bg-primary-color hover:text-white">
-
+                                        className="rounded-full border border-primary/30 px-3 py-[3px] text-sm text-primary transition-all duration-200 hover:border-primary hover:bg-primary/10"
+                                    >
                                         {technology}
-
                                     </span>
-
                                 ))}
 
-                            {project.technologies.length > 3 && (
-
-                                <span className="rounded-full border border-gray-300 px-3 py-.9 text-sm text-muted-foreground">
-
-                                    +{project.technologies.length - 3} more
-
+                            {project.technologies.length > 6 && (
+                                <span className="rounded-full border border-foreground/20 px-3 py-[3px] text-sm text-muted-foreground">
+                                    +{project.technologies.length - 6} more
                                 </span>
-
                             )}
-
                         </div>
                         <div className="flex items-center justify-center">
 
