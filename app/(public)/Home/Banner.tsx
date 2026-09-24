@@ -108,27 +108,24 @@ const Banner = () => {
     return desktop
   }
 
-  /*
-   * SM / MD / LG = smaller
-   * XL / 2XL = original
-   */
+  // Orbit radius
   const innerRadius = getOrbitRadius(
-    130, // XL / 2XL
-    90,  // LG
+    130, // 2XL
+    115, // XL
     78,  // MD
     60   // SM / Mobile
   )
 
   const middleRadius = getOrbitRadius(
-    200, // XL / 2XL
-    145, // LG
+    200, // 2XL
+    180, // XL
     120, // MD
     88   // SM / Mobile
   )
 
   const outerRadius = getOrbitRadius(
-    270, // XL / 2XL
-    190, // LG
+    270, // 2XL
+    245, // XL
     160, // MD
     115  // SM / Mobile
   )
@@ -328,7 +325,7 @@ const Banner = () => {
           XL / 2XL = ORIGINAL
           LG / MD / SM = SMALLER
         */}
-        <div className="group relative aspect-square w-60 max-w-full cursor-pointer sm:w-68 md:w-80 lg:w-96 xl:w-140 2xl:w-140">
+        <div className="group relative aspect-square w-60 max-w-full cursor-pointer sm:w-68 md:w-80 lg:w-96 xl:w-125 2xl:w-140">
           {/* Glowing Base */}
           <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#13bbff10] to-[#13bbff03] shadow-[0_0_40px_#13bbff30] backdrop-blur-sm transition-all duration-500 group-hover:shadow-[0_0_60px_#13bbff50]" />
 
