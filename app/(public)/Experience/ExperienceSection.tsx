@@ -5,7 +5,7 @@ import { Minus } from "lucide-react"
 const ExperienceSection = () => {
   return (
     <section id="experience" className="scroll-mt-24 bg-secondary">
-      <div className="container mx-auto px-6 py-24 lg:px-0">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-0 py-24">
         <div className="mx-auto mb-8 flex w-full flex-col items-center text-center">
           <div className="mb-3 flex items-center justify-center gap-1 text-sm font-semibold tracking-[0.12em] text-primary uppercase">
             <Minus size={20} strokeWidth={3} className="text-primary" />
