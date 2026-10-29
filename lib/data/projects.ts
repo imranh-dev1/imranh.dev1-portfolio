@@ -66,7 +66,7 @@ export const projects = [
       { label: "Audit Logged", value: "100%" },
     ],
 
-    live: "",
+    live: "https://dev-review-frontend.vercel.app/",
     github: "https://github.com/imranh-dev1/Dev-Review",
   },
   {
