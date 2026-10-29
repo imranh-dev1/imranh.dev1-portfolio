@@ -4,10 +4,73 @@ import medicalCampImg from "@/assets/medical-camp-management.png"
 import nextGenerationImg from "@/assets/next-gen.png"
 import carDoctorImg from "@/assets/car-doctor-next-js.png"
 import chillGamerImg from "@/assets/chill-gamer.png"
+import devReviewHomeImg from "@/assets/devreview.png"
 
 export const projects = [
   {
     id: 1,
+    title: "DevReview",
+    category: "Full Stack Project Review & Evaluation Platform",
+    image: devReviewHomeImg,
+
+    overview:
+      "DevReview is a role-based project review platform built with Next.js and Node.js that replaces scattered feedback with a traceable workflow. Students submit projects, reviewers score them against a shared six-criteria rubric, and administrators manage users, reviewer assignments, and platform-wide analytics. Every state change is recorded and mirrored in notifications and audit logs, making the entire review process consistent, measurable, and fully auditable.",
+
+    features: [
+      "Role-Based Dashboards for Admin, Reviewer & Student",
+      "JWT Authentication with HTTP-Only Cookie Sessions",
+      "Email Verification & Password Reset via 6-Digit OTP",
+      "Protected Routes with AuthGuard & RoleGuard",
+      "Submission Lifecycle (Draft → Submitted → In Review → Approved/Rejected)",
+      "Six-Criteria Rubric Scoring (1–10) with Written Feedback",
+      "Reviewer Assignment, Acceptance & Review Queue",
+      "Cloudinary Image Upload for Screenshots & Avatars",
+      "Dashboard Analytics with Charts & Status Breakdown",
+      "Notification System with Unread Counts",
+      "Audit Log Tracking Every Action & Transition",
+      "Responsive Mobile-First Interface with Dark/Light Theme",
+    ],
+
+    technologies: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "shadcn/ui",
+      "TanStack Query v5",
+      "React Hook Form",
+      "Zod",
+      "Recharts",
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "Prisma",
+      "JWT",
+      "Cloudinary",
+      "Redis",
+      "Nodemailer",
+      "Biome",
+      "Bun",
+    ],
+
+    challenges:
+      "Designing a secure multi-role platform required enforcing different permissions for students, reviewers, and administrators while protecting both pages and API routes. The project also had to coordinate a seven-state submission lifecycle, reviewer assignment and acceptance flow, validated multipart image uploads, OTP-based email verification and password reset, and cache-consistent dashboards driven by a separate REST API and cookie-based sessions.",
+
+    solution:
+      "Built a decoupled full-stack architecture: a Next.js 16 App Router frontend backed by an Express 5 REST API with Prisma and PostgreSQL. JWT sessions are stored in HTTP-only cookies, with AuthGuard and RoleGuard components layering authentication and role checks. TanStack Query manages all server state through dedicated api/hook modules, React Hook Form with Zod handles validation, Cloudinary stores images via Multer, Nodemailer delivers OTP emails, Recharts renders analytics, and every transition is persisted in status history, notifications, and audit logs.",
+
+    stats: [
+      { label: "User Roles", value: "3" },
+      { label: "Lifecycle States", value: "7" },
+      { label: "Review Criteria", value: "6" },
+      { label: "Audit Logged", value: "100%" },
+    ],
+
+    live: "",
+    github: "https://github.com/imranh-dev1/Dev-Review",
+  },
+  {
+    id: 2,
     title: "Rent Nest",
     category: "Full Stack Rental Property Management Platform",
     image: rentNestHomeImg,
@@ -63,7 +126,7 @@ export const projects = [
     github: "https://github.com/imranh-dev1/Rent_Nest_Frontend",
   },
   {
-    id: 2,
+    id: 3,
     title: "Hostel Hub",
     category: "Mern Stack Hostel Management System",
     image: hostelHubImg,
@@ -113,7 +176,7 @@ export const projects = [
       "https://github.com/imran-information/Hostel-Management-System/tree/main",
   },
   {
-    id: 3,
+    id: 4,
     title: "Medical Camp Management System",
     category: "Mern Stack Medical Camp Management Platform",
     image: medicalCampImg,
@@ -171,7 +234,7 @@ export const projects = [
       "https://github.com/imranh-dev1/Medical-Camp-Management-System-client",
   },
   {
-    id: 4,
+    id: 5,
     title: "Next Generation",
     category: "Mern Stack Blogging Platform",
     image: nextGenerationImg,
@@ -227,7 +290,7 @@ export const projects = [
     github: "https://github.com/imranh-dev1/next-generation-client",
   },
   {
-    id: 5,
+    id: 6,
     title: "Car Doctor",
     category: "Next.js Car Repair Service Platform",
     image: carDoctorImg,
