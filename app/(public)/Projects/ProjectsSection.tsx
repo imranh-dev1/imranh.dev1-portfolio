@@ -70,7 +70,7 @@ export default function ProjectsSection() {
 
             {/* Technologies */}
             <div className="mx-auto flex flex-wrap justify-center gap-3 rounded-2xl p-4">
-              {project.technologies.slice(0, 6).map((technology, index) => (
+              {project.technologies.slice(0, 5).map((technology, index) => (
                 <span
                   key={`${technology}-${index}`}
                   className="rounded-full border border-primary/30 px-3 py-[3px] text-sm text-primary transition-all duration-200 hover:border-primary hover:bg-primary/10"
@@ -79,9 +79,9 @@ export default function ProjectsSection() {
                 </span>
               ))}
 
-              {project.technologies.length > 6 && (
+              {project.technologies.length > 5 && (
                 <span className="rounded-full border border-foreground/20 px-3 py-[3px] text-sm text-muted-foreground">
-                  +{project.technologies.length - 6} more
+                  +{project.technologies.length - 5} more
                 </span>
               )}
             </div>
