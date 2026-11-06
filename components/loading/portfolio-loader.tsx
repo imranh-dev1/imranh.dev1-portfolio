@@ -7,14 +7,12 @@ interface PortfolioLoaderProps {
 }
 
 const LOADING_TEXT = "LOADING...";
-const READY_TEXT = "READY!";
 
 export default function PortfolioLoader({
     onComplete,
 }: PortfolioLoaderProps) {
     const [progress, setProgress] = useState(0);
     const [ready, setReady] = useState(false);
-    const [readyText, setReadyText] = useState("");
 
     // Loading progress
     useEffect(() => {
@@ -36,9 +34,13 @@ export default function PortfolioLoader({
             if (value < 100) {
                 animationFrame = requestAnimationFrame(updateProgress);
             } else {
+                // ১০০% হওয়ার পর সামান্য ডিলে দিয়ে শাটার খোলা শুরু হবে
                 readyTimeout = setTimeout(() => {
                     setReady(true);
-                }, 200);
+                    
+                    // অ্যানিমেশন (১২০০মি.সে.) শেষ হওয়ার পর মূল পোর্টফোলিও দেখাবে
+                    setTimeout(onComplete, 1200);
+                }, 150);
             }
         };
 
@@ -48,218 +50,67 @@ export default function PortfolioLoader({
             cancelAnimationFrame(animationFrame);
             clearTimeout(readyTimeout);
         };
-    }, []);
+    }, [onComplete]);
 
-    // READY text animation
-    useEffect(() => {
-        if (!ready) return;
-
-        let index = 0;
-        let completeTimeout: ReturnType<typeof setTimeout>;
-
-        const interval = setInterval(() => {
-            index++;
-
-            setReadyText(READY_TEXT.slice(0, index));
-
-            if (index >= READY_TEXT.length) {
-                clearInterval(interval);
-
-                completeTimeout = setTimeout(() => {
-                    onComplete();
-                }, 2600);
-            }
-        }, 120);
-
-        return () => {
-            clearInterval(interval);
-            clearTimeout(completeTimeout);
-        };
-    }, [ready, onComplete]);
-
-    /*
-     * READY SCREEN
-     */
-    if (ready) {
-        return (
-            <div
-                className="fixed inset-0 z-[9999] h-screen w-full overflow-hidden bg-background"
-                style={
-                    {
-                        "--loading-text-size": "12vw",
-                    } as React.CSSProperties
-                }
-            >
-                {/* TOP SHUTTER */}
-                <div
-                    className="
-            absolute
-            left-0
-            top-0
-            h-1/2
-            w-full
-            overflow-hidden
-            bg-background
-            animate-loader-top
-          "
-                >
-                    <h1
-                        className="
-              absolute
-              left-0
-              top-1/2
-              w-full
-              -translate-y-1/2
-              text-center
-              text-[12vw]
-              font-bold
-              uppercase
-              leading-none
-              text-transparent
-              bg-cover
-              bg-center
-              bg-clip-text
-              [-webkit-background-clip:text]
-              [-webkit-text-fill-color:transparent]
-              [-webkit-box-reflect:below_-90px_linear-gradient(to_bottom,transparent,rgba(0,0,0,0.4))]
-              max-[996px]:text-[14vw]
-              max-[750px]:text-[16vw]
-              max-[500px]:text-[80px]
-            "
-                        style={{
-                            backgroundImage:
-                                "url('https://images.unsplash.com/photo-1775994121052-7e653711f72c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-                        }}
-                    >
-                        {readyText}
-                    </h1>
-                </div>
-
-                {/* BOTTOM SHUTTER */}
-                <div
-                    className="
-            absolute
-            bottom-0
-            left-0
-            h-1/2
-            w-full
-            overflow-hidden
-            bg-background
-            animate-loader-bottom
-          "
-                >
-                    <h1
-                        className="
-              absolute
-              left-0
-              top-0
-              h-[calc(100%+7.5vw)]
-              w-full
-              pt-0
-              text-center
-              text-[12vw]
-              font-bold
-              uppercase
-              leading-none
-              text-transparent
-              bg-cover
-              bg-center
-              bg-clip-text
-              [-webkit-background-clip:text]
-              [-webkit-text-fill-color:transparent]
-              [-webkit-box-reflect:below_-90px_linear-gradient(to_bottom,transparent,rgba(0,0,0,0.4))]
-              max-[996px]:text-[14vw]
-              max-[750px]:text-[16vw]
-              max-[500px]:text-[80px]
-            "
-                        style={{
-                            backgroundImage:
-                                "url('https://images.unsplash.com/photo-1687197180710-b2b9484a3c5f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-                            marginTop: "calc(-1 * var(--loading-text-size) / 1.6)",
-                        }}
-                    >
-                        {readyText}
-                    </h1>
-                </div>
-            </div>
-        );
-    }
-
-    /*
-     * LOADING SCREEN
-     */
     return (
-        <div className="fixed inset-0 z-[9999] flex h-screen w-full items-center justify-center overflow-hidden bg-[#151719]">
-            <div className="flex w-full flex-col items-center justify-center">
-                {/* LOADING TEXT */}
-                <div
-                    className="
-            flex
-            items-center
-            justify-center
-            whitespace-nowrap
-          "
-                >
-                    {LOADING_TEXT.split("").map((char, index) => (
-                        <span
-                            key={`${char}-${index}`}
-                            className="
-                inline-block
-                text-[12vw]
-                font-bold
-                uppercase
-                leading-none
-                text-primary
-                animate-loader-wave
-                max-[996px]:text-[14vw]
-                max-[750px]:text-[16vw]
-                max-[500px]:text-[40px]
-              "
-                            style={{
-                                animationDelay: `${index * 0.1}s`,
-                            }}
-                        >
-                            {char === " " ? "\u00A0" : char}
-                        </span>
-                    ))}
-                </div>
+        <div className="fixed inset-0 z-[9999] h-screen w-full overflow-hidden pointer-events-none">
+            {/* TOP SHUTTER - মাঝখান থেকে ওপরে যাবে (সুপার স্মুথ কার্ভ সহ) */}
+            <div
+                className="absolute left-0 top-0 h-1/2 w-full bg-[#151719] will-change-transform"
+                style={{
+                    transition: "transform 1200ms cubic-bezier(0.85, 0, 0.15, 1)",
+                    transform: ready ? "translateY(-100%)" : "translateY(0%)",
+                }}
+            />
 
-                {/* PROGRESS */}
-                <div className="mt-14 w-[min(420px,70vw)]">
-                    {/* Progress info */}
-                    <div
-                        className="
-              mb-3
-              flex
-              items-center
-              justify-between
-              text-xs
-              uppercase
-              tracking-[0.2em]
-              text-white/60
-            "
-                    >
-                        <span>Loading...</span>
+            {/* BOTTOM SHUTTER - মাঝখান থেকে নিচে যাবে (সুপার স্মুথ কার্ভ সহ) */}
+            <div
+                className="absolute bottom-0 left-0 h-1/2 w-full bg-[#151719] will-change-transform"
+                style={{
+                    transition: "transform 1200ms cubic-bezier(0.85, 0, 0.15, 1)",
+                    transform: ready ? "translateY(100%)" : "translateY(0%)",
+                }}
+            />
 
-                        <span className="tabular-nums">
-                            {progress}%
-                        </span>
+            {/* LOADING CONTENT SCREEN - শাটার খোলার সাথে সাথে এটিও খুব সুন্দরভাবে মিলিয়ে যাবে */}
+            <div 
+                className="absolute inset-0 flex h-screen w-full items-center justify-center bg-transparent"
+                style={{
+                    transition: "opacity 600ms ease, transform 600ms cubic-bezier(0.25, 1, 0.5, 1)",
+                    opacity: ready ? 0 : 1,
+                    transform: ready ? "scale(0.95)" : "scale(1)",
+                    visibility: ready ? "hidden" : "visible",
+                    transitionDelay: ready ? "0ms" : "0ms",
+                }}
+            >
+                <div className="flex w-full flex-col items-center justify-center">
+                    {/* LOADING TEXT */}
+                    <div className="flex items-center justify-center whitespace-nowrap">
+                        {LOADING_TEXT.split("").map((char, index) => (
+                            <span
+                                key={`${char}-${index}`}
+                                className="inline-block text-[12vw] font-bold uppercase leading-none text-primary animate-loader-wave max-[996px]:text-[14vw] max-[750px]:text-[16vw] max-[500px]:text-[40px]"
+                                style={{
+                                    animationDelay: `${index * 0.08}s`,
+                                }}
+                            >
+                                {char === " " ? "\u00A0" : char}
+                            </span>
+                        ))}
                     </div>
 
-                    {/* Progress bar */}
-                    <div className="h-[2px] w-full overflow-hidden bg-white/15">
-                        <div
-                            className="
-                h-full
-                bg-white
-                transition-[width]
-                duration-100
-                ease-linear
-              "
-                            style={{
-                                width: `${progress}%`,
-                            }}
-                        />
+                    {/* PROGRESS */}
+                    <div className="mt-14 w-[min(420px,70vw)]">
+                        <div className="mb-3 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-white/60">
+                            <span>Loading...</span>
+                            <span className="tabular-nums">{progress}%</span>
+                        </div>
+                        <div className="h-[2px] w-full overflow-hidden bg-white/15">
+                            <div
+                                className="h-full bg-white transition-[width] duration-100 ease-linear"
+                                style={{ width: `${progress}%` }}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
