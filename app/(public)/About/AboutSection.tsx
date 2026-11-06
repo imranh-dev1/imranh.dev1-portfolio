@@ -5,7 +5,7 @@ import { Brush, Code2, Server, Minus } from "lucide-react"
 
 import { Card, CardContent } from "@/components/ui/card"
 
-import imranHossain from "@/public/imran-hossain-bg.png"
+import imranHossain from "@/public/imran-hossain.jpg"
 import SectionHeader from "@/components/shared/SectionHeader/SectionHeader"
 
 const features = [
